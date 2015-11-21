@@ -12,6 +12,9 @@
 #include <vtkVolumeProperty.h>
 #include <vtkFixedPointVolumeRayCastMapper.h>
 #include <vtkColorTransferFunction.h>
+#include <vtkShader2.h>
+#include <vtkShaderProgram2.h>
+#include <vtkProperty.h>
 
 int main(int argc, char *argv[])
 {
@@ -25,6 +28,7 @@ int main(int argc, char *argv[])
   {
 	  filename = argv[1]; //  "/Data/ironProt.vtk";
   }
+
 
   // Create the renderers, render window, and interactor
   vtkSmartPointer<vtkRenderWindow> renWin = 
@@ -51,7 +55,7 @@ int main(int argc, char *argv[])
     vtkSmartPointer<vtkColorTransferFunction>::New();
   cTFun->AddRGBPoint(   0, 1.0, 1.0, 1.0 );
   cTFun->AddRGBPoint( 255, 1.0, 1.0, 1.0 );
- 
+
   // Need to crop to actually see minimum intensity
   vtkSmartPointer<vtkImageClip> clip = 
     vtkSmartPointer<vtkImageClip>::New();
