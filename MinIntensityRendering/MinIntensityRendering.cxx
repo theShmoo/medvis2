@@ -15,6 +15,13 @@
 #include <vtkShader2.h>
 #include <vtkShaderProgram2.h>
 #include <vtkProperty.h>
+#include <vtkOpenGLProperty.h>
+#include <iostream>
+#include <fstream>
+#include <string>
+
+#include "LoadShader.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -40,6 +47,19 @@ int main(int argc, char *argv[])
     vtkSmartPointer<vtkRenderer>::New();
   renWin->AddRenderer(ren);
    
+  //-.-.-.-.-.-.-.-.-.-.-.-.-.-Baustelle fuers DVR-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+
+  std::string filenameDVRvertexshader = "./Shader/VolumeRenderer.vert";
+  std::string filenameDVRgeometryshader = "./Shader/VolumeRenderer.geo";
+  std::string filenameDVRfragmentshader = "./Shader/VolumeRenderer.frag";
+
+  //vtkSmartPointer<vtkShaderProgram2> program = LoadShader::loadShaders(filenameDVRvertexshader, filenameDVRgeometryshader, filenameDVRfragmentshader, renWin, true);
+
+  //if (program == nullptr)
+//	  std::cout << "failed to load Program" << std::endl;
+
+  //-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+
   // Read the data from a vtk file
   vtkSmartPointer<vtkStructuredPointsReader> reader = 
     vtkSmartPointer<vtkStructuredPointsReader>::New();
@@ -85,3 +105,37 @@ int main(int argc, char *argv[])
  
   return EXIT_SUCCESS;
 }
+
+// Vorlage
+/*
+vtkSmartPointer<vtkConeSource> cone = vtkConeSource::New();
+vtkSmartPointer<vtkPolyDataMapper> coneMapper = vtkPolyDataMapper::New();
+coneMapper->SetInputConnection(cone->GetOutputPort());
+vtkSmartPointer<vtkActor> coneActor = vtkActor::New();
+coneActor->SetMapper(coneMapper);
+vtkSmartPointer<vtkRenderer> ren = vtkRenderer::New();
+ren->AddActor(coneActor);
+
+vtkSmartPointer<vtkRenderWindow> renWin = vtkRenderWindow::New();
+renWin->AddRenderer(ren);
+const char* frag = "void propFuncFS(void){ gl_FragColor = vec4(255,0,0,1);}";
+
+vtkSmartPointer<vtkShaderProgram2> pgm = vtkShaderProgram2::New();
+pgm->SetContext(renWin);
+
+vtkSmartPointer<vtkShader2> shader = vtkShader2::New();
+shader->SetType(VTK_SHADER_TYPE_FRAGMENT);
+shader->SetSourceCode(frag);
+shader->SetContext(pgm->GetContext());
+
+pgm->GetShaders()->AddItem(shader);
+vtkSmartPointer<vtkOpenGLProperty> openGLproperty =
+static_cast<vtkOpenGLProperty*>(coneActor->GetProperty());
+openGLproperty->SetPropProgram(pgm);
+openGLproperty->ShadingOn();
+int i;
+for (i = 0; i < 360; ++i)
+{
+renWin->Render();
+ren->GetActiveCamera()->Azimuth(1);
+}*/
