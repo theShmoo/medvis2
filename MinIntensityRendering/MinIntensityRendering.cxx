@@ -46,19 +46,6 @@ int main(int argc, char *argv[])
   vtkSmartPointer<vtkRenderer> ren =
     vtkSmartPointer<vtkRenderer>::New();
   renWin->AddRenderer(ren);
-   
-  //-.-.-.-.-.-.-.-.-.-.-.-.-.-Baustelle fuers DVR-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
-
-  std::string filenameDVRvertexshader = "./Shader/VolumeRenderer.vert";
-  std::string filenameDVRgeometryshader = "./Shader/VolumeRenderer.geo";
-  std::string filenameDVRfragmentshader = "./Shader/VolumeRenderer.frag";
-
-  //vtkSmartPointer<vtkShaderProgram2> program = LoadShader::loadShaders(filenameDVRvertexshader, filenameDVRgeometryshader, filenameDVRfragmentshader, renWin, true);
-
-  //if (program == nullptr)
-//	  std::cout << "failed to load Program" << std::endl;
-
-  //-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
 
   // Read the data from a vtk file
   vtkSmartPointer<vtkStructuredPointsReader> reader = 
@@ -83,6 +70,33 @@ int main(int argc, char *argv[])
   clip->SetOutputWholeExtent(0,66,0,66,30,37);
   clip->ClipDataOn();
  
+  //-.-.-.-.-.-.-.-.-.-.-.-.-.-Baustelle fuers DVR-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+  /*
+  std::string filenameDVRvertexshader = "./Shader/VolumeRenderer.vert";
+  std::string filenameDVRgeometryshader = "./Shader/VolumeRenderer.geo";
+  std::string filenameDVRfragmentshader = "./Shader/VolumeRenderer.frag";
+
+  vtkSmartPointer<vtkShaderProgram2> program = LoadShader::loadShaders(filenameDVRvertexshader, filenameDVRgeometryshader, filenameDVRfragmentshader, renWin, true);
+
+  if (program == nullptr)
+	  std::cout << "failed to load Program" << std::endl;
+  
+  float camPosFloat[3];
+  double* camPos = ren->GetActiveCamera()->GetPosition();
+  std::copy(camPos, camPos + 3, camPosFloat);
+  
+  float screenSizeFloat[3];
+  int* screenSize = renWin->GetScreenSize();
+  std::copy(screenSize, screenSize + 3, screenSizeFloat);
+
+  program->SetUniform2f("WindowSize", screenSizeFloat);
+  program->SetUniform3f("RayOrigin", camPosFloat);
+
+  */
+  //-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+
+
+
   vtkSmartPointer<vtkVolumeProperty> property = 
     vtkSmartPointer<vtkVolumeProperty>::New();
   property->SetScalarOpacity(oTFun);
@@ -99,6 +113,7 @@ int main(int argc, char *argv[])
   volume->SetMapper(mapper);
   volume->SetProperty(property);
  
+
   ren->AddViewProp(volume);
   renWin->Render();
   iren->Start();
