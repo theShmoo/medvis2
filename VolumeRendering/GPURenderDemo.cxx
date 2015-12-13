@@ -12,6 +12,10 @@
      PURPOSE.  See the above copyright notice for more information.
 
 =========================================================================*/
+
+#define vtkRenderingCore_AUTOINIT 4(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingFreeTypeOpenGL,vtkRenderingOpenGL)
+#define vtkRenderingVolume_AUTOINIT 1(vtkRenderingVolumeOpenGL)
+
 // VTK includes
 #include "vtkBoxWidget.h"
 #include "vtkCamera.h"
@@ -24,13 +28,14 @@
 #include "vtkPiecewiseFunction.h"
 #include "vtkPlanes.h"
 #include "vtkProperty.h"
-#include "vtkRenderer.h"
-#include "vtkRenderWindow.h"
+#include <vtkRenderer.h>
+#include <vtkRenderWindow.h>
 #include "vtkRenderWindowInteractor.h"
 #include "vtkVolume.h"
 #include "vtkVolumeProperty.h"
 #include "vtkXMLImageDataReader.h"
 #include "vtkSmartVolumeMapper.h"
+
 
 #define VTI_FILETYPE 1
 #define MHA_FILETYPE 2

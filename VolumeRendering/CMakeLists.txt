@@ -8,13 +8,14 @@ endif()
 
 project (VolumeRendering)
 
-find_package(VTK COMPONENTS
-  vtkCommonCore
-  vtkIOImage
-  vtkIOXML
-  vtkInteractionWidgets
-  vtkRenderingVolume${VTK_RENDERING_BACKEND}
-)
+#find_package(VTK COMPONENTS
+#  vtkCommonCore
+#  vtkIOImage
+#  vtkIOXML
+#  vtkInteractionWidgets
+#  vtkRenderingVolume${VTK_RENDERING_BACKEND}
+#)
+find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
 
 set(RENDERING_EXAMPLES_SRCS
@@ -24,7 +25,11 @@ set(RENDERING_EXAMPLES_SRCS
 
 foreach(name ${RENDERING_EXAMPLES_SRCS})
   add_executable(${name} MACOSX_BUNDLE ${name}.cxx)
-  target_link_libraries(${name} ${VTK_LIBRARIES})
+  if(VTK_LIBRARIES)
+	 target_link_libraries(${name} ${VTK_LIBRARIES})
+  else()
+	 target_link_libraries(${name} vtkHybrid vtkWidgets)
+  endif()
 endforeach()
 
 
