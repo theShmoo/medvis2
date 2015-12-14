@@ -17,14 +17,10 @@ find_package(VTK COMPONENTS
 )
 include(${VTK_USE_FILE})
 
-set(RENDERING_EXAMPLES_SRCS
-  GPURenderDemo
-  FixedPointVolumeRayCastMapperCT
-)
+FILE(GLOB SRC "src/*.cpp")
+FILE(GLOB INC "inc/*.h")
 
-foreach(name ${RENDERING_EXAMPLES_SRCS})
-  add_executable(${name} MACOSX_BUNDLE ${name}.cxx)
-  target_link_libraries(${name} ${VTK_LIBRARIES})
-endforeach()
+add_executable(VolumeRendering MACOSX_BUNDLE ${SRC} ${INC})
+target_link_libraries(VolumeRendering ${VTK_LIBRARIES})
 
 
