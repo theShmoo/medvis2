@@ -8,19 +8,24 @@ endif()
 
 project (VolumeRendering)
 
-find_package(VTK COMPONENTS
-  vtkCommonCore
-  vtkIOImage
-  vtkIOXML
-  vtkInteractionWidgets
-  vtkRenderingVolume${VTK_RENDERING_BACKEND}
-)
+#find_package(VTK COMPONENTS
+#  vtkCommonCore
+#  vtkIOImage
+#  vtkIOXML
+#  vtkInteractionWidgets
+#  vtkRenderingVolume${VTK_RENDERING_BACKEND}
+#)
+find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
 
 FILE(GLOB SRC "src/*.cpp")
 FILE(GLOB INC "inc/*.h")
 
 add_executable(VolumeRendering MACOSX_BUNDLE ${SRC} ${INC})
-target_link_libraries(VolumeRendering ${VTK_LIBRARIES})
+if(VTK_LIBRARIES)
+  target_link_libraries(VolumeRendering ${VTK_LIBRARIES})
+else()
+  target_link_libraries(VolumeRendering vtkHybrid vtkWidgets)
+endif()
 
 
