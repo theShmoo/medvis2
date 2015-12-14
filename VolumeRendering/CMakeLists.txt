@@ -18,6 +18,10 @@ project (VolumeRendering)
 find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
 
+include_directories(
+  "${PROJECT_SOURCE_DIR}/inc"   # to find foo/foo.h
+  "${PROJECT_BINARY_DIR}")  # to find foo/config.h
+
 FILE(GLOB SRC "src/*.cpp")
 FILE(GLOB INC "inc/*.h")
 
