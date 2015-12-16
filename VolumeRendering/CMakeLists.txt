@@ -18,6 +18,9 @@ project (VolumeRendering)
 find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
 
+find_package(Qt5Widgets REQUIRED)
+#include(${QT_USE_FILE})
+
 include_directories(
   "${PROJECT_SOURCE_DIR}/inc"   # to find foo/foo.h
   "${PROJECT_BINARY_DIR}")  # to find foo/config.h
@@ -25,11 +28,16 @@ include_directories(
 FILE(GLOB SRC "src/*.cpp")
 FILE(GLOB INC "inc/*.h")
 
-add_executable(VolumeRendering MACOSX_BUNDLE ${SRC} ${INC})
+FILE(GLOB UI_FILES "gui/*.ui")
+qt5_wrap_ui(UISrcs ${UI_FILES})
+
+add_executable(VolumeRendering MACOSX_BUNDLE ${SRC} ${INC} ${UISrcs})
+qt5_use_modules(VolumeRendering Core Gui)
+
 if(VTK_LIBRARIES)
   target_link_libraries(VolumeRendering ${VTK_LIBRARIES})
 else()
-  target_link_libraries(VolumeRendering vtkHybrid vtkWidgets)
+  target_link_libraries(VolumeRendering vtkHybrid QVTK vtkWidgets ${QT_LIBRARIES})
 endif()
 
 

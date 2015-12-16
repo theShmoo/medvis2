@@ -35,6 +35,9 @@
 #include "InputParser.h"
 #include "DataReader.h"
 
+#include "QtWidgets\qapplication.h"
+//#imclude "QVTKWidget.h"
+
 // Callback for moving the planes from the box widget to the mapper
 class vtkBoxWidgetCallback : public vtkCommand
 {
@@ -64,6 +67,12 @@ protected:
 
 int main(int argc, char *argv[])
 {
+	
+	QApplication app(argc, argv);
+
+	//QVTKWidget widget;
+	//widget.resize(256,256);
+
   // Parse the parameters
   InputParser *inputParser = new InputParser(argc, argv);
 
@@ -294,6 +303,12 @@ int main(int argc, char *argv[])
   renWin->Render();
 
   iren->Start();
+
+  //widget.GetRenderWindow()->AddRenderer(renderer):
+  //widget.show();
+
+  //app.exec();
+
 
   opacityFun->Delete();
   colorFun->Delete();
