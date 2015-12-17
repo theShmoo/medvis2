@@ -27,11 +27,12 @@ include_directories(
 
 FILE(GLOB SRC "src/*.cpp")
 FILE(GLOB INC "inc/*.h")
-
 FILE(GLOB UI_FILES "gui/*.ui")
-qt5_wrap_ui(UISrcs ${UI_FILES})
 
-add_executable(VolumeRendering MACOSX_BUNDLE ${SRC} ${INC} ${UISrcs})
+qt5_wrap_ui(UISrcs ${UI_FILES})
+qt5_wrap_cpp(MOCSrcs ${INC})
+
+add_executable(VolumeRendering MACOSX_BUNDLE ${SRC} ${INC} ${UISrcs} ${MOCSrcs})
 qt5_use_modules(VolumeRendering Core Gui)
 
 if(VTK_LIBRARIES)
