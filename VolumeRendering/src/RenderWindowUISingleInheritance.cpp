@@ -28,51 +28,121 @@
 // Constructor
 RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *inputParser)
 {
+  // create data reader and the user interface
+  this->dataReader = new DataReader();
+
   this->ui = new Ui_RenderWindowUISingleInheritance;
   this->ui->setupUi(this);
 
-  // Create the renderer, render window and interactor
-  vtkSmartPointer<vtkRenderer> renderer = vtkSmartPointer<vtkRenderer>::New();
+  // Create the renderer
+  renderer = vtkSmartPointer<vtkRenderer>::New();
 
   // VTK/Qt wedded
-  vtkRenderWindow *renWin = this->ui->qvtkWidget->GetRenderWindow();
+  renWin = this->ui->qvtkWidget->GetRenderWindow();
   renWin->AddRenderer(renderer);
 
   // Set up action signals and slots
   connect(this->ui->actionExit, SIGNAL(triggered()), this, SLOT(slotExit()));
-
-  DataReader *dataReader = new DataReader();
+  connect(this->ui->ambientSlider, SIGNAL(valueChanged(int)), this, SLOT(on_ambient_change(int)));
+  connect(this->ui->diffuseSlider, SIGNAL(valueChanged(int)), this, SLOT(on_diffuse_change(int)));
+  connect(this->ui->specSlider, SIGNAL(valueChanged(int)), this, SLOT(on_specular_change(int)));
+  connect(this->ui->powerSlider, SIGNAL(valueChanged(int)), this, SLOT(on_power_change(int)));
+  connect(this->ui->opacitySlider, SIGNAL(valueChanged(int)), this, SLOT(on_opacity_change(int)));
 
   // Read the data
-  dataReader->readFile((DataReader::TFileType)inputParser->getFileType(), inputParser->getFileName(), inputParser->getDirName());
-  dataReader->resampleData(inputParser->getReductionFactor());
+  this->dataReader->readFile((DataReader::TFileType)inputParser->getFileType(), inputParser->getFileName(), inputParser->getDirName());
+  this->dataReader->resampleData(inputParser->getReductionFactor());
 
-  // Create our volume and mapper
-  vtkSmartPointer<vtkVolume> volume = vtkSmartPointer<vtkVolume>::New();
-  vtkSmartPointer<vtkSmartVolumeMapper> mapper = vtkSmartPointer<vtkSmartVolumeMapper>::New();
-  mapper->SetInputConnection(dataReader->getOutputPort());
+  // Create our volume
+  vtkSmartPointer<vtkVolume> volume = vtkSmartPointer<vtkVolume>::New(); 
 
-  // Set the sample distance on the ray to be 1/2 the average spacing
-  double spacing[3];
-  dataReader->getImageData()->GetSpacing(spacing);
+  // create out mapper
+  vtkSmartPointer<vtkSmartVolumeMapper> mapper = createVolumeMapper(inputParser, volume);
 
-  //  mapper->SetSampleDistance( (spacing[0]+spacing[1]+spacing[2])/6.0 );
-  //  mapper->SetMaximumImageSampleDistance(10.0);
+  // Add the transfer function to the volume
+  addTransferFunction(inputParser, volume, mapper);
 
+  // Set the default window size
+  renWin->SetSize(600, 600);
+
+  // Add the volume to the scene
+  renderer->AddVolume(volume);
+
+  // init camera
+  renderer->ResetCamera();
+
+  // interact with data
+  renWin->Render();
+}
+
+RenderWindowUISingleInheritance::~RenderWindowUISingleInheritance()
+{
+  delete dataReader;
+  delete ui;
+}
+
+void RenderWindowUISingleInheritance::slotExit()
+{
+  qApp->exit();
+}
+
+void RenderWindowUISingleInheritance::on_ambient_change(int position)
+{
+  float fPosition = position / 10.0f;
+  printf("ambient: %f\n", fPosition);
+  volumeProp->SetAmbient(fPosition);
+  renWin->Render();
+}
+
+void RenderWindowUISingleInheritance::on_specular_change(int position)
+{
+  float fPosition = position / 10.0f;
+  printf("specular: %f\n", fPosition);
+  volumeProp->SetSpecular(fPosition);
+  renWin->Render();
+}
+
+void RenderWindowUISingleInheritance::on_power_change(int position)
+{
+  float fPosition = position / 10.0f;
+  printf("power: %f\n", fPosition);
+  volumeProp->SetSpecularPower(fPosition);
+  renWin->Render();
+}
+
+void RenderWindowUISingleInheritance::on_diffuse_change(int position)
+{
+  float fPosition = position / 10.0f;
+  printf("diffuse: %f\n", fPosition);
+  volumeProp->SetDiffuse(fPosition);
+  renWin->Render();
+}
+
+void RenderWindowUISingleInheritance::on_opacity_change(int position)
+{
+  float fPosition = position / 10.0f;
+  printf("diffuse: %f\n", fPosition);
+  volumeProp->SetScalarOpacityUnitDistance(fPosition);
+  renWin->Render();
+}
+
+
+
+void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputParser, vtkVolume* volume, vtkSmartVolumeMapper* mapper)
+{
   // Create our transfer function
   vtkSmartPointer<vtkColorTransferFunction> colorFun = vtkSmartPointer<vtkColorTransferFunction>::New();
   vtkSmartPointer<vtkPiecewiseFunction> opacityFun = vtkSmartPointer<vtkPiecewiseFunction>::New();
 
   // Create the property and attach the transfer functions
-  vtkSmartPointer<vtkVolumeProperty> property = vtkSmartPointer<vtkVolumeProperty>::New();
-  property->SetIndependentComponents(inputParser->hasIndependentComponents());
-  property->SetColor(colorFun);
-  property->SetScalarOpacity(opacityFun);
-  property->SetInterpolationTypeToLinear();
+  volumeProp = vtkSmartPointer<vtkVolumeProperty>::New();
+  volumeProp->SetIndependentComponents(inputParser->hasIndependentComponents());
+  volumeProp->SetColor(colorFun);
+  volumeProp->SetScalarOpacity(opacityFun);
+  volumeProp->SetInterpolationTypeToLinear();
 
   // connect up the volume to the property and the mapper
-  volume->SetProperty(property);
-  volume->SetMapper(mapper);
+  volume->SetProperty(volumeProp);
 
   // Depending on the blend type selected as a command line option,
   // adjust the transfer function
@@ -99,7 +169,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
     opacityFun->AddSegment(opacityLevel - 0.5*opacityWindow, 0.0,
       opacityLevel + 0.5*opacityWindow, 1.0);
     mapper->SetBlendModeToComposite();
-    property->ShadeOff();
+    volumeProp->ShadeOff();
     break;
 
     // CompositeShadeRamp
@@ -110,7 +180,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
     opacityFun->AddSegment(opacityLevel - 0.5*opacityWindow, 0.0,
       opacityLevel + 0.5*opacityWindow, 1.0);
     mapper->SetBlendModeToComposite();
-    property->ShadeOn();
+    volumeProp->ShadeOn();
     break;
 
     // CT_Skin
@@ -128,12 +198,12 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
     opacityFun->AddPoint(3071, 1.0, 0.5, 0.0);
 
     mapper->SetBlendModeToComposite();
-    property->ShadeOn();
-    property->SetAmbient(0.1);
-    property->SetDiffuse(0.9);
-    property->SetSpecular(0.2);
-    property->SetSpecularPower(10.0);
-    property->SetScalarOpacityUnitDistance(0.8919);
+    volumeProp->ShadeOn();
+    volumeProp->SetAmbient(0.1);
+    volumeProp->SetDiffuse(0.9);
+    volumeProp->SetSpecular(0.2);
+    volumeProp->SetSpecularPower(10.0);
+    volumeProp->SetScalarOpacityUnitDistance(0.8919);
     break;
 
     // CT_Bone
@@ -151,12 +221,12 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
     opacityFun->AddPoint(3071, .71, 0.5, 0.0);
 
     mapper->SetBlendModeToComposite();
-    property->ShadeOn();
-    property->SetAmbient(0.1);
-    property->SetDiffuse(0.9);
-    property->SetSpecular(0.2);
-    property->SetSpecularPower(10.0);
-    property->SetScalarOpacityUnitDistance(0.8919);
+    volumeProp->ShadeOn();
+    volumeProp->SetAmbient(0.1);
+    volumeProp->SetDiffuse(0.9);
+    volumeProp->SetSpecular(0.2);
+    volumeProp->SetSpecularPower(10.0);
+    volumeProp->SetScalarOpacityUnitDistance(0.8919);
     break;
 
     // CT_Muscle
@@ -176,12 +246,12 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
     opacityFun->AddPoint(3071, .80, 0.5, 0.0);
 
     mapper->SetBlendModeToComposite();
-    property->ShadeOn();
-    property->SetAmbient(0.1);
-    property->SetDiffuse(0.9);
-    property->SetSpecular(0.2);
-    property->SetSpecularPower(10.0);
-    property->SetScalarOpacityUnitDistance(0.8919);
+    volumeProp->ShadeOn();
+    volumeProp->SetAmbient(0.1);
+    volumeProp->SetDiffuse(0.9);
+    volumeProp->SetSpecular(0.2);
+    volumeProp->SetSpecularPower(10.0);
+    volumeProp->SetScalarOpacityUnitDistance(0.8919);
     break;
 
     // RGB_Composite
@@ -202,28 +272,27 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
     opacityFun->AddPoint(255.0, 0.5);
 
     mapper->SetBlendModeToComposite();
-    property->ShadeOff();
-    property->SetScalarOpacityUnitDistance(1.0);
+    volumeProp->ShadeOff();
+    volumeProp->SetScalarOpacityUnitDistance(1.0);
     break;
   default:
     vtkGenericWarningMacro("Unknown blend type.");
     break;
   }
-
-  // Set the default window size
-  renWin->SetSize(600, 600);
-  renWin->Render();
-
-  // Add the volume to the scene
-  renderer->AddVolume(volume);
-
-  renderer->ResetCamera();
-
-  // interact with data
-  renWin->Render();
 }
 
-void RenderWindowUISingleInheritance::slotExit()
+vtkSmartVolumeMapper* RenderWindowUISingleInheritance::createVolumeMapper(InputParser * inputParser, vtkVolume* volume)
 {
-  qApp->exit();
+  vtkSmartPointer<vtkSmartVolumeMapper> mapper = vtkSmartPointer<vtkSmartVolumeMapper>::New();
+  mapper->SetInputConnection(dataReader->getOutputPort());
+
+  // Set the sample distance on the ray to be 1/2 the average spacing
+  double spacing[3];
+  this->dataReader->getImageData()->GetSpacing(spacing);
+
+  mapper->SetSampleDistance((spacing[0] + spacing[1] + spacing[2]) / 12.0);
+
+  volume->SetMapper(mapper);
+
+  return mapper;
 }

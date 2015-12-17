@@ -11,48 +11,130 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>RenderWindowUISingleInheritance</string>
+   <string>Direct Volume Rendering</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QVTKWidget" name="qvtkWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>511</width>
-      <height>541</height>
-     </rect>
-    </property>
-   </widget>
+    <layout class="QHBoxLayout" name="hBox">
+      <item>
+        <widget class="QVTKWidget" name="qvtkWidget">
+          <property name="geometry">
+            <rect>
+              <x>10</x>
+              <y>20</y>
+              <width>511</width>
+              <height>541</height>
+            </rect>
+          </property>
+        </widget>
+      </item>
+      <item>
+        <widget class="QWidget" name="formLayoutWidget">
+          <property name="geometry">
+            <rect>
+              <x>20</x>
+              <y>10</y>
+              <width>160</width>
+              <height>142</height>
+            </rect>
+          </property>
+          <layout class="QFormLayout" name="formLayout">
+            <item row="0" column="0">
+              <widget class="QLabel" name="ambientLabel">
+                <property name="text">
+                  <string>ambient</string>
+                </property>
+              </widget>
+            </item>
+            <item row="2" column="0">
+              <widget class="QLabel" name="diffuseLabel">
+                <property name="text">
+                  <string>diffuse</string>
+                </property>
+              </widget>
+            </item>
+            <item row="3" column="0">
+              <widget class="QLabel" name="specularLabel">
+                <property name="text">
+                  <string>specular</string>
+                </property>
+              </widget>
+            </item>
+            <item row="4" column="0">
+              <widget class="QLabel" name="powerLabel">
+                <property name="text">
+                  <string>power</string>
+                </property>
+              </widget>
+            </item>
+            <item row="5" column="0">
+              <widget class="QLabel" name="opacityLabel">
+                <property name="text">
+                  <string>opacity</string>
+                </property>
+              </widget>
+            </item>
+            <item row="0" column="1">
+              <widget class="QSlider" name="ambientSlider">
+                <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="tickPosition">
+                  <enum>QSlider::TicksAbove</enum>
+                </property>
+              </widget>
+            </item>
+            <item row="2" column="1">
+              <widget class="QSlider" name="diffuseSlider">
+                <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="tickPosition">
+                  <enum>QSlider::TicksAbove</enum>
+                </property>
+              </widget>
+            </item>
+            <item row="3" column="1">
+              <widget class="QSlider" name="specSlider">
+                <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="tickPosition">
+                  <enum>QSlider::TicksAbove</enum>
+                </property>
+              </widget>
+            </item>
+            <item row="4" column="1">
+              <widget class="QSlider" name="powerSlider">
+                <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="tickPosition">
+                  <enum>QSlider::TicksAbove</enum>
+                </property>
+              </widget>
+            </item>
+            <item row="5" column="1">
+              <widget class="QSlider" name="opacitySlider">
+                <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="tickPosition">
+                  <enum>QSlider::TicksAbove</enum>
+                </property>
+              </widget>
+            </item>
+          </layout>
+        </widget>
+      </item>
+    </layout>
   </widget>
-  <action name="actionOpenFile">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Open File...</string>
-   </property>
-  </action>
+
   <action name="actionExit">
-   <property name="text">
-    <string>Exit</string>
-   </property>
+    <property name="text">
+      <string>Exit</string>
+    </property>
   </action>
-  <action name="actionPrint">
-   <property name="text">
-    <string>Print</string>
-   </property>
-  </action>
-  <action name="actionHelp">
-   <property name="text">
-    <string>Help</string>
-   </property>
-  </action>
-  <action name="actionSave">
-   <property name="text">
-    <string>Save</string>
-   </property>
-  </action>
+  
  </widget>
  <customwidgets>
   <customwidget>
