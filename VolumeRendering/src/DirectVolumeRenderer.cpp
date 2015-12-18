@@ -19,7 +19,6 @@
 
 // QT includes
 #include <QApplication>
-#include <QVTKWidget.h>
 
 int main(int argc, char *argv[])
 {

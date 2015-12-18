@@ -33,7 +33,7 @@ qt5_wrap_ui(UISrcs ${UI_FILES})
 qt5_wrap_cpp(MOCSrcs ${INC})
 
 add_executable(VolumeRendering MACOSX_BUNDLE ${SRC} ${INC} ${UISrcs} ${MOCSrcs})
-qt5_use_modules(VolumeRendering Core Gui)
+qt5_use_modules(VolumeRendering Core Gui Xml)
 
 if(VTK_LIBRARIES)
   target_link_libraries(VolumeRendering ${VTK_LIBRARIES})

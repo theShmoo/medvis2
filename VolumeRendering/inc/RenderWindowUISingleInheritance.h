@@ -36,6 +36,8 @@ public:
   virtual void on_diffuse_change(int position);
   virtual void on_opacity_change(int position);
 
+  virtual void on_transfer_function_change();
+
 private:
 
   // Designer form
@@ -44,6 +46,7 @@ private:
   vtkSmartPointer<vtkVolumeProperty> volumeProp;
   vtkSmartPointer<vtkRenderer> renderer;
   vtkRenderWindow *renWin;
+  bool bReady;
 };
 
 #endif

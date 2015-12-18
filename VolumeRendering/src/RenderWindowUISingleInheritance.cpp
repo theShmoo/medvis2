@@ -3,6 +3,7 @@
 #include "ui_RenderWindowUISingleInheritance.h"
 #include "InputParser.h"
 #include "DataReader.h"
+#include "Qtfe.h"
 
 // VTK includes
 #include "vtkBoxWidget.h"
@@ -28,6 +29,7 @@
 // Constructor
 RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *inputParser)
 {
+  bReady = false;
   // create data reader and the user interface
   this->dataReader = new DataReader();
 
@@ -48,6 +50,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
   connect(this->ui->specSlider, SIGNAL(valueChanged(int)), this, SLOT(on_specular_change(int)));
   connect(this->ui->powerSlider, SIGNAL(valueChanged(int)), this, SLOT(on_power_change(int)));
   connect(this->ui->opacitySlider, SIGNAL(valueChanged(int)), this, SLOT(on_opacity_change(int)));
+  connect(this->ui->qtfe, SIGNAL(functionChanged()), this, SLOT(on_transfer_function_change()));
 
   // Read the data
   this->dataReader->readFile((DataReader::TFileType)inputParser->getFileType(), inputParser->getFileName(), inputParser->getDirName());
@@ -73,6 +76,8 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
 
   // interact with data
   renWin->Render();
+
+  bReady = true;
 }
 
 RenderWindowUISingleInheritance::~RenderWindowUISingleInheritance()
@@ -126,6 +131,33 @@ void RenderWindowUISingleInheritance::on_opacity_change(int position)
   renWin->Render();
 }
 
+void RenderWindowUISingleInheritance::on_transfer_function_change()
+{
+  if (bReady)
+  {
+    vtkColorTransferFunction* ctf = volumeProp->GetRGBTransferFunction();
+    vtkPiecewiseFunction* otf = volumeProp->GetScalarOpacity();
+    ctf->RemoveAllPoints();
+    otf->RemoveAllPoints();
+    uint nNumPoints = this->ui->qtfe->getNumPoints();
+    qreal *x = new qreal[nNumPoints];
+    qreal *r = new qreal[nNumPoints];
+    qreal *g = new qreal[nNumPoints];
+    qreal *b = new qreal[nNumPoints];
+    qreal *a = new qreal[nNumPoints];
+
+    this->ui->qtfe->getAllRGBAPoints(x, r, g, b, a);
+    this->ui->qtfe->changeXofRGBPoints();
+
+    for (uint i = 0; i < nNumPoints; i++)
+    {
+      ctf->AddRGBPoint(x[i], r[i], g[i], b[i]);
+      otf->AddPoint(x[i], a[i]);
+    }
+    delete x, r, g, b, a;
+    renWin->Render();
+  }
+}
 
 
 void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputParser, vtkVolume* volume, vtkSmartVolumeMapper* mapper)
@@ -143,6 +175,8 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
 
   // connect up the volume to the property and the mapper
   volume->SetProperty(volumeProp);
+
+  Qtfe * qtfe = this->ui->qtfe;
 
   // Depending on the blend type selected as a command line option,
   // adjust the transfer function
@@ -210,6 +244,13 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
     // Use compositing and functions set to highlight bone in CT data
     // Not for use on RGB data
   case 4:
+    qtfe->removeAllRGBPoints();
+    qtfe->setSource(-3024, 3071);
+    qtfe->addRGBAPoint(-3024, 0, 0, 0, 0);
+    qtfe->addRGBAPoint(-16, 0.73, 0.25, 0.30, 0);
+    qtfe->addRGBAPoint(641, .90, .82, .56, .72);
+    qtfe->addRGBAPoint(3071, 1, 1, 1, .71);
+
     colorFun->AddRGBPoint(-3024, 0, 0, 0, 0.5, 0.0);
     colorFun->AddRGBPoint(-16, 0.73, 0.25, 0.30, 0.49, .61);
     colorFun->AddRGBPoint(641, .90, .82, .56, .5, 0.0);
