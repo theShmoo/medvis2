@@ -1,7 +1,7 @@
 /*=========================================================================
 
   Program:   Visualization Toolkit
-  Module:    GPURenderDemo.cxx
+  Module:    vtkGPUVolumeRayCastMapper_FourComponentsFS.glsl
 
   Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
   All rights reserved.
@@ -13,26 +13,21 @@
 
 =========================================================================*/
 
-// projcet includes
-#include "InputParser.h"
-#include "RenderWindowUISingleInheritance.h"
+// Fragment shader that implements scalarFromValue() and colorFromValue() in
+// the case of a one-component dataset.
+// The functions are used in composite mode.
 
-// QT includes
-#include <QtWidgets/qapplication>
+#version 110
 
-int main(int argc, char *argv[])
+// "value" is a sample of the dataset.
+// Think of "value" as an object.
+
+float scalarFromValue(vec4 value)
 {
+  return value.w;
+}
 
-  // Parse the parameters
-  InputParser *inputParser = new InputParser(argc, argv);
-
-  // QT Stuff
-  QApplication app(argc, argv);
-
-  RenderWindowUISingleInheritance renderWindowUISingleInheritance(inputParser);
-  renderWindowUISingleInheritance.show();
-
-  delete inputParser;
-
-  return app.exec();
+vec4 colorFromValue(int volNumber,vec4 value)
+{
+  return vec4(value.xyz,1.0);
 }
