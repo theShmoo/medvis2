@@ -44,25 +44,25 @@ vtkCxxSetObjectMacro(vtkGPUMultiVolumeRayCastMapper, TransformedInput,
 	vtkImageData);
 //Mehdi vtkCxxSetObjectMacro(vtkGPUMultiVolumeRayCastMapper, TransformedInput2, vtkImageData*);
 //Mehdi :
-#define vtkSetObjectBodyMacro2(name,type,args, volNumber)                        
-{																					
-	if (this->name[volNumber] != args)										    	
-	{																				
-		type* tempSGMacroVar = this->name[volNumber];                                
-		this->name[volNumber] = args;                                                  
-		if (this->name[volNumber] != NULL) { this->name[volNumber]->Register(this); }   
-		if (tempSGMacroVar != NULL)														
-		{																				
-			tempSGMacroVar->UnRegister(this);												
-		}																				
-		this->Modified();																
-	}																				
+#define vtkSetObjectBodyMacro2(name,type,args, volNumber)\
+{\
+	if (this->name[volNumber] != args)\
+	{\
+		type* tempSGMacroVar = this->name[volNumber];\
+		this->name[volNumber] = args;\
+		if (this->name[volNumber] != NULL) { this->name[volNumber]->Register(this); }\
+		if (tempSGMacroVar != NULL)\
+		{\
+			tempSGMacroVar->UnRegister(this);\
+		}\
+		this->Modified();\
+	}\
 }
 //Mehdi :
-#define vtkCxxSetObjectMacro2(class,name,type)				
-	void class::Set##name(type* _arg, int volNumber)			
-{															
-	vtkSetObjectBodyMacro2(name, type, _arg, volNumber);        
+#define vtkCxxSetObjectMacro2(class,name,type)\
+	void class::Set##name(type* _arg, int volNumber)\
+{\
+	vtkSetObjectBodyMacro2(name, type, _arg, volNumber);\
 }
 
 vtkCxxSetObjectMacro2(vtkGPUMultiVolumeRayCastMapper, AdditionalTransformedInput, vtkImageData);
