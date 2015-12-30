@@ -12,7 +12,7 @@ PURPOSE.  See the above copyright notice for more information.
 =========================================================================*/
 
 #include "vtkGPUMultiVolumeRayCastMapper.h"
-#include "vtkVolumeRenderingFactory.h"
+#include "vtkObjectFactory.h"
 #include "vtkImageData.h"
 #include "vtkPointData.h"
 #include "vtkCellData.h"
@@ -44,19 +44,19 @@ vtkCxxSetObjectMacro(vtkGPUMultiVolumeRayCastMapper, TransformedInput,
 	vtkImageData);
 //Mehdi vtkCxxSetObjectMacro(vtkGPUMultiVolumeRayCastMapper, TransformedInput2, vtkImageData*);
 //Mehdi :
-#define vtkSetObjectBodyMacro2(name,type,args, volNumber)                           
+#define vtkSetObjectBodyMacro2(name,type,args, volNumber)                        
 {																					
-if (this->name[volNumber] != args)										    	
-{																				
-	type* tempSGMacroVar = this->name[volNumber];                                   
-	this->name[volNumber] = args;                                                   
-if (this->name[volNumber] != NULL) { this->name[volNumber]->Register(this); }   
-if (tempSGMacroVar != NULL)														
-{																				
-	tempSGMacroVar->UnRegister(this);												
-}																				
-	this->Modified();																
-}																				
+	if (this->name[volNumber] != args)										    	
+	{																				
+		type* tempSGMacroVar = this->name[volNumber];                                
+		this->name[volNumber] = args;                                                  
+		if (this->name[volNumber] != NULL) { this->name[volNumber]->Register(this); }   
+		if (tempSGMacroVar != NULL)														
+		{																				
+			tempSGMacroVar->UnRegister(this);												
+		}																				
+		this->Modified();																
+	}																				
 }
 //Mehdi :
 #define vtkCxxSetObjectMacro2(class,name,type)				
@@ -300,7 +300,7 @@ vtkGPUMultiVolumeRayCastMapper *vtkGPUMultiVolumeRayCastMapper::New()
 {
 	// First try to create the object from the vtkObjectFactory
 	vtkObject* ret =
-		vtkVolumeRenderingFactory::CreateInstance("vtkGPUMultiVolumeRayCastMapper");
+		vtkObjectFactory::CreateInstance("vtkGPUMultiVolumeRayCastMapper");
 	return static_cast<vtkGPUMultiVolumeRayCastMapper*>(ret);
 }
 
