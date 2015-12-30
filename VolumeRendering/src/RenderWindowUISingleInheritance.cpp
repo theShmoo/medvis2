@@ -26,12 +26,16 @@
 #include "vtkSmartVolumeMapper.h"
 #include "vtkSmartPointer.h"
 
+//#include "vtkGDCMImageReader/vtkGDCMImageWriter"
+
+
 // Constructor
 RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *inputParser)
 {
   bReady = false;
   // create data reader and the user interface
   this->dataReader = new DataReader();
+
 
   this->ui = new Ui_RenderWindowUISingleInheritance;
   this->ui->setupUi(this);
@@ -61,7 +65,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
 
   // create out mapper
   vtkSmartPointer<vtkSmartVolumeMapper> mapper = createVolumeMapper(inputParser, volume);
-
+  
   // Add the transfer function to the volume
   addTransferFunction(inputParser, volume, mapper);
 
@@ -331,7 +335,8 @@ vtkSmartVolumeMapper* RenderWindowUISingleInheritance::createVolumeMapper(InputP
   double spacing[3];
   this->dataReader->getImageData()->GetSpacing(spacing);
 
-  mapper->SetSampleDistance((spacing[0] + spacing[1] + spacing[2]) / 12.0);
+ // mapper->SetSampleDistance((spacing[0] + spacing[1] + spacing[2]) / 12.0);
+  
 
   volume->SetMapper(mapper);
 

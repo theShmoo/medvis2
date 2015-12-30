@@ -1,7 +1,8 @@
 #ifndef RenderWindowUISingleInheritance_H
 #define RenderWindowUISingleInheritance_H
 
-#include <QMainWindow>
+#include <QtWidgets\qmainwindow.h>
+//#include <QMainWindow>
 #include <vtkSmartPointer.h>
 
 // Forward Qt class declarations

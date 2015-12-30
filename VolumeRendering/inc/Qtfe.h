@@ -22,7 +22,7 @@ along with Qtfe.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _Q_TFE_
 #define _Q_TFE_
 
-#include <QWidget>
+#include <QtWidgets/qwidget.h>
 #include <QVector>
 class QLabel;
 

@@ -214,7 +214,9 @@ void vtkGPUMultiVolumeRayCastMapper::SetInput(int port, vtkImageData *input)
 {
 	if (input)
 	{
-		this->SetInputConnection(port, input->GetProducerPort());
+//-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ich bin ein change marker.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.--.-.-
+		//this->SetInputConnection(port, input->GetProducerPort());
+		this->SetInputData(input);
 	}
 	else
 	{
@@ -472,10 +474,12 @@ int vtkGPUMultiVolumeRayCastMapper::ValidateRender(vtkRenderer *ren,
 	//-----------------------------------------------------------------------------Mehdi
 	if (goodSoFar)
 	{
-		input->Update();
+		//input->Update();
+		input->Modified();
 		//Mehdi input2->Update();
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-			Additionalinput[iii]->Update();//Mehdi
+		for (int iii = 0; iii < NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
+			Additionalinput[iii]->Modified();
+			//Additionalinput[iii]->Update();//Mehdi
 	}
 
 	// If we have a timestamp change or data change then create a new clone.
@@ -637,9 +641,13 @@ int vtkGPUMultiVolumeRayCastMapper::ValidateRender(vtkRenderer *ren,
 	if (goodSoFar)
 	{
 		// Here is where we update the input
-		this->TransformedInput->UpdateInformation();
-		this->TransformedInput->SetUpdateExtentToWholeExtent();
-		this->TransformedInput->Update();
+//-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ich bin ein change marker.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.--.-.-
+		this->UpdateInformation();
+		this->SetUpdateExtentToWholeExtent();
+		this->Update();
+		//this->TransformedInput->UpdateInformation();
+		//this->TransformedInput->SetUpdateExtentToWholeExtent();
+		//this->TransformedInput->Update();
 
 		// Now make sure we can find scalars
 		scalars = this->GetScalars(this->TransformedInput, this->ScalarMode,
@@ -669,9 +677,16 @@ int vtkGPUMultiVolumeRayCastMapper::ValidateRender(vtkRenderer *ren,
 		Mehdi*/
 		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
 		{
-			this->AdditionalTransformedInput[iii]->UpdateInformation();//Mehdi
-			this->AdditionalTransformedInput[iii]->SetUpdateExtentToWholeExtent();//Mehdi
-			this->AdditionalTransformedInput[iii]->Update();//Mehdi
+//-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ich bin ein change marker.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.--.-.-
+			this->UpdateInformation();
+			this->SetUpdateExtentToWholeExtent();
+			this->Update();
+			//this->AdditionalTransformedInput[iii]->UpdateInformation();//Mehdi
+			//this->AdditionalTransformedInput[iii]->SetUpdateExtentToWholeExtent();//Mehdi
+			//this->AdditionalTransformedInput[iii]->Modified();
+			//this->AdditionalTransformedInput[iii]->Update();//Mehdi
+			
+			
 
 
 			// Now make sure we can find scalars
@@ -885,9 +900,12 @@ void vtkGPUMultiVolumeRayCastMapper::CreateCanonicalView(
 
 	vtkImageData *bigImage = vtkImageData::New();
 	bigImage->SetDimensions(size[0], size[1], 1);
-	bigImage->SetScalarTypeToUnsignedChar();
+
+//-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ich bin ein change marker.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.--.-.-
+	/*bigImage->SetScalarTypeToUnsignedChar();
 	bigImage->SetNumberOfScalarComponents(3);
-	bigImage->AllocateScalars();
+	bigImage->AllocateScalars();*/
+	bigImage->AllocateScalars(VTK_UNSIGNED_CHAR, 3);
 
 	this->CanonicalViewImageData = bigImage;
 
@@ -970,7 +988,10 @@ void vtkGPUMultiVolumeRayCastMapper::CreateCanonicalView(
 
 	// Shrink to image to the desired size
 	vtkImageResample *resample = vtkImageResample::New();
-	resample->SetInput(bigImage);
+//-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ich bin ein change marker.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.--.-.-
+	resample->SetInputData(bigImage);
+
+	//resample->SetInput(bigImage);
 	resample->SetAxisMagnificationFactor(0, scale[0]);
 	resample->SetAxisMagnificationFactor(1, scale[1]);
 	resample->SetAxisMagnificationFactor(2, 1);

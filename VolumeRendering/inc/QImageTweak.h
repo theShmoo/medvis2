@@ -19,7 +19,7 @@ along with Qtfe.  If not, see <http://www.gnu.org/licenses/>.
 
 ************************************************************************/
 
-#include <QWidget>
+#include <QtWidgets/qwidget.h>
 #include <QPainter>
 #include <QImage>
 

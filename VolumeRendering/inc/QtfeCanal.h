@@ -23,7 +23,7 @@ along with Qtfe.  If not, see <http://www.gnu.org/licenses/>.
 #define _Q_TFE_CANAL_
 
 
-#include <QWidget>
+#include <QtWidgets/qwidget.h>
 #include <QMouseEvent>
 #include <QList>
 

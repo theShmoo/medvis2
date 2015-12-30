@@ -23,15 +23,15 @@ along with Qtfe.  If not, see <http://www.gnu.org/licenses/>.
 #include "QImageTweak.h"
 
 #include <QFile>
-#include <QFileDialog>
+#include <QtWidgets/QFileDialog>
 #include <QTextStream>
 
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QPushButton>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QPushButton>
 #include <QPainter>
-#include <QLabel>
+#include <QtWidgets/QLabel>
 
 #include <QtXml/qdom.h>
 #include <limits>

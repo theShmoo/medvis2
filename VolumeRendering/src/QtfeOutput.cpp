@@ -22,11 +22,11 @@ along with Qtfe.  If not, see <http://www.gnu.org/licenses/>.
 #include "QtfeOutput.h"
 #include "Qtfe.h"
 
-#include <QHBoxLayout>
-#include <QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
 
-#include <QLabel>
-#include <QSpinBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSpinBox>
 #include <QPainter>
 
 QtfeOutput::QtfeOutput(Qtfe* par) : QWidget(par), par(par)
