@@ -9,7 +9,7 @@
 class Ui_RenderWindowUISingleInheritance;
 class InputParser;
 class DataReader;
-class vtkSmartVolumeMapper;
+class vtkOpenGLGPUMultiVolumeRayCastMapper;
 class vtkVolume;
 class vtkVolumeProperty;
 class vtkRenderer;
@@ -24,9 +24,9 @@ public:
   RenderWindowUISingleInheritance(InputParser *inputParser);
   ~RenderWindowUISingleInheritance();
 
-  vtkSmartVolumeMapper* createVolumeMapper(InputParser * inputParser, vtkVolume* volume);
+  vtkOpenGLGPUMultiVolumeRayCastMapper* createVolumeMapper(InputParser * inputParser, vtkVolume* volume);
 
-  void addTransferFunction(InputParser * inputParser, vtkVolume* volume, vtkSmartVolumeMapper* mapper);
+  void addTransferFunction(InputParser * inputParser, vtkVolume* volume, vtkOpenGLGPUMultiVolumeRayCastMapper* mapper);
 
   public slots:
 

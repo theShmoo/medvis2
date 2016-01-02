@@ -20,7 +20,6 @@ PURPOSE.  See the above copyright notice for more information.
 
 #include "vtkVolumeMapper.h"
 
-
 #if defined (__APPLE__)
 #define MAX_NUMBER_OF_ADDITIONAL_VOLUMES 3 //Mehdi //?
 #else
@@ -32,9 +31,10 @@ class vtkRenderWindow;
 class vtkImageData;
 class vtkTransform;
 
+#define VTK_VOLUMERENDERING_EXPORT
+
 //class vtkKWAMRVolumeMapper; // friend class.
-//class VTK_VOLUMERENDERING_EXPORT vtkGPUMultiVolumeRayCastMapper : public vtkVolumeMapper
-class vtkGPUMultiVolumeRayCastMapper : public vtkVolumeMapper
+class VTK_VOLUMERENDERING_EXPORT vtkGPUMultiVolumeRayCastMapper : public vtkVolumeMapper
 {
 public:
 	int NUMBER_OF_ADDITIONAL_VOLUMES; //Mehdi //?

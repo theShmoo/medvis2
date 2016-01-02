@@ -8,18 +8,41 @@ endif()
 
 project (VolumeRendering)
 
-#find_package(VTK COMPONENTS
-#  vtkCommonCore
-#  vtkIOImage
-#  vtkIOXML
-#  vtkInteractionWidgets
-#  vtkRenderingVolume${VTK_RENDERING_BACKEND}
-#)
+set(KIT VolumeRendering)
+
 find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
 
 find_package(Qt5Widgets REQUIRED)
-#include(${QT_USE_FILE})
+
+FIND_PACKAGE(OpenGL REQUIRED)
+
+INCLUDE_DIRECTORIES(
+  ${OPENGL_INCLUDE_DIR}
+)
+
+set(KIT_GLSL_SRCS
+   vtkGPUMultiVolumeRayCastMapper_CompositeFS
+   vtkGPUMultiVolumeRayCastMapper_OneComponentFS
+   vtkGPUMultiVolumeRayCastMapper_FourComponentsFS
+   vtkGPUMultiVolumeRayCastMapper_NoShadeFS
+   vtkGPUMultiVolumeRayCastMapper_ShadeFS
+)
+
+# Needs vtkEncodeString, VTK_ENCODESTRING_EXE
+# VTK_VOLUMERENDERING_EXPORT is the flag associated to the library, should be adapted
+foreach(file ${KIT_GLSL_SRCS})
+  set(src  ${PROJECT_SOURCE_DIR}/GLSL/${file}.glsl)
+  set(res  ${PROJECT_SOURCE_DIR}/src/${file}.cxx)
+  set(resh ${PROJECT_SOURCE_DIR}/inc/${file}.h)
+  add_custom_command(
+    OUTPUT ${res} ${resh}
+    DEPENDS ${src} vtkEncodeString
+    COMMAND ${VTK_ENCODESTRING_EXE}
+    ARGS ${res} ${src} ${file}
+    )
+  set(Kit_EXTRA_SRCS ${Kit_EXTRA_SRCS} ${res})
+endforeach(file)
 
 include_directories(
   "${PROJECT_SOURCE_DIR}/inc"   # to find foo/foo.h
@@ -32,13 +55,13 @@ FILE(GLOB UI_FILES "gui/*.ui")
 qt5_wrap_ui(UISrcs ${UI_FILES})
 qt5_wrap_cpp(MOCSrcs ${INC})
 
-add_executable(VolumeRendering MACOSX_BUNDLE ${SRC} ${INC} ${UISrcs} ${MOCSrcs})
+add_executable(VolumeRendering MACOSX_BUNDLE ${SRC} ${INC} ${UISrcs} ${MOCSrcs} ${Kit_EXTRA_SRCS})
 qt5_use_modules(VolumeRendering Core Gui Xml)
 
 if(VTK_LIBRARIES)
-  target_link_libraries(VolumeRendering ${VTK_LIBRARIES})
+  target_link_libraries(VolumeRendering ${VTK_LIBRARIES} ${OPENGL_gl_LIBRARY} ${SSC_GCOV_LIBRARY})
 else()
-  target_link_libraries(VolumeRendering vtkHybrid QVTK vtkWidgets ${QT_LIBRARIES})
+  target_link_libraries(VolumeRendering vtkHybrid QVTK vtkWidgets vtkVolumeRendering vtkIO vtkRendering ${QT_LIBRARIES} ${OPENGL_gl_LIBRARY} ${SSC_GCOV_LIBRARY})
 endif()
 
 

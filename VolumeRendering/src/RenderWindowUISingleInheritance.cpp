@@ -25,6 +25,7 @@
 #include "vtkXMLImageDataReader.h"
 #include "vtkSmartVolumeMapper.h"
 #include "vtkSmartPointer.h"
+#include "vtkOpenGLGPUMultiVolumeRayCastMapper.h"
 
 //#include "vtkGDCMImageReader/vtkGDCMImageWriter"
 
@@ -64,7 +65,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
   vtkSmartPointer<vtkVolume> volume = vtkSmartPointer<vtkVolume>::New(); 
 
   // create out mapper
-  vtkSmartPointer<vtkSmartVolumeMapper> mapper = createVolumeMapper(inputParser, volume);
+  vtkSmartPointer<vtkOpenGLGPUMultiVolumeRayCastMapper> mapper = createVolumeMapper(inputParser, volume);
   
   // Add the transfer function to the volume
   addTransferFunction(inputParser, volume, mapper);
@@ -164,7 +165,7 @@ void RenderWindowUISingleInheritance::on_transfer_function_change()
 }
 
 
-void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputParser, vtkVolume* volume, vtkSmartVolumeMapper* mapper)
+void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputParser, vtkVolume* volume, vtkOpenGLGPUMultiVolumeRayCastMapper* mapper)
 {
   // Create our transfer function
   vtkSmartPointer<vtkColorTransferFunction> colorFun = vtkSmartPointer<vtkColorTransferFunction>::New();
@@ -326,9 +327,9 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
   }
 }
 
-vtkSmartVolumeMapper* RenderWindowUISingleInheritance::createVolumeMapper(InputParser * inputParser, vtkVolume* volume)
+vtkOpenGLGPUMultiVolumeRayCastMapper* RenderWindowUISingleInheritance::createVolumeMapper(InputParser * inputParser, vtkVolume* volume)
 {
-  vtkSmartPointer<vtkSmartVolumeMapper> mapper = vtkSmartPointer<vtkSmartVolumeMapper>::New();
+  vtkSmartPointer<vtkOpenGLGPUMultiVolumeRayCastMapper> mapper = vtkSmartPointer<vtkOpenGLGPUMultiVolumeRayCastMapper>::New();
   mapper->SetInputConnection(dataReader->getOutputPort());
 
   // Set the sample distance on the ray to be 1/2 the average spacing
