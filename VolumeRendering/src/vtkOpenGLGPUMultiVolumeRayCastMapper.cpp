@@ -148,8 +148,8 @@ extern const char *vtkGPUMultiVolumeRayCastMapper_FourComponentsFS;
 
 // extern const char *vtkGPUVolumeRayCastMapper_CompositeFS;
 // extern const char *vtkGPUVolumeRayCastMapper_CompositeCroppingFS;
-// extern const char *vtkGPUVolumeRayCastMapper_CompositeNoCroppingFS;
-// extern const char *vtkGPUVolumeRayCastMapper_HeaderFS;
+extern const char *vtkGPUVolumeRayCastMapper_CompositeNoCroppingFS;
+extern const char *vtkGPUVolumeRayCastMapper_HeaderFS;
 // extern const char *vtkGPUVolumeRayCastMapper_MIPFS;
 // extern const char *vtkGPUVolumeRayCastMapper_MIPBinaryMaskFS;
 // extern const char *vtkGPUVolumeRayCastMapper_MIPFourDependentFS;
@@ -157,7 +157,7 @@ extern const char *vtkGPUMultiVolumeRayCastMapper_FourComponentsFS;
 // extern const char *vtkGPUVolumeRayCastMapper_MIPFourDependentNoCroppingFS;
 // extern const char *vtkGPUVolumeRayCastMapper_MIPCroppingFS;
 // extern const char *vtkGPUVolumeRayCastMapper_MIPNoCroppingFS;
-// extern const char *vtkGPUVolumeRayCastMapper_ParallelProjectionFS;
+extern const char *vtkGPUVolumeRayCastMapper_ParallelProjectionFS;
 // extern const char *vtkGPUVolumeRayCastMapper_PerspectiveProjectionFS;
 // extern const char *vtkGPUVolumeRayCastMapper_ScaleBiasFS;
 // extern const char *vtkGPUVolumeRayCastMapper_MinIPFS;
@@ -7569,9 +7569,9 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 	{
 		this->Main = vtkShader2::New();
 		this->Main->SetType(VTK_SHADER_TYPE_FRAGMENT);
-		//this->Main->SetSourceCode(vtkGPUVolumeRayCastMapper_HeaderFS);
-    assert(!"Not Implemented Yet");
-		//      this->Main->SetSourceCode(vtkGPUVolumeRayCastMapper_DebugFS);
+		this->Main->SetSourceCode(vtkGPUVolumeRayCastMapper_HeaderFS);
+   // assert(!"Not Implemented Yet");
+		//this->Main->SetSourceCode(vtkGPUVolumeRayCastMapper_DebugFS);
 		shaders->AddItem(this->Main);
 	}
 	if (this->Projection == 0)
@@ -7619,8 +7619,8 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 		const char *projectionCode;
 		if (parallelProjection)
 		{
-			//projectionCode = vtkGPUVolumeRayCastMapper_ParallelProjectionFS;
-      assert(!"Not Implemented Yet");
+			projectionCode = vtkGPUVolumeRayCastMapper_ParallelProjectionFS;
+      //assert(!"Not Implemented Yet");
 		}
 		else
 		{
@@ -7777,50 +7777,51 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 	{
 		this->LastCroppingMode = croppingMode;
 		const char *croppingCode;
-// 		switch (croppingMode)
-// 		{
-// 		case vtkOpenGLGPUMultiVolumeRayCastMapperMIPCropping:
-// 			croppingCode = vtkGPUVolumeRayCastMapper_MIPCroppingFS;
-// 			break;
-// 		case vtkOpenGLGPUMultiVolumeRayCastMapperMIPNoCropping:
-// 			croppingCode = vtkGPUVolumeRayCastMapper_MIPNoCroppingFS;
-// 			break;
-// 		case vtkOpenGLGPUMultiVolumeRayCastMapperMIPFourDependentCropping:
-// 			croppingCode = vtkGPUVolumeRayCastMapper_MIPFourDependentCroppingFS;
-// 			break;
-// 		case vtkOpenGLGPUMultiVolumeRayCastMapperMIPFourDependentNoCropping:
-// 			croppingCode = vtkGPUVolumeRayCastMapper_MIPFourDependentNoCroppingFS;
-// 			break;
-// 		case vtkOpenGLGPUMultiVolumeRayCastMapperCompositeCropping:
-// 			croppingCode = vtkGPUVolumeRayCastMapper_CompositeCroppingFS;
-// 			break;
-// 		case vtkOpenGLGPUMultiVolumeRayCastMapperCompositeNoCropping:
-// 			croppingCode = vtkGPUVolumeRayCastMapper_CompositeNoCroppingFS;
-// 			break;
-// 		case vtkOpenGLGPUMultiVolumeRayCastMapperMinIPCropping:
-// 			croppingCode = vtkGPUVolumeRayCastMapper_MinIPCroppingFS;
-// 			break;
-// 		case vtkOpenGLGPUMultiVolumeRayCastMapperMinIPNoCropping:
-// 			croppingCode = vtkGPUVolumeRayCastMapper_MinIPNoCroppingFS;
-// 			break;
-// 		case vtkOpenGLGPUMultiVolumeRayCastMapperMinIPFourDependentCropping:
-// 			croppingCode = vtkGPUVolumeRayCastMapper_MinIPFourDependentCroppingFS;
-// 			break;
-// 		case vtkOpenGLGPUMultiVolumeRayCastMapperMinIPFourDependentNoCropping:
-// 			croppingCode = vtkGPUVolumeRayCastMapper_MinIPFourDependentNoCroppingFS;
-// 			break;
-// 		case vtkOpenGLGPUMultiVolumeRayCastMapperAdditiveCropping:
-// 			croppingCode = vtkGPUVolumeRayCastMapper_AdditiveCroppingFS;
-// 			break;
-// 		case vtkOpenGLGPUMultiVolumeRayCastMapperAdditiveNoCropping:
-// 			croppingCode = vtkGPUVolumeRayCastMapper_AdditiveNoCroppingFS;
-// 			break;
-// 		default:
-// 			assert("check: impossible case" && 0);
-// 			croppingCode = 0; // to avoid warning
-// 			break;
-// 		}
-    assert(!"Not Implemented Yet");
+ 		switch (croppingMode)
+ 		{
+ /*		case vtkOpenGLGPUMultiVolumeRayCastMapperMIPCropping:
+ 			croppingCode = vtkGPUVolumeRayCastMapper_MIPCroppingFS;
+ 			break;
+ 		case vtkOpenGLGPUMultiVolumeRayCastMapperMIPNoCropping:
+ 			croppingCode = vtkGPUVolumeRayCastMapper_MIPNoCroppingFS;
+ 			break;
+ 		case vtkOpenGLGPUMultiVolumeRayCastMapperMIPFourDependentCropping:
+ 			croppingCode = vtkGPUVolumeRayCastMapper_MIPFourDependentCroppingFS;
+ 			break;
+ 		case vtkOpenGLGPUMultiVolumeRayCastMapperMIPFourDependentNoCropping:
+ 			croppingCode = vtkGPUVolumeRayCastMapper_MIPFourDependentNoCroppingFS;
+			break;
+		case vtkOpenGLGPUMultiVolumeRayCastMapperCompositeCropping:
+ 			croppingCode = vtkGPUVolumeRayCastMapper_CompositeCroppingFS;
+ 			break;
+ */		case vtkOpenGLGPUMultiVolumeRayCastMapperCompositeNoCropping:
+			croppingCode = vtkGPUVolumeRayCastMapper_CompositeNoCroppingFS;
+ 			break;
+/*		case vtkOpenGLGPUMultiVolumeRayCastMapperMinIPCropping:
+ 			croppingCode = vtkGPUVolumeRayCastMapper_MinIPCroppingFS;
+ 			break;
+ 		case vtkOpenGLGPUMultiVolumeRayCastMapperMinIPNoCropping:
+ 			croppingCode = vtkGPUVolumeRayCastMapper_MinIPNoCroppingFS;
+ 			break;
+ 		case vtkOpenGLGPUMultiVolumeRayCastMapperMinIPFourDependentCropping:
+ 			croppingCode = vtkGPUVolumeRayCastMapper_MinIPFourDependentCroppingFS;
+ 			break;
+ 		case vtkOpenGLGPUMultiVolumeRayCastMapperMinIPFourDependentNoCropping:
+ 			croppingCode = vtkGPUVolumeRayCastMapper_MinIPFourDependentNoCroppingFS;
+ 			break;
+ 		case vtkOpenGLGPUMultiVolumeRayCastMapperAdditiveCropping:
+ 			croppingCode = vtkGPUVolumeRayCastMapper_AdditiveCroppingFS;
+ 			break;
+ 		case vtkOpenGLGPUMultiVolumeRayCastMapperAdditiveNoCropping:
+ 			croppingCode = vtkGPUVolumeRayCastMapper_AdditiveNoCroppingFS;
+ 			break;
+*/ 		default:
+ 			assert("check: impossible case" && 0);
+ 			croppingCode = 0; // to avoid warning
+ 			break;
+ 		}
+
+		//    assert(!"Not Implemented Yet");
 		this->CroppingShader->SetSourceCode(croppingCode);
 	}
 

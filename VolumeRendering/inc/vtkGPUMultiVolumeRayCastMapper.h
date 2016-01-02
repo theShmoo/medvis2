@@ -21,9 +21,9 @@ PURPOSE.  See the above copyright notice for more information.
 #include "vtkVolumeMapper.h"
 
 #if defined (__APPLE__)
-#define MAX_NUMBER_OF_ADDITIONAL_VOLUMES 3 //Mehdi //?
-#else
 #define MAX_NUMBER_OF_ADDITIONAL_VOLUMES 4 //Mehdi //?
+#else
+#define MAX_NUMBER_OF_ADDITIONAL_VOLUMES 5 //Mehdi //?
 #endif
 
 class vtkVolumeProperty;

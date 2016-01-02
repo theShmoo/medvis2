@@ -474,8 +474,11 @@ int vtkGPUMultiVolumeRayCastMapper::ValidateRender(vtkRenderer *ren,
 	//-----------------------------------------------------------------------------Mehdi
 	if (goodSoFar)
 	{
+//-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ich bin ein change marker.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.--.-.-
+
 		//input->Update();
-		input->Modified();
+input->Modified();
+this->Update();
 		//Mehdi input2->Update();
 		for (int iii = 0; iii < NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
 			Additionalinput[iii]->Modified();

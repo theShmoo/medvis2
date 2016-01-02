@@ -27,6 +27,9 @@ set(KIT_GLSL_SRCS
    vtkGPUMultiVolumeRayCastMapper_FourComponentsFS
    vtkGPUMultiVolumeRayCastMapper_NoShadeFS
    vtkGPUMultiVolumeRayCastMapper_ShadeFS
+   vtkGPUVolumeRayCastMapper_HeaderFS
+   vtkGPUVolumeRayCastMapper_ParallelProjectionFS
+   vtkGPUVolumeRayCastMapper_CompositeNoCroppingFS
 )
 
 # Needs vtkEncodeString, VTK_ENCODESTRING_EXE
