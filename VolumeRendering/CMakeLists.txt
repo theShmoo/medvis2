@@ -30,6 +30,8 @@ set(KIT_GLSL_SRCS
    vtkGPUVolumeRayCastMapper_HeaderFS
    vtkGPUVolumeRayCastMapper_ParallelProjectionFS
    vtkGPUVolumeRayCastMapper_CompositeNoCroppingFS
+   vtkGPUVolumeRayCastMapper_PerspectiveProjectionFS
+   vtkGPUVolumeRayCastMapper_CompositeCroppingFS
 )
 
 # Needs vtkEncodeString, VTK_ENCODESTRING_EXE

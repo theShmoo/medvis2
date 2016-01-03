@@ -65,7 +65,6 @@ vtkCxxSetObjectMacro(vtkGPUMultiVolumeRayCastMapper, TransformedInput,
 	vtkSetObjectBodyMacro2(name, type, _arg, volNumber);\
 }
 
-vtkCxxSetObjectMacro2(vtkGPUMultiVolumeRayCastMapper, AdditionalTransformedInput, vtkImageData);
 void vtkGPUMultiVolumeRayCastMapper::setNumberOfAdditionalVolumes(int numAddVolumes)//Mehdi
 {
 	NUMBER_OF_ADDITIONAL_VOLUMES = numAddVolumes;
@@ -73,10 +72,7 @@ void vtkGPUMultiVolumeRayCastMapper::setNumberOfAdditionalVolumes(int numAddVolu
 }
 vtkGPUMultiVolumeRayCastMapper::vtkGPUMultiVolumeRayCastMapper()
 {
-	NUMBER_OF_ADDITIONAL_VOLUMES = MAX_NUMBER_OF_ADDITIONAL_VOLUMES;
 	//Mehdi  this->Property2                  = NULL;
-	for (int iii = 0; iii<MAX_NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		this->Property[iii] = NULL;//Mehdi
 
 	this->AutoAdjustSampleDistances = 1;
 	this->ImageSampleDistance = 1.0;
@@ -141,14 +137,8 @@ vtkGPUMultiVolumeRayCastMapper::vtkGPUMultiVolumeRayCastMapper()
 	this->SecondInputUserTransform->Identity();
 	Mehdi*/
 
-	this->SetNumberOfInputPorts(NUMBER_OF_ADDITIONAL_VOLUMES + 1);
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-	{
-		this->AdditionalTransformedInput[iii] = NULL;//Mehdi
-		this->AdditionalLastInput[iii] = NULL;//Mehdi
-		this->AdditionalInputUserTransform[iii] = (vtkTransform*)vtkTransform::New(); //Mehdi
-		this->AdditionalInputUserTransform[iii]->Identity(); //Mehdi
-	}
+	this->SetNumberOfInputPorts(1);
+
 	//--------------------------------------------------------------------------------Mehdi
 
 }
@@ -162,35 +152,10 @@ vtkGPUMultiVolumeRayCastMapper::~vtkGPUMultiVolumeRayCastMapper()
 	//Mehdi this->SetTransformedInput2(NULL);
 	//Mehdi this->LastInput2 = NULL;
 	//Mehdi this->SecondInputUserTransform->Delete();
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++) //Mehdi
-	{
-		this->SetAdditionalTransformedInput(NULL, iii); //Mehdi
-		this->AdditionalLastInput[iii] = NULL;//Mehdi
-		this->AdditionalInputUserTransform[iii]->Delete();//Mehdi
-	}
+
 
 }
 
-// ----------------------------------------------------------------------------
-void vtkGPUMultiVolumeRayCastMapper::SetAdditionalInputUserTransform(int volNumber,
-	vtkTransform *t)//Mehdi
-{
-	this->AdditionalInputUserTransform[volNumber]->DeepCopy(t);//Mehdi
-}
-
-// ----------------------------------------------------------------------------
-/*Mehdi
-vtkTransform *vtkGPUMultiVolumeRayCastMapper::
-GetSecondInputUserTransform()
-{
-return this->SecondInputUserTransform;
-}
-Mehdi*/
-vtkTransform *vtkGPUMultiVolumeRayCastMapper::
-GetAdditionalInputUserTransform(int volNumber)//Mehdi
-{
-	return this->AdditionalInputUserTransform[volNumber];//Mehdi
-}
 
 // ----------------------------------------------------------------------------
 //New functions added
@@ -254,7 +219,7 @@ this->Modified();
 }
 }
 Mehdi*/
-void vtkGPUMultiVolumeRayCastMapper::SetAdditionalProperty(int volNumber, vtkVolumeProperty *property) //Mehdi
+/*void vtkGPUMultiVolumeRayCastMapper::SetAdditionalProperty(int volNumber, vtkVolumeProperty *property) //Mehdi
 {
 
 	if (this->Property[volNumber] != property)
@@ -283,6 +248,8 @@ this->Property2->Delete();
 return this->Property2;
 }
 Mehdi*/
+
+/*
 vtkVolumeProperty *vtkGPUMultiVolumeRayCastMapper::GetAdditionalProperty(int volNumber) //Mehdi
 {
 
@@ -295,7 +262,7 @@ vtkVolumeProperty *vtkGPUMultiVolumeRayCastMapper::GetAdditionalProperty(int vol
 	return this->Property[volNumber];
 
 }
-
+*/
 
 // ----------------------------------------------------------------------------
 vtkGPUMultiVolumeRayCastMapper *vtkGPUMultiVolumeRayCastMapper::New()
@@ -443,10 +410,6 @@ int vtkGPUMultiVolumeRayCastMapper::ValidateRender(vtkRenderer *ren,
 	// Check that we have input data
 	vtkImageData *input = this->GetInput(0);
 
-	//Mehdi vtkImageData *input2=this->GetInput(1);
-	vtkImageData *Additionalinput[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		Additionalinput[iii] = this->GetInput(iii + 1);
 
 	//-----------------------------------------------------------------------------Mehdi
 	/*Mehdi
@@ -460,16 +423,6 @@ int vtkGPUMultiVolumeRayCastMapper::ValidateRender(vtkRenderer *ren,
 	if (goodSoFar)//Mehdi
 	{
 		int tmp = (input == 0);
-		for (int iii = 0; iii <= NUMBER_OF_ADDITIONAL_VOLUMES; iii++) //Mehdi
-		{
-			if (tmp)//Mehdi
-			{
-				vtkErrorMacro("at least one of Inputs is NULL but is required");//Mehdi
-				goodSoFar = 0;//Mehdi
-				break;//Mehdi
-			}
-			tmp = (Additionalinput[iii] == 0);//Mehdi
-		}
 	}
 	//-----------------------------------------------------------------------------Mehdi
 	if (goodSoFar)
@@ -480,8 +433,7 @@ int vtkGPUMultiVolumeRayCastMapper::ValidateRender(vtkRenderer *ren,
 input->Modified();
 this->Update();
 		//Mehdi input2->Update();
-		for (int iii = 0; iii < NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-			Additionalinput[iii]->Modified();
+		
 			//Additionalinput[iii]->Update();//Mehdi
 	}
 
@@ -495,8 +447,6 @@ this->Update();
 			{
 				this->LastInput = input;
 				//Mehdi this->LastInput2 = input2;
-				for (int jjj = 0; jjj<NUMBER_OF_ADDITIONAL_VOLUMES; jjj++) //Mehdi
-					this->AdditionalLastInput[jjj] = Additionalinput[jjj];//Mehdi 
 
 				vtkImageData* clone;
 				if (!this->TransformedInput)
@@ -527,22 +477,7 @@ this->Update();
 				}
 				clone2->ShallowCopy(input2);
 				Mehdi*/
-				vtkImageData* Additionalclone[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];
-				for (int i = 0; i<NUMBER_OF_ADDITIONAL_VOLUMES; i++)//Mehdi
-				{
-					if (!this->AdditionalTransformedInput[i])//Mehdi
-					{
-						Additionalclone[i] = vtkImageData::New();//Mehdi
-						this->SetAdditionalTransformedInput(Additionalclone[i], i);//Mehdi
-						Additionalclone[i]->Delete();//Mehdi
-					}
-					else
-					{
-						Additionalclone[i] = this->AdditionalTransformedInput[i];//Mehdi
-					}
 
-					Additionalclone[i]->ShallowCopy(Additionalinput[i]);//Mehdi
-				}
 				//------------------------------------------------------------------------Mehdi
 
 				// @TODO: This is the workaround to deal with GPUVolumeRayCastMapper
@@ -593,39 +528,10 @@ this->Update();
 				Mehdi*/
 				int extents2[6], real_extents2[6];//Mehdi
 				double origin2[3], spacing2[3];//Mehdi
-				for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi //?
-				{
 
-					Additionalclone[iii]->GetExtent(extents2);//Mehdi
-					Additionalclone[iii]->GetExtent(real_extents2);//Mehdi
-
-					// Get the current origin and spacing.
-
-					Additionalclone[iii]->GetOrigin(origin2);//Mehdi
-					Additionalclone[iii]->GetSpacing(spacing2);//Mehdi
-
-					for (int cc = 0; cc < 3; cc++)
-					{
-						// Transform the origin and the extents.
-						origin2[cc] = origin2[cc] + extents2[2 * cc] * spacing2[cc];
-						extents2[2 * cc + 1] -= extents2[2 * cc];
-						extents2[2 * cc] -= extents2[2 * cc];
-					}
-
-					Additionalclone[iii]->SetOrigin(origin2);
-					Additionalclone[iii]->SetExtent(extents2);
-				}
 				//-----------------------------------------------------------Mehdi
 				break;//Mehdi
 			}
-
-			tmp = (Additionalinput[iii] != this->AdditionalLastInput[iii]);
-			if (tmp)
-				tmp = tmp && Additionalinput[iii];
-			if (tmp)
-				tmp = tmp && AdditionalTransformedInput[iii];
-			if (tmp)
-				tmp = tmp || (Additionalinput[iii]->GetMTime() > this->AdditionalTransformedInput[iii]->GetMTime());//Ole Vegard
 
 			//tmp=((Additionalinput[iii] != this->AdditionalLastInput[iii]) || (Additionalinput[iii]->GetMTime() > this->AdditionalTransformedInput[iii]->GetMTime()));//Mehdi
 		}
@@ -636,9 +542,7 @@ this->Update();
 	vtkDataArray *scalars = NULL;
 
 	//Mehdi  vtkDataArray *scalars2 = NULL;
-	vtkDataArray *Additionalscalars[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		Additionalscalars[iii] = NULL;//Mehdi
+
 
 
 	if (goodSoFar)
@@ -678,41 +582,6 @@ this->Update();
 		this->TransformedInput2->SetUpdateExtentToWholeExtent();
 		this->TransformedInput2->Update();
 		Mehdi*/
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		{
-//-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ich bin ein change marker.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.--.-.-
-			this->UpdateInformation();
-			this->SetUpdateExtentToWholeExtent();
-			this->Update();
-			//this->AdditionalTransformedInput[iii]->UpdateInformation();//Mehdi
-			//this->AdditionalTransformedInput[iii]->SetUpdateExtentToWholeExtent();//Mehdi
-			//this->AdditionalTransformedInput[iii]->Modified();
-			//this->AdditionalTransformedInput[iii]->Update();//Mehdi
-			
-			
-
-
-			// Now make sure we can find scalars
-			Additionalscalars[iii] = this->GetScalars(this->AdditionalTransformedInput[iii], this->ScalarMode,//Mehdi
-				this->ArrayAccessMode,
-				this->ArrayId,
-				this->ArrayName,
-				this->CellFlag);
-
-			// We couldn't find scalars
-			if (!Additionalscalars[iii])
-			{
-				vtkErrorMacro("No scalars found on input.");
-				goodSoFar = 0;
-			}
-			// Even if we found scalars, if they are field data scalars that isn't good
-			else if (this->CellFlag == 2)
-			{
-				vtkErrorMacro("Only point or cell scalar support - found field scalars instead.");
-				goodSoFar = 0;
-			}
-
-		}
 
 	}
 
@@ -774,35 +643,7 @@ this->Update();
 		}
 
 		Mehdi*/
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		{
 
-			switch (Additionalscalars[iii]->GetDataType())//Mehdi
-			{
-			case VTK_CHAR:
-				vtkErrorMacro(<< "scalar of type VTK_CHAR is not supported "
-					<< "because this type is platform dependent. "
-					<< "Use VTK_SIGNED_CHAR or VTK_UNSIGNED_CHAR instead.");
-				goodSoFar = 0;
-				break;
-			case VTK_BIT:
-				vtkErrorMacro("scalar of type VTK_BIT is not supported by this mapper.");
-				goodSoFar = 0;
-				break;
-			case VTK_ID_TYPE:
-				vtkErrorMacro("scalar of type VTK_ID_TYPE is not supported by this mapper.");
-				goodSoFar = 0;
-				break;
-			case VTK_STRING:
-				vtkErrorMacro("scalar of type VTK_STRING is not supported by this mapper.");
-				goodSoFar = 0;
-				break;
-			default:
-				// Don't need to do anything here
-				break;
-			}
-
-		}
 		//---------------------------------------------------------------------------------------------Mehdi
 	}
 	// Check on the blending type - we support composite and min / max intensity
