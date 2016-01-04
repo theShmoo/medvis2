@@ -101,42 +101,57 @@ void RenderWindowUISingleInheritance::slotExit()
 
 void RenderWindowUISingleInheritance::on_ambient_change(int position)
 {
-  float fPosition = position / 10.0f;
-  printf("ambient: %f\n", fPosition);
-  volumeProp->SetAmbient(fPosition);
-  renWin->Render();
+  if (bReady)
+  {
+    float fPosition = position / 10.0f;
+    printf("ambient: %f\n", fPosition);
+    volumeProp->SetAmbient(fPosition);
+    renWin->Render();
+  }
 }
 
 void RenderWindowUISingleInheritance::on_specular_change(int position)
 {
-  float fPosition = position / 10.0f;
-  printf("specular: %f\n", fPosition);
-  volumeProp->SetSpecular(fPosition);
-  renWin->Render();
+  if (bReady)
+  {
+    float fPosition = position / 10.0f;
+    printf("specular: %f\n", fPosition);
+    volumeProp->SetSpecular(fPosition);
+    renWin->Render();
+  }
 }
 
 void RenderWindowUISingleInheritance::on_power_change(int position)
 {
-  float fPosition = position / 10.0f;
-  printf("power: %f\n", fPosition);
-  volumeProp->SetSpecularPower(fPosition);
-  renWin->Render();
+  if (bReady)
+  {
+    float fPosition = position / 10.0f;
+    printf("power: %f\n", fPosition);
+    volumeProp->SetSpecularPower(fPosition);
+    renWin->Render();
+  }
 }
 
 void RenderWindowUISingleInheritance::on_diffuse_change(int position)
 {
-  float fPosition = position / 10.0f;
-  printf("diffuse: %f\n", fPosition);
-  volumeProp->SetDiffuse(fPosition);
-  renWin->Render();
+  if (bReady)
+  {
+    float fPosition = position / 10.0f;
+    printf("diffuse: %f\n", fPosition);
+    volumeProp->SetDiffuse(fPosition);
+    renWin->Render();
+  }
 }
 
 void RenderWindowUISingleInheritance::on_opacity_change(int position)
 {
-  float fPosition = position / 10.0f;
-  printf("diffuse: %f\n", fPosition);
-  volumeProp->SetScalarOpacityUnitDistance(fPosition);
-  renWin->Render();
+  if (bReady)
+  {
+    float fPosition = position / 10.0f;
+    printf("diffuse: %f\n", fPosition);
+    volumeProp->SetScalarOpacityUnitDistance(fPosition);
+    renWin->Render();
+  }
 }
 
 void RenderWindowUISingleInheritance::on_transfer_function_change()
@@ -272,10 +287,25 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
     mapper->SetBlendModeToComposite();
     volumeProp->ShadeOn();
     volumeProp->SetAmbient(0.1);
+
+    this->ui->ambientSlider->setValue(1);
+
     volumeProp->SetDiffuse(0.9);
+
+    this->ui->diffuseSlider->setValue(9);
+
     volumeProp->SetSpecular(0.2);
+
+    this->ui->specSlider->setValue(2);
+
     volumeProp->SetSpecularPower(10.0);
+
+    this->ui->specSlider->setValue(10);
+
     volumeProp->SetScalarOpacityUnitDistance(0.8919);
+
+    this->ui->specSlider->setValue(9);
+
     break;
 
     // CT_Muscle

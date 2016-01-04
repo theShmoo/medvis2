@@ -4503,19 +4503,6 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::PreRender(vtkRenderer *ren,
 			v->SetUniformi("opacityTexture", 1, &ivalue);
 
 			int ivalue2 = 0;
-			if (this->MaskInput != 0 || this->GetNumberOfInputConnections(1)>0)
-			{
-				// Make the mask texture available on texture unit 7
-				ivalue = 7; //? //TODO
-				ivalue2 = 9; //? //TODO
-				if (this->GetNumberOfInputConnections(1)>0) //enable mask textures
-				{
-					
-				}
-				else
-					v->SetUniformi("maskTexture", 1, &ivalue);
-
-			}
 
 			if (numberOfScalarComponents == 1 &&
 				this->BlendMode != vtkGPUMultiVolumeRayCastMapper::ADDITIVE_BLEND)
@@ -4523,14 +4510,6 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::PreRender(vtkRenderer *ren,
 
 				ivalue = 1;
 				v->SetUniformi("colorTexture", 1, &ivalue);
-
-
-				if (this->GetNumberOfInputConnections(1)>0)
-				{
-
-					
-					//---------------------------------------------------Mehdi
-				}
 
 				if (this->MaskInput != 0 && this->MaskType == LabelMapMaskType)
 				{
@@ -5186,56 +5165,6 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::PostRender(
 	{
 		vtkgl::ActiveTexture(vtkgl::TEXTURE1);
 		glBindTexture(GL_TEXTURE_1D, 0);
-		if (this->GetNumberOfInputConnections(1)>0)
-		{
-			//-------------------------------------------------Mehdi
-			/*Mehdi
-			//colour second volume
-			vtkgl::ActiveTexture(vtkgl::TEXTURE8);
-			glBindTexture(GL_TEXTURE_1D,0);
-			Mehdi*/
-			for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++) //Mehdi
-			{
-				//MAC!!!
-				vtkgl::ActiveTexture(vtkgl::TEXTURE8 + (iii * 3)); //Mehdi
-				glBindTexture(GL_TEXTURE_1D, 0);
-			}
-			//-------------------------------------------------Mehdi
-		}
-	}
-
-	// mask disabled
-	// mask or 2(nd)Volumen, if any
-	if (this->MaskInput != 0 || (this->GetNumberOfInputConnections(1)>0))
-	{
-		//---------------------------------------------------------Mehdi
-		/*Mehdi
-		vtkgl::ActiveTexture(vtkgl::TEXTURE7);
-		glBindTexture(vtkgl::TEXTURE_3D_EXT,0);
-		// opacity second volume
-		if (this->GetNumberOfInputConnections(1)>0)
-		{
-		vtkgl::ActiveTexture(vtkgl::TEXTURE9);
-		glBindTexture(GL_TEXTURE_1D,0);
-		}
-		Mehdi*/
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)
-		{
-			//MAC!!!
-			vtkgl::ActiveTexture(vtkgl::TEXTURE7 + (iii * 3));
-			glBindTexture(vtkgl::TEXTURE_3D_EXT, 0);
-		}
-		// opacity second volume
-		if (this->GetNumberOfInputConnections(1)>0)
-		{
-			for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)
-			{
-				//MAC!!!
-				vtkgl::ActiveTexture(vtkgl::TEXTURE9 + (iii * 3));
-				glBindTexture(GL_TEXTURE_1D, 0);
-			}
-		}
-		//---------------------------------------------------------Mehdi
 	}
 
 	// back to active texture 0.
