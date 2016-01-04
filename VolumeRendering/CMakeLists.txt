@@ -29,8 +29,8 @@ set(KIT_GLSL_SRCS
    vtkGPUMultiVolumeRayCastMapper_ShadeFS
    vtkGPUVolumeRayCastMapper_HeaderFS
    vtkGPUVolumeRayCastMapper_ParallelProjectionFS
-   vtkGPUVolumeRayCastMapper_PerspectiveProjectionFS
    vtkGPUVolumeRayCastMapper_CompositeNoCroppingFS
+   vtkGPUVolumeRayCastMapper_PerspectiveProjectionFS
    vtkGPUVolumeRayCastMapper_CompositeCroppingFS
 )
 

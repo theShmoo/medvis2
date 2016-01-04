@@ -94,13 +94,13 @@ public:
 
 protected:
 
-	vtkPlane* ClippingPlane[MAX_NUMBER_OF_ADDITIONAL_VOLUMES + 1];//Mehdi
-	int Clipped[MAX_NUMBER_OF_ADDITIONAL_VOLUMES + 1];//Mehdi
-	int Cropped[MAX_NUMBER_OF_ADDITIONAL_VOLUMES + 1];//Mehdi
-	bool ClippedModified[MAX_NUMBER_OF_ADDITIONAL_VOLUMES + 1];//Mehdi
+	vtkPlane* ClippingPlane;//Mehdi
+	int Clipped;//Mehdi
+	int Cropped;//Mehdi
+	bool ClippedModified;//Mehdi
 
-	double CroppingLowBounds[MAX_NUMBER_OF_ADDITIONAL_VOLUMES + 1][3]; //Mehdi
-	double CroppingHighBounds[MAX_NUMBER_OF_ADDITIONAL_VOLUMES + 1][3]; //Mehdi
+	double CroppingLowBounds[3]; //Mehdi
+	double CroppingHighBounds[3]; //Mehdi
 
 	void SetClippingPlane();//Mehdi
 
@@ -455,29 +455,17 @@ protected:
 	vtkMapMaskTextureId *MaskTextures; // need a list for AMR mode.
 
 	vtkRGBTable *RGBTable;
-	//Mehdi vtkRGBTable *RGBTable2;
-	vtkRGBTable *AdditionalRGBTable[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
+
 
 	vtkRGBTable *Mask1RGBTable;
 	vtkRGBTable *Mask2RGBTable;
 
 	vtkOpacityTables *OpacityTables;
-	//Mehdi vtkOpacityTables *OpacityTables2;
-	vtkOpacityTables *AdditionalOpacityTables[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
 
 	vtkKWScalarField *CurrentScalar;
-	//Mehdi vtkKWScalarField *CurrentScalar2;
-	vtkKWScalarField *AdditionalCurrentScalar[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
 
 	vtkKWMask *CurrentMask;
 
-
-	/**
-	* @brief transformation that convert texture coordinates from the first
-	* to the second input volume.
-	**/
-	//Mehdi vtkSmartPointer<vtkTransform> TextureCoord_1to2;
-	vtkSmartPointer<vtkTransform> TextureCoord_1toN[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
 
 
 	float ActualSampleDistance;

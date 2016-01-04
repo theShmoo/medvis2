@@ -15,28 +15,21 @@
 
 // Fragment program part with ray cast and composite method.
 
-
-#ifdef __APPLE__
-	#define MAX_NUMBER_OF_VOLUMES 4						
-#else
-	#define MAX_NUMBER_OF_VOLUMES 5
-#endif
-
-uniform sampler3D dataSetTexture[MAX_NUMBER_OF_VOLUMES]; //Mehdi
-uniform sampler1D opacityTexture[MAX_NUMBER_OF_VOLUMES]; //Mehdi
-
-uniform mat4 P1toPN[MAX_NUMBER_OF_VOLUMES-1];
+uniform sampler3D dataSetTexture; //Mehdi
+uniform sampler1D opacityTexture;//Mehdi
 
 
-uniform vec3 lowBounds[MAX_NUMBER_OF_VOLUMES]; //Mehdi
-uniform vec3 highBounds[MAX_NUMBER_OF_VOLUMES]; //Mehdi
+uniform vec3 lowBounds;//Mehdi
+uniform vec3 highBounds;//Mehdi
 
 
-uniform int Number_Of_Volumes;
+//uniform int Number_Of_Volumes;
+const int Number_Of_Volumes = 1;
+
 
 // Entry position (global scope)
 vec3 pos;
-vec3 posX[MAX_NUMBER_OF_VOLUMES-1];
+vec3 posX;
 
 
 
@@ -59,80 +52,80 @@ vec4 shade(int volNumber, vec4 value);
 
 
 
-vec3 clipMin[MAX_NUMBER_OF_VOLUMES];
+vec3 clipMin;
 
-uniform	vec3 ClippingplanesNormal[MAX_NUMBER_OF_VOLUMES];
-uniform	vec3 ClippingplanesOrigins[MAX_NUMBER_OF_VOLUMES];
-uniform int clipped[MAX_NUMBER_OF_VOLUMES];
+uniform vec3 ClippingplanesNormal;
+uniform vec3 ClippingplanesOrigins;
+uniform int clipped;
 
-void clip (int i, vec3 position)
+void clip (const int i, vec3 position)
 {
 	
-	clipMin[i]=vec3(-10.0, -10.0, -10.0);
+	clipMin=vec3(-10.0, -10.0, -10.0);
 
-	float partX=ClippingplanesNormal[i].x*(position.x-ClippingplanesOrigins[i].x);
-	float partY=ClippingplanesNormal[i].y*(position.y-ClippingplanesOrigins[i].y);
-	float partZ=ClippingplanesNormal[i].z*(position.z-ClippingplanesOrigins[i].z);
+	float partX=ClippingplanesNormal.x*(position.x-ClippingplanesOrigins.x);
+	float partY=ClippingplanesNormal.y*(position.y-ClippingplanesOrigins.y);
+	float partZ=ClippingplanesNormal.z*(position.z-ClippingplanesOrigins.z);
 
 	float temp;
 		
-	if(ClippingplanesNormal[i].x!=0.0)
+	if(ClippingplanesNormal.x!=0.0)
 	{
-		temp=((ClippingplanesNormal[i].x*ClippingplanesOrigins[i].x)-partY-partZ)/ClippingplanesNormal[i].x;
-		//temp=findXonPlane(ClippingplanesNormal[i], ClippingplanesOrigins[i], pos);
+		temp=((ClippingplanesNormal.x*ClippingplanesOrigins.x)-partY-partZ)/ClippingplanesNormal.x;
+		//temp=findXonPlane(ClippingplanesNormal, ClippingplanesOrigins, pos);
 		if(temp>pos.x)
 		{
-			if(temp>clipMin[i].x)
-				clipMin[i].x=temp;
+			if(temp>clipMin.x)
+				clipMin.x=temp;
 
 		}		
 		else
 		{
-			if(temp<clipMin[i].x)
-				clipMin[i].x=temp;
+			if(temp<clipMin.x)
+				clipMin.x=temp;
 
 		}
-		if (ClippingplanesNormal[i].x<0.0) clipMin[i].x=-clipMin[i].x;
+		if (ClippingplanesNormal.x<0.0) clipMin.x=-clipMin.x;
 
 	}
-	if(ClippingplanesNormal[i].y!=0.0)
+	if(ClippingplanesNormal.y!=0.0)
 	{
-		temp=((ClippingplanesNormal[i].y*ClippingplanesOrigins[i].y)-partX-partZ)/ClippingplanesNormal[i].y;
-		//temp=findYonPlane(ClippingplanesNormal[i], ClippingplanesOrigins[i], pos);
+		temp=((ClippingplanesNormal.y*ClippingplanesOrigins.y)-partX-partZ)/ClippingplanesNormal.y;
+		//temp=findYonPlane(ClippingplanesNormal, ClippingplanesOrigins, pos);
 		if(temp>pos.y)
 		{
-			if(temp>clipMin[i].y)
-				clipMin[i].y=temp;
+			if(temp>clipMin.y)
+				clipMin.y=temp;
 
 		}
 		
 		else
 		{
-			if(temp<=clipMin[i].y)
-				clipMin[i].y=temp;
+			if(temp<=clipMin.y)
+				clipMin.y=temp;
 
 		}
-		if (ClippingplanesNormal[i].y<0.0) clipMin[i].y=-clipMin[i].y;
+		if (ClippingplanesNormal.y<0.0) clipMin.y=-clipMin.y;
 	}
 	
-	if(ClippingplanesNormal[i].z!=0.0)
+	if(ClippingplanesNormal.z!=0.0)
 	{
-		temp=((ClippingplanesNormal[i].z*ClippingplanesOrigins[i].z)-partX-partY)/ClippingplanesNormal[i].z;
-		//temp=findZonPlane(ClippingplanesNormal[i], ClippingplanesOrigins[i], pos);
+		temp=((ClippingplanesNormal.z*ClippingplanesOrigins.z)-partX-partY)/ClippingplanesNormal.z;
+		//temp=findZonPlane(ClippingplanesNormal, ClippingplanesOrigins, pos);
 		if(temp>pos.z)
 		{
-			if(temp>clipMin[i].z)
-				clipMin[i].z=temp;
+			if(temp>clipMin.z)
+				clipMin.z=temp;
 
 		}
 		
 		else
 		{
-			if(temp<=clipMin[i].z)
-				clipMin[i].z=temp;
+			if(temp<=clipMin.z)
+				clipMin.z=temp;
 
 		}
-		if (ClippingplanesNormal[i].z<0.0) clipMin[i].z=-clipMin[i].z;
+		if (ClippingplanesNormal.z<0.0) clipMin.z=-clipMin.z;
 	}
 		
 		
@@ -149,126 +142,68 @@ void trace(void)
   vec4 destColor=initialColor();
   float remainOpacity=1.0-destColor.a;
   
-  vec4 color[MAX_NUMBER_OF_VOLUMES];
-  vec4 opacity[MAX_NUMBER_OF_VOLUMES];
+  vec4 color;
+  vec4 opacity;
   
 
   
   initShade();
 
-  float t=0.0;
+  //float t=0.0;
   
 
 
 
-  // We NEED two nested while loops. It is trick to work around hardware
+  // We NEED two nested loops. It is trick to work around hardware
   // limitation about the maximum number of loops.
 
-    while(inside)
-      {
-
-     	for(int iii=0;iii<Number_Of_Volumes-1;iii++) //Mehdi
-			posX[iii] = vec3(P1toPN[iii]*vec4(pos,1)); //Mehdi
-		
-		vec4 value[MAX_NUMBER_OF_VOLUMES];
-		float scalar[MAX_NUMBER_OF_VOLUMES];
+    //hier war eine w schleife(inside)
+for(float t = 0.0; t < tMax;)
+      {	
+		vec4 value;
+		float scalar;
 		
 		
 			//Texture 1
 			
-			if(all(greaterThanEqual(pos,lowBounds[0]))
-			&& all(lessThanEqual(pos,highBounds[0])))
+			if(all(greaterThanEqual(pos,lowBounds))
+			&& all(lessThanEqual(pos,highBounds)))
 			{
 				//if(isPointOnTheLineZ(end,start,pos))
-				if(clipped[0]==1);
+				if(clipped==1);
 					clip(0,pos);
 		
-				if(all(lessThan(clipMin[0],pos))||(clipped[0]==0))
+				if(all(lessThan(clipMin,pos))||(clipped==0))
 				{
 
-					value[0]=texture3D(dataSetTexture[0],pos);
-					scalar[0]=scalarFromValue(value[0]);
+					value=texture3D(dataSetTexture,pos);
+					scalar=scalarFromValue(value);
 					// opacity is the sampled texture value in the 1D opacity texture at scalarValue
  
-					opacity[0]=texture1D(opacityTexture[0],scalar[0]);//Mehdi
+					opacity=texture1D(opacityTexture,scalar);//Mehdi
 
-					if(opacity[0].a>0.0)
+					if(opacity.a>0.0)
 					{
-						color[0]=shade(0,value[0]);
-						color[0]=color[0]*opacity[0].a;
-						destColor=destColor+color[0]*remainOpacity;
-						remainOpacity=remainOpacity*(1.0-opacity[0].a);
+						color=shade(0,value);
+						color=color*opacity.a;
+						destColor=destColor+color*remainOpacity;
+						remainOpacity=remainOpacity*(1.0-opacity.a);
 					}
 				}
 			}
 			
 				
-			//Texture2 and upper
-		
-			//int xx=1;
-		
-			for(int xx=1; (xx<MAX_NUMBER_OF_VOLUMES)&&(xx<Number_Of_Volumes); xx++)
-			{
-		
-				if (all(greaterThanEqual(posX[xx-1],lowBounds[xx]))
-				&& all(lessThanEqual(posX[xx-1],highBounds[xx])))
-				{
-				
-					if(clipped[xx]==1);
-						clip(xx,posX[xx-1]);
-				
-					if(all(lessThan(clipMin[xx],posX[xx-1]))||(clipped[xx]==0))
-					{
-				                    
-						#ifdef __APPLE__
-
-							if(xx==1)
-								value[1]=texture3D(dataSetTexture[1],posX[0]);
-							if(xx==2)
-								value[2]=texture3D(dataSetTexture[2],posX[1]);
-							if(xx==3)
-								value[3]=texture3D(dataSetTexture[3],posX[2]);
-						#else
-							value[xx]=texture3D(dataSetTexture[xx],posX[xx-1]);
-						#endif
-                                      	
-						scalar[xx]=scalarFromValue(value[xx]);
-        
-						// opacity is the sampled texture value in the 1D opacity texture at
-						// scalarValue
-					
-						#ifdef __APPLE__
 						
-							if(xx==1)
-								opacity[1]= texture1D(opacityTexture[1],scalar[1]);     	
-							if(xx==2)
-								opacity[2]= texture1D(opacityTexture[2],scalar[2]);
-							if(xx==3)
-								opacity[3]= texture1D(opacityTexture[3],scalar[3]);
-						#else
-							opacity[xx]= texture1D(opacityTexture[xx],scalar[xx]);
-						#endif
-					
-	
-						if(opacity[xx].a>0.0)
-						{
-					
-							color[xx]=shade(xx,value[xx]);
-							color[xx]=color[xx]*opacity[xx].a;
-							destColor=destColor+color[xx]*remainOpacity;
-							remainOpacity=remainOpacity*(1.0-opacity[xx].a);
-						}
-					}
-				}
-				
-			}
-			
 			pos=pos+rayDir;
 			t+=1.0;
 			inside=(t<tMax) && (remainOpacity>=0.0039)
-			&& (all(greaterThanEqual(pos,lowBounds[0]))
-			&& all(lessThanEqual(pos,highBounds[0]))); // 1/255=0.0039
-		}
+			&& (all(greaterThanEqual(pos,lowBounds))
+			&& all(lessThanEqual(pos,highBounds))); 
+	if(!inside)
+	{
+		break;
+	}
+	}
 	
 	
 	gl_FragColor = destColor;

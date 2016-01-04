@@ -21,15 +21,9 @@
 
 // from 1- vs 4-component shader.
 
-#ifdef __APPLE__
-	#define MAX_NUMBER_OF_VOLUMES 4						
-#else
-	#define MAX_NUMBER_OF_VOLUMES 5
-#endif
-
 vec4 colorFromValue(int volNumber,vec4 value);
 
-uniform sampler3D dataSetTexture[MAX_NUMBER_OF_VOLUMES]; // need neighbors for gradient
+uniform sampler3D dataSetTexture;// need neighbors for gradient
 
 
 // Change-of-coordinate matrix from eye space to texture space
@@ -46,25 +40,25 @@ uniform vec3 cellScale;
 
 // Entry position (global scope), updated in the loop
 vec3 pos;
-vec3 posX[MAX_NUMBER_OF_VOLUMES-1];
+//vec3 posX[MAX_NUMBER_OF_VOLUMES-1];
 
 
 // Incremental vector in texture space (global scope)
 vec3 rayDir;
 
-uniform mat4 P1toPN[MAX_NUMBER_OF_VOLUMES-1]; //Mehdi
-uniform mat4 PNtoP1[MAX_NUMBER_OF_VOLUMES-1]; //Mehdi
+//uniform mat4 P1toPN[MAX_NUMBER_OF_VOLUMES-1]; //Mehdi
+//uniform mat4 PNtoP1[MAX_NUMBER_OF_VOLUMES-1]; //Mehdi
 
-uniform int Number_Of_Volumes;
+const int Number_Of_Volumes = 1;
 
 // local to the implementation, shared between initShade() and shade()
 const vec3 minusOne=vec3(-1.0,-1.0,-1.0);
 const vec4 clampMin=vec4(0.0,0.0,0.0,0.0);
 const vec4 clampMax=vec4(1.0,1.0,1.0,1.0);
 
-vec3 xvec[MAX_NUMBER_OF_VOLUMES];
-vec3 yvec[MAX_NUMBER_OF_VOLUMES];
-vec3 zvec[MAX_NUMBER_OF_VOLUMES];
+vec3 xvec;
+vec3 yvec;
+vec3 zvec;
 
 
 vec3 wReverseRayDir;
@@ -77,16 +71,16 @@ vec4 hPos; // homogeneous position
 void initShade()
 {
   
-	xvec[0]=vec3(cellStep.x,0.0,0.0); // 0.01
-	yvec[0]=vec3(0.0,cellStep.y,0.0);
-	zvec[0]=vec3(0.0,0.0,cellStep.z);
+	xvec=vec3(cellStep.x,0.0,0.0); // 0.01
+	yvec=vec3(0.0,cellStep.y,0.0);
+	zvec=vec3(0.0,0.0,cellStep.z);
   
-	for(int iii=1;iii<Number_Of_Volumes;iii++)
-	{
-		xvec[iii] = vec3(P1toPN[iii-1]*vec4(xvec[0],0));
-		yvec[iii] = vec3(P1toPN[iii-1]*vec4(yvec[0],0));  
-		zvec[iii] = vec3(P1toPN[iii-1]*vec4(zvec[0],0));
-	} 
+	//for(int iii=1;iii<Number_Of_Volumes;iii++)
+	//{
+	//	xvec[iii] = vec3(P1toPN[iii-1]*vec4(xvec[0],0));
+	//	yvec[iii] = vec3(P1toPN[iii-1]*vec4(yvec[0],0));  
+	//	zvec[iii] = vec3(P1toPN[iii-1]*vec4(zvec[0],0));
+	//} 
   
 	// Reverse ray direction in eye space
 	wReverseRayDir=eyeToTexture3*rayDir;
@@ -110,6 +104,8 @@ void initShade()
 // ----------------------------------------------------------------------------
 vec4 shade(int volNumber, vec4 value)
 {
+volNumber = 0;
+
   vec3 g1;
   vec3 g2;
   vec4 tmp;
@@ -120,15 +116,15 @@ vec4 shade(int volNumber, vec4 value)
 
 	if(volNumber==0)
 		{
-		  g1.x=texture3D(dataSetTexture[0],pos+xvec[0]).x;
-		  g1.y=texture3D(dataSetTexture[0],pos+yvec[0]).x;
-		  g1.z=texture3D(dataSetTexture[0],pos+zvec[0]).x;
-		  g2.x=texture3D(dataSetTexture[0],pos-xvec[0]).x;
-		  g2.y=texture3D(dataSetTexture[0],pos-yvec[0]).x;
-		  g2.z=texture3D(dataSetTexture[0],pos-zvec[0]).x;
+		  g1.x=texture3D(dataSetTexture,pos+xvec).x;
+		  g1.y=texture3D(dataSetTexture,pos+yvec).x;
+		  g1.z=texture3D(dataSetTexture,pos+zvec).x;
+		  g2.x=texture3D(dataSetTexture,pos-xvec).x;
+		  g2.y=texture3D(dataSetTexture,pos-yvec).x;
+		  g2.z=texture3D(dataSetTexture,pos-zvec).x;
 		}
 
-	if(volNumber==1)
+	/*if(volNumber==1)
 		{
 		  posX[0] = vec3(P1toPN[0]*vec4(pos,1));
 		
@@ -160,28 +156,28 @@ vec4 shade(int volNumber, vec4 value)
 		  g2.x=texture3D(dataSetTexture[3],posX[2]-xvec[3]).x;
 		  g2.y=texture3D(dataSetTexture[3],posX[2]-yvec[3]).x;
 		  g2.z=texture3D(dataSetTexture[3],posX[2]-zvec[3]).x;
-		}
+		}*/
 	
 #else
 		if(volNumber==0)
 		{
-		  g1.x=texture3D(dataSetTexture[0],pos+xvec[0]).x;
-		  g1.y=texture3D(dataSetTexture[0],pos+yvec[0]).x;
-		  g1.z=texture3D(dataSetTexture[0],pos+zvec[0]).x;
-		  g2.x=texture3D(dataSetTexture[0],pos-xvec[0]).x;
-		  g2.y=texture3D(dataSetTexture[0],pos-yvec[0]).x;
-		  g2.z=texture3D(dataSetTexture[0],pos-zvec[0]).x;
+		  g1.x=texture3D(dataSetTexture,pos+xvec).x;
+		  g1.y=texture3D(dataSetTexture,pos+yvec).x;
+		  g1.z=texture3D(dataSetTexture,pos+zvec).x;
+		  g2.x=texture3D(dataSetTexture,pos-xvec).x;
+		  g2.y=texture3D(dataSetTexture,pos-yvec).x;
+		  g2.z=texture3D(dataSetTexture,pos-zvec).x;
 		}
 		else
 		{
-		  posX[volNumber-1] = vec3(P1toPN[volNumber-1]*vec4(pos,1));
+		  /*posX[volNumber-1] = vec3(P1toPN[volNumber-1]*vec4(pos,1));
 		
 		  g1.x=texture3D(dataSetTexture[volNumber],posX[volNumber-1]+xvec[volNumber]).x;
 		  g1.y=texture3D(dataSetTexture[volNumber],posX[volNumber-1]+yvec[volNumber]).x;
 		  g1.z=texture3D(dataSetTexture[volNumber],posX[volNumber-1]+zvec[volNumber]).x;
 		  g2.x=texture3D(dataSetTexture[volNumber],posX[volNumber-1]-xvec[volNumber]).x;
 		  g2.y=texture3D(dataSetTexture[volNumber],posX[volNumber-1]-yvec[volNumber]).x;
-		  g2.z=texture3D(dataSetTexture[volNumber],posX[volNumber-1]-zvec[volNumber]).x;
+		  g2.z=texture3D(dataSetTexture[volNumber],posX[volNumber-1]-zvec[volNumber]).x;*/
 		}
 
 #endif

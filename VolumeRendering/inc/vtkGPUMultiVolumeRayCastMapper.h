@@ -20,12 +20,6 @@ PURPOSE.  See the above copyright notice for more information.
 
 #include "vtkVolumeMapper.h"
 
-#if defined (__APPLE__)
-#define MAX_NUMBER_OF_ADDITIONAL_VOLUMES 4 //Mehdi //?
-#else
-#define MAX_NUMBER_OF_ADDITIONAL_VOLUMES 5 //Mehdi //?
-#endif
-
 class vtkVolumeProperty;
 class vtkRenderWindow;
 class vtkImageData;
@@ -290,10 +284,6 @@ protected:
 	vtkIdType MaxMemoryInBytes;
 	float MaxMemoryFraction;
 
-	//Property of the second volume
-	//Mehdi vtkVolumeProperty *Property2;
-	vtkVolumeProperty *Property[MAX_NUMBER_OF_ADDITIONAL_VOLUMES]; //Mehdi
-
 	// 1 if we are generating the canonical image, 0 otherwise
 	int   GeneratingCanonicalView;
 	vtkImageData *CanonicalViewImageData;
@@ -330,7 +320,6 @@ protected:
 	vtkImageData * TransformedInput;
 	// need to duplicate the TransformedInput
 	//Mehdi  vtkImageData * TransformedInput2;
-	vtkImageData * AdditionalTransformedInput[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
 
 
 	vtkGetObjectMacro(TransformedInput, vtkImageData);
@@ -348,18 +337,11 @@ protected:
 	return this->name[_arg/*M*/];/* //? */                                \
 	}
 
-	vtkGetObjectMacro2(AdditionalTransformedInput, vtkImageData);//Mehdi
-	void SetAdditionalTransformedInput(vtkImageData*, int); //Mehdi
 
 	// Description:
 	// This is needed only to check if the input data has been changed since the last
 	// Render() call.
 	vtkImageData* LastInput;
-	//Mehdi  vtkImageData* LastInput2;
-	vtkImageData* AdditionalLastInput[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];
-	//
-	//Mehdi vtkTransform* SecondInputUserTransform;
-	vtkTransform* AdditionalInputUserTransform[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];
 
 private:
 	vtkGPUMultiVolumeRayCastMapper(const vtkGPUMultiVolumeRayCastMapper&);  // Not implemented.

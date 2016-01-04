@@ -140,11 +140,11 @@ private:
 //-----------------------------------------------------------------------------
 
 // 2 volumes shaders
-// extern const char *vtkGPUMultiVolumeRayCastMapper_CompositeFS;
-// extern const char *vtkGPUMultiVolumeRayCastMapper_NoShadeFS;
-// extern const char *vtkGPUMultiVolumeRayCastMapper_ShadeFS;
-// extern const char *vtkGPUMultiVolumeRayCastMapper_OneComponentFS;
-// extern const char *vtkGPUMultiVolumeRayCastMapper_FourComponentsFS;
+extern const char *vtkGPUMultiVolumeRayCastMapper_CompositeFS;
+extern const char *vtkGPUMultiVolumeRayCastMapper_NoShadeFS;
+extern const char *vtkGPUMultiVolumeRayCastMapper_ShadeFS;
+extern const char *vtkGPUMultiVolumeRayCastMapper_OneComponentFS;
+extern const char *vtkGPUMultiVolumeRayCastMapper_FourComponentsFS;
 
 // extern const char *vtkGPUVolumeRayCastMapper_CompositeFS;
 extern const char *vtkGPUVolumeRayCastMapper_CompositeCroppingFS;
@@ -1940,14 +1940,12 @@ vtkOpenGLGPUMultiVolumeRayCastMapper::vtkOpenGLGPUMultiVolumeRayCastMapper()
 
 	this->RGBTable = 0;
 	//Mehdi this->RGBTable2=0;
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		this->AdditionalRGBTable[iii] = 0;//Mehdi
+
 	this->Mask1RGBTable = 0;
 	this->Mask2RGBTable = 0;
 	this->OpacityTables = 0;
 	//Mehdi this->OpacityTables2=0;
-	for (int i = 0; i<NUMBER_OF_ADDITIONAL_VOLUMES; i++)//Mehdi
-		this->AdditionalOpacityTables[i] = 0;//Mehdi
+
 	this->CurrentScalar = 0;
 	this->CurrentMask = 0;
 
@@ -1966,22 +1964,13 @@ vtkOpenGLGPUMultiVolumeRayCastMapper::vtkOpenGLGPUMultiVolumeRayCastMapper()
 	this->Shade = 0;
 	this->ScaleBiasProgram = 0;
 
-	/*Mehdi
-	this->TextureCoord_1to2 = vtkSmartPointer<vtkTransform>::New();
-	this->TextureCoord_1to2->Identity();
-	Mehdi*/
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)
-	{
-		this->TextureCoord_1toN[iii] = vtkSmartPointer<vtkTransform>::New();
-		this->TextureCoord_1toN[iii]->Identity();
-	}
 
-	for (int vol = 0; vol<MAX_NUMBER_OF_ADDITIONAL_VOLUMES + 1; vol++)
+	for (int vol = 0; vol< 1; vol++)
 	{
-		Cropped[vol] = 0;
-		Clipped[vol] = 0;
-		ClippingPlane[vol] = vtkPlane::New();
-		ClippedModified[vol] = false;
+		Cropped = 0;
+		Clipped = 0;
+		ClippingPlane = vtkPlane::New();
+		ClippedModified = false;
 	}
 }
 
@@ -2576,23 +2565,6 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::ReleaseGraphicsResources(
 		this->RGBTable = 0;
 	}
 
-		//-------------------------Mehdi
-		/*Mehdi
-		if(this->RGBTable2!=0)
-		{
-		delete this->RGBTable2;
-		this->RGBTable2=0;
-		}
-		Mehdi*/
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		{
-			if (this->AdditionalRGBTable[iii] != 0)//Mehdi
-			{
-				delete this->AdditionalRGBTable[iii];//Mehdi
-				this->AdditionalRGBTable[iii] = 0;//Mehdi
-			}
-		}
-		//-------------------------Mehdi
 
 		if (this->Mask1RGBTable != 0)
 		{
@@ -2611,23 +2583,7 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::ReleaseGraphicsResources(
 			delete this->OpacityTables;
 			this->OpacityTables = 0;
 		}
-		//-------------------------Mehdi
-		/*Mehdi
-		if(this->OpacityTables2!=0)
-		{
-		delete this->OpacityTables2;
-		this->OpacityTables2=0;
-		}
-		Mehdi*/
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		{
-			if (this->AdditionalOpacityTables[iii] != 0)
-			{
-				delete this->AdditionalOpacityTables[iii];
-				this->AdditionalOpacityTables[iii] = 0;
-			}
-		}
-		//-------------------------Mehdi
+
 		if (this->Program != 0)
 		{
 			this->Program->ReleaseGraphicsResources();
@@ -3148,17 +3104,6 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::LoadScalarField(vtkImageData *input,
 	int textureExtent[6],
 	vtkVolume *volume)
 {
-	vtkImageData *Additionalinput[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
-	if (type == 0) //Mehdi
-	{
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++) //Mehdi
-			Additionalinput[iii] = GetAdditionalTransformedInput(iii); //Mehdi
-	}
-	else
-	{
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++) //Mehdi
-			Additionalinput[iii] = GetInput(iii + 1); //Mehdi
-	}
 
 	assert("pre: input_exists" && input != 0);
 	assert("pre: valid_point_extent" && (this->CellFlag ||
@@ -3208,56 +3153,6 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::LoadScalarField(vtkImageData *input,
 	result = texture->IsLoaded();
 	this->CurrentScalar = texture;
 
-
-	// Find the additional texture from extra inputs
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi /*M*/
-	{
-		this->GetAdditionalTransformedInput(iii)->GetExtent(textureExtent); //Mehdi
-		if (this->CellFlag) //Mehdi
-		{
-			int xx = 1; //Mehdi
-			while (xx<6) //Mehdi
-			{
-				textureExtent[xx]--; //Mehdi
-				xx += 2; //Mehdi
-			}
-		}
-
-		if (Additionalinput[iii] != NULL)//Mehdi //?
-		{
-
-			vtkgl::ActiveTexture(vtkgl::TEXTURE7 + (iii * 3)); //MAC!!!
-
-			vtkstd::map<vtkImageData *, vtkKWScalarField *>::iterator it2 =
-				this->ScalarsTextures->Map.find(Additionalinput[iii]); //Mehdi //?
-
-			vtkKWScalarField *texture2;
-			if (it2 == this->ScalarsTextures->Map.end())
-			{
-				texture2 = new vtkKWScalarField;
-				this->ScalarsTextures->Map[Additionalinput[iii]] = texture2; //Mehdi //?
-				texture2->SetSupports_GL_ARB_texture_float(this->Supports_GL_ARB_texture_float == 1);
-			}
-			else
-			{
-				texture2 = (*it2).second;
-			}
-
-			texture2->Update(Additionalinput[iii], //Mehdi //?
-				this->CellFlag, textureExtent, this->ScalarMode,
-				this->ArrayAccessMode,
-				this->ArrayId,
-				this->ArrayName,
-				this->GetAdditionalProperty(iii)->GetInterpolationType()
-				== VTK_LINEAR_INTERPOLATION,
-				this->TableRange,
-				static_cast<int>(static_cast<float>(this->MaxMemoryInBytes)*this->MaxMemoryFraction));
-
-			result = result && texture2->IsLoaded();
-			this->AdditionalCurrentScalar[iii] = texture2;//?
-			vtkgl::ActiveTexture(vtkgl::TEXTURE0);
-		}
-	}
 	vtkgl::ActiveTexture(vtkgl::TEXTURE0);//? //Mehdi adeed
 	return result;
 }
@@ -3286,39 +3181,13 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::UpdateColorTransferFunction(
 	{
 		vtkVolumeProperty *volumeProperty = vol->GetProperty();
 		vtkColorTransferFunction *colorTransferFunction = volumeProperty->GetRGBTransferFunction(0);
-		//----------------------------------------------Mehdi
-		//Mehdi vtkVolumeProperty *volumeProperty2=this->GetAdditionalProperty(0/*M*/);
-		//Mehdi vtkColorTransferFunction *colorTransferFunction2=volumeProperty2->GetRGBTransferFunction(0);
-		vtkVolumeProperty *AdditionalvolumeProperty[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
-		vtkColorTransferFunction *AdditionalcolorTransferFunction[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		{
-			AdditionalvolumeProperty[iii] = this->GetAdditionalProperty(iii);//Mehdi
-			AdditionalcolorTransferFunction[iii] = AdditionalvolumeProperty[iii]->GetRGBTransferFunction(0);//Mehdi
-		}
-		//-----------------------------------------------Mehdi
+
 		vtkgl::ActiveTexture(vtkgl::TEXTURE1);
 
 		this->RGBTable->Update(
 			colorTransferFunction, this->TableRange,
 			volumeProperty->GetInterpolationType() == VTK_LINEAR_INTERPOLATION);
 
-		//-----------------------------------------------Mehdi
-		/*Mehdi
-		vtkgl::ActiveTexture(vtkgl::TEXTURE8);
-		this->RGBTable2->Update(
-		colorTransferFunction2,this->TableRange,
-		volumeProperty2->GetInterpolationType()==VTK_LINEAR_INTERPOLATION);
-		Mehdi*/
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		{
-			//MAC!!!
-			vtkgl::ActiveTexture(vtkgl::TEXTURE8 + (iii * 3));//? //Mehdi
-			this->AdditionalRGBTable[iii]->Update(
-				AdditionalcolorTransferFunction[iii], this->TableRange,
-				AdditionalvolumeProperty[iii]->GetInterpolationType() == VTK_LINEAR_INTERPOLATION);//Mehdi
-		}
-		//-----------------------------------------------Mehdi
 		// Restore default
 		vtkgl::ActiveTexture(vtkgl::TEXTURE0);
 	}
@@ -3363,8 +3232,6 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::UpdateOpacityTransferFunction(
 	vtkVolumeProperty *volumeProperty = vol->GetProperty();
 	vtkPiecewiseFunction *scalarOpacity = volumeProperty->GetScalarOpacity();
 
-	vtkVolumeProperty *AdditionalvolumeProperty[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
-	vtkPiecewiseFunction *AdditionalscalarOpacity[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
 
 	vtkgl::ActiveTexture(vtkgl::TEXTURE2); //stay here
 	this->OpacityTables->Vector[level].Update(
@@ -3374,23 +3241,6 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::UpdateOpacityTransferFunction(
 		volumeProperty->GetScalarOpacityUnitDistance(0),
 		volumeProperty->GetInterpolationType() == VTK_LINEAR_INTERPOLATION);
 
-	// deal with second dataset
-	for (int i = 0; i<NUMBER_OF_ADDITIONAL_VOLUMES; i++)//Mehdi
-	{
-		//Mehdi vtkVolumeProperty *volumeProperty2=this->GetAdditionalProperty(0/*M*/);
-		//Mehdi vtkPiecewiseFunction *scalarOpacity2=volumeProperty2->GetScalarOpacity();
-		AdditionalvolumeProperty[i] = this->GetAdditionalProperty(i);//Mehdi
-		AdditionalscalarOpacity[i] = AdditionalvolumeProperty[i]->GetScalarOpacity();//Mehdi
-
-		//MAC!!!
-		vtkgl::ActiveTexture(vtkgl::TEXTURE9 + (i * 3)/*M*/); //stay here//? //Mehdi
-		this->AdditionalOpacityTables[i]/*M*/->Vector[level].Update(//?
-			AdditionalscalarOpacity[i], this->BlendMode,
-			this->ActualSampleDistance,
-			this->TableRange,
-			AdditionalvolumeProperty[i]->GetScalarOpacityUnitDistance(0),//Mehdi
-			AdditionalvolumeProperty[i]->GetInterpolationType() == VTK_LINEAR_INTERPOLATION);//Mehdi
-	}
 	// Restore default active texture
 	vtkgl::ActiveTexture(vtkgl::TEXTURE0);
 
@@ -3691,16 +3541,16 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::ClipBoundingBox(vtkRenderer *ren,
 
 void vtkOpenGLGPUMultiVolumeRayCastMapper::SetClippingPlane()
 {
-	for (int vol = 0; vol<MAX_NUMBER_OF_ADDITIONAL_VOLUMES + 1; vol++)
-	if ((Clipped[vol] == 1) && (ClippedModified[vol]))
+	for (int vol = 0; vol< 1; vol++)
+	if ((Clipped == 1) && (ClippedModified))
 	{
 
 		// Plane is in world coordinates, we need to
 		// convert them in local coordinates and finaly to texture coordinate
 		double planeOrigin[4], planeNormal[4];
-		ClippingPlane[vol]->GetOrigin(planeOrigin);
+		ClippingPlane->GetOrigin(planeOrigin);
 		planeOrigin[3] = 1.;
-		ClippingPlane[vol]->GetNormal(planeNormal);
+		ClippingPlane->GetNormal(planeNormal);
 		planeNormal[3] = 1.;
 		this->InvVolumeMatrix->MultiplyPoint(planeOrigin, planeOrigin);
 		if (planeOrigin[3])
@@ -3727,8 +3577,7 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::SetClippingPlane()
 		}
 		else
 		{
-			loadedBounds = this->AdditionalCurrentScalar[vol - 1]->GetLoadedBounds();
-			loadedExtent = this->AdditionalCurrentScalar[vol - 1]->GetLoadedExtent();
+
 		}
 		double *spacing = this->GetInput(vol)->GetSpacing();
 
@@ -3782,24 +3631,27 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::SetClippingPlane()
 		char varName1[30];
 		char varName2[30];
 		char varName3[30];
-		sprintf(varName1, "ClippingplanesNormal[%d]", vol);
+		/*sprintf(varName1, "ClippingplanesNormal[%d]", vol);
 		sprintf(varName2, "ClippingplanesOrigins[%d]", vol);
 		sprintf(varName3, "clipped[%d]", vol);
 		v->SetUniformf(varName1, 3, fvalueN);
 		v->SetUniformf(varName2, 3, fvalueO);
-		v->SetUniformi(varName3, 1, &ivalue);
+		v->SetUniformi(varName3, 1, &ivalue);*/
+		v->SetUniformf("ClippingplanesNormal", 3, fvalueN);
+		v->SetUniformf("ClippingplanesOrigins", 3, fvalueO);
+		v->SetUniformi("clipped", 1, &ivalue);
 		localPlane->Delete();
 
-		ClippedModified[vol] = false;
+		ClippedModified = false;
 	}
 
 }
 void vtkOpenGLGPUMultiVolumeRayCastMapper::AddClippingPlane(int vol, vtkPlane* plane)
 {
-	Clipped[vol] = 1;
-	ClippingPlane[vol]->SetNormal(plane->GetNormal());
-	ClippingPlane[vol]->SetOrigin(plane->GetOrigin());
-	ClippedModified[vol] = true;
+	Clipped = 1;
+	ClippingPlane->SetNormal(plane->GetNormal());
+	ClippingPlane->SetOrigin(plane->GetOrigin());
+	ClippedModified = true;
 
 }
 //-----------------------------------------------------------------------------
@@ -3807,7 +3659,7 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::AddClippingPlane(int vol, vtkPlane* p
 //-----------------------------------------------------------------------------
 void vtkOpenGLGPUMultiVolumeRayCastMapper::RemoveClippingPlane(int vol)
 {
-	Clipped[vol] = 0;
+	Clipped = 0;
 	//	ClippingPlane[vol]=NULL;
 
 	if (this->Program)
@@ -3824,7 +3676,7 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::RemoveClippingPlane(int vol)
 //-----------------------------------------------------------------------------
 vtkPlane* vtkOpenGLGPUMultiVolumeRayCastMapper::GetClippingPlane(int vol)
 {
-	return ClippingPlane[vol];
+	return ClippingPlane;
 }
 //-----------------------------------------------------------------------------
 //
@@ -3841,7 +3693,7 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::SetCroppingRegionPlanes(int vol, doub
 
 void vtkOpenGLGPUMultiVolumeRayCastMapper::SetCropping(int vol, int arg)
 {
-	Cropped[vol] = arg;
+	Cropped = arg;
 }
 //-----------------------------------------------------------------------------
 //
@@ -3855,12 +3707,12 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::SetCroppingRegionPlanes(int vol, doub
 	double xDelta = bounds[1] - bounds[0]; //x delta
 	double yDelta = bounds[3] - bounds[2]; //y delta
 	double zDelta = bounds[5] - bounds[4]; //z delta
-	CroppingLowBounds[vol][0] = xMin / xDelta;
-	CroppingLowBounds[vol][1] = yMin / yDelta;
-	CroppingLowBounds[vol][2] = zMin / zDelta;
-	CroppingHighBounds[vol][0] = (bounds[1] - xMax) / xDelta;
-	CroppingHighBounds[vol][1] = (bounds[3] - yMax) / yDelta;
-	CroppingHighBounds[vol][2] = (bounds[5] - zMax) / zDelta;
+	CroppingLowBounds[0] = xMin / xDelta;
+	CroppingLowBounds[1] = yMin / yDelta;
+	CroppingLowBounds[2] = zMin / zDelta;
+	CroppingHighBounds[0] = (bounds[1] - xMax) / xDelta;
+	CroppingHighBounds[1] = (bounds[3] - yMax) / yDelta;
+	CroppingHighBounds[2] = (bounds[5] - zMax) / zDelta;
 
 }
 
@@ -3910,36 +3762,11 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderClippedBoundingBox(
 
 	double    *loadedBounds = 0;
 	vtkIdType *loadedExtent = 0;
-	//---------------------------------Mehdi
-	/*Mehdi
-	double    *loadedBounds2=0;
-	vtkIdType *loadedExtent2=0;
-	Mehdi*/
-	double    *AdditionalloadedBounds[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];
-	vtkIdType *AdditionalloadedExtent[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];
-	for (int i = 0; i<NUMBER_OF_ADDITIONAL_VOLUMES; i++)
-	{
-		AdditionalloadedBounds[i] = 0;
-		AdditionalloadedExtent[i] = 0;
-	}
-	//---------------------------------Mehdi
+
 	if (tcoordFlag)
 	{
 		loadedBounds = this->CurrentScalar->GetLoadedBounds();
 		loadedExtent = this->CurrentScalar->GetLoadedExtent();
-
-		//------------------------------------------------Mehdi
-		/*Mehdi
-		loadedBounds2=this->CurrentScalar2->GetLoadedBounds();
-		loadedExtent2=this->CurrentScalar2->GetLoadedExtent();
-		Mehdi*/
-		for (int i = 0; i<NUMBER_OF_ADDITIONAL_VOLUMES; i++)
-		{
-			AdditionalloadedBounds[i] = this->AdditionalCurrentScalar[i]->GetLoadedBounds();
-			AdditionalloadedExtent[i] = this->AdditionalCurrentScalar[i]->GetLoadedExtent();
-
-		}
-		//------------------------------------------------Mehdi
 
 	}
 
@@ -3954,98 +3781,9 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderClippedBoundingBox(
 		++i;
 	}
 
-	//------------------------------------------------------------------------Mehdi
-	/*Mehdi
-	double *spacing2=this->GetInput(1)->GetSpacing();
-	double spacingSign2[3];
-	i=0;
-	while(i<3)
-	{
-	if(spacing2[i]<0) spacingSign2[i]=-1.0;
-	else              spacingSign2[i]= 1.0;
-	++i;
-	}
-	Mehdi*/
-	double *Additionalspacing[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
-	double  AdditionalspacingSign[MAX_NUMBER_OF_ADDITIONAL_VOLUMES][3];//Mehdi
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++) //Mehdi
-	{
-		Additionalspacing[iii] = this->GetInput(iii + 1)->GetSpacing(); //Mehdi
-		i = 0;
-		while (i<3) //Mehdi
-		{
-			if (Additionalspacing[iii/*M*//*//?*/][i]<0)	AdditionalspacingSign[iii/*M*//*//?*/][i] = -1.0;//Mehdi //?
-			else											AdditionalspacingSign[iii/*M*//*//?*/][i] = 1.0;//Mehdi //?
-			++i;
-		}
-	}
-	//------------------------------------------------------------------------Mehdi
 	// Premultiply is the default for vtkTransform
 
-	if (tcoordFlag) //We need the loadedBounds information 
-	{
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		{
-			vtkSmartPointer<vtkTransform> m = vtkSmartPointer<vtkTransform>::New();
-			vtkSmartPointer<vtkTransform> m1 = vtkSmartPointer<vtkTransform>::New();
-			vtkSmartPointer<vtkTransform> m2 = vtkSmartPointer<vtkTransform>::New();
-			vtkSmartPointer<vtkTransform> m3 = vtkSmartPointer<vtkTransform>::New();
 
-			m1->PostMultiply();
-			m1->Identity();
-			m1->Translate(-loadedBounds[0], -loadedBounds[2], -loadedBounds[4]);
-			m1->Scale(
-				spacingSign[0] / (loadedBounds[1] - loadedBounds[0]),
-				spacingSign[1] / (loadedBounds[3] - loadedBounds[2]),
-				spacingSign[2] / (loadedBounds[5] - loadedBounds[4]));
-			m1->Scale(
-				static_cast<double>(loadedExtent[1] - loadedExtent[0])
-				, static_cast<double>(loadedExtent[3] - loadedExtent[2])
-				, static_cast<double>(loadedExtent[5] - loadedExtent[4])
-				);
-			m1->Translate(0.5, 0.5, 0.5);
-			m1->Scale(
-				1.0 / static_cast<double>(loadedExtent[0 + 1] - loadedExtent[0] + 1)
-				, 1.0 / static_cast<double>(loadedExtent[2 + 1] - loadedExtent[2] + 1)
-				, 1.0 / static_cast<double>(loadedExtent[4 + 1] - loadedExtent[4] + 1)
-				);
-
-			m2->PostMultiply();
-			m2->Identity();
-			// add user transform
-			// concatenate the inverse of SecondInputUserTransform
-			m3->Identity();
-			//Mehdi    m3->Concatenate(this->SecondInputUserTransform->GetMatrix());
-			m3->Concatenate(this->AdditionalInputUserTransform[iii]->GetMatrix()); //Mehdi
-			m3->Inverse();
-			m2->Concatenate(m3);
-			//--------------------------------------------------------------------------------------Mehdi
-			// continue with the standard transform
-			m2->Translate(-AdditionalloadedBounds[iii][0], -AdditionalloadedBounds[iii][2], -AdditionalloadedBounds[iii][4]);//Mehdi //?
-			m2->Scale(
-				AdditionalspacingSign[iii][0] / (AdditionalloadedBounds[iii][1] - AdditionalloadedBounds[iii][0]),//Mehdi //?
-				AdditionalspacingSign[iii][1] / (AdditionalloadedBounds[iii][3] - AdditionalloadedBounds[iii][2]),//Mehdi //?
-				AdditionalspacingSign[iii][2] / (AdditionalloadedBounds[iii][5] - AdditionalloadedBounds[iii][4]));//Mehdi //?
-
-			m2->Scale(
-				static_cast<double>(AdditionalloadedExtent[iii][1] - AdditionalloadedExtent[iii][0]) //Mehdi //?
-				, static_cast<double>(AdditionalloadedExtent[iii][3] - AdditionalloadedExtent[iii][2]) //Mehdi //?
-				, static_cast<double>(AdditionalloadedExtent[iii][5] - AdditionalloadedExtent[iii][4]) //Mehdi //?
-				);
-			m2->Translate(0.5, 0.5, 0.5);
-			m2->Scale(
-				1.0 / static_cast<double>(AdditionalloadedExtent[iii][1] - AdditionalloadedExtent[iii][0] + 1) //Mehdi //?
-				, 1.0 / static_cast<double>(AdditionalloadedExtent[iii][3] - AdditionalloadedExtent[iii][2] + 1) //Mehdi //?
-				, 1.0 / static_cast<double>(AdditionalloadedExtent[iii][5] - AdditionalloadedExtent[iii][4] + 1) //Mehdi //?
-				);
-			//--------------------------------------------------------------------------------------Mehdi    
-			m->PostMultiply();
-			m1->Inverse();
-			m->Concatenate(m1);
-			m->Concatenate(m2);
-			TextureCoord_1toN[iii]->DeepCopy(m); //Mehdi
-		}
-	}
 	// make it double for the ratio of the progress.
 	int polyId = 0;
 	double polyCount = static_cast<double>(polys->GetNumberOfCells());
@@ -4106,7 +3844,6 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderClippedBoundingBox(
 			double tcoord[3];
 
 			//Mehdi double tcoord2[3];
-			double Additionaltcoord[MAX_NUMBER_OF_ADDITIONAL_VOLUMES][3];//Mehdi
 			for (i = start; i != end; i += inc)
 			{
 				points->GetPoint(pts[i], vert);
@@ -4538,20 +4275,7 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::PreRender(vtkRenderer *ren,
 	{
 		this->RGBTable = new vtkRGBTable;
 	}
-	//------------------------------------------------------------Mehdi
-	/*Mehdi if(this->RGBTable2==0)
-	{
-	this->RGBTable2=new vtkRGBTable;
-	}
-	Mehdi*/
-	for (int i = 0; i<NUMBER_OF_ADDITIONAL_VOLUMES; i++)//Mehdi
-	{
-		if (this->AdditionalRGBTable[i] == 0)//Mehdi
-		{
-			this->AdditionalRGBTable[i] = new vtkRGBTable;//Mehdi
-		}
-	}
-	//------------------------------------------------------------Mehdi
+
 	if (this->MaskInput != 0 && this->MaskType == LabelMapMaskType)
 	{
 		if (this->Mask1RGBTable == 0)
@@ -4749,7 +4473,6 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::PreRender(vtkRenderer *ren,
 
 			vtkUniformVariables *v = this->Program->GetUniformVariables();
 			int ivalue = NUMBER_OF_ADDITIONAL_VOLUMES + 1;
-			v->SetUniformi("Number_Of_Volumes", 1, &ivalue);
 
 			// for active texture 0, dataset
 
@@ -4759,19 +4482,7 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::PreRender(vtkRenderer *ren,
 				// colortable
 				vtkgl::ActiveTexture(vtkgl::TEXTURE1);
 				this->RGBTable->Bind();
-				//------------------------------------------------------------Mehdi    
-				/*Mehdi
-				// colortable 2
-				vtkgl::ActiveTexture(vtkgl::TEXTURE8);
-				this->RGBTable2->Bind();
-				Mehdi*/
-				for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-				{
-					//MAC!!!
-					vtkgl::ActiveTexture(vtkgl::TEXTURE8 + (iii * 3));//Mehdi //?
-					this->AdditionalRGBTable[iii]->Bind();//Mehdi
-				}
-				//------------------------------------------------------------Mehdi
+				
 
 				if (this->MaskInput != 0 && this->MaskType == LabelMapMaskType)
 				{
@@ -4781,17 +4492,15 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::PreRender(vtkRenderer *ren,
 					this->Mask2RGBTable->Bind();
 
 				}
-
-
 			}
 
 			float fvalue[2];
 
 
 			ivalue = 0;
-			v->SetUniformi("dataSetTexture[0]", 1, &ivalue);
+			v->SetUniformi("dataSetTexture", 1, &ivalue);
 			ivalue = 2;
-			v->SetUniformi("opacityTexture[0]", 1, &ivalue);
+			v->SetUniformi("opacityTexture", 1, &ivalue);
 
 			int ivalue2 = 0;
 			if (this->MaskInput != 0 || this->GetNumberOfInputConnections(1)>0)
@@ -4801,33 +4510,7 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::PreRender(vtkRenderer *ren,
 				ivalue2 = 9; //? //TODO
 				if (this->GetNumberOfInputConnections(1)>0) //enable mask textures
 				{
-					//-----------------------------------------------------------------Mehdi
-					/*Mehdi
-					v->SetUniformi("dataSetTexture2",1,&ivalue);
-					ivalue=9;
-					v->SetUniformi("opacityTexture2",1,&ivalue);
-					Mehdi*/
-					ivalue = 7; //? //TODO
-					ivalue2 = 9; //? //TODO
-					for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-					{
-
-						ivalue = 7; //? //TODO
-						ivalue2 = 9; //? //TODO
-						//MAC!!
-						ivalue = ivalue + (iii * 3); //Mehdi
-						ivalue2 = ivalue2 + (iii * 3); //Mehdi
-
-						char varName1[30];
-						char varName2[30];
-						sprintf(varName1, "dataSetTexture[%d]", iii + 1);
-						sprintf(varName2, "opacityTexture[%d]", iii + 1);
-
-						v->SetUniformi(varName1, 1, &ivalue); //Mehdi //?
-						v->SetUniformi(varName2, 1, &ivalue2); //Mehdi //?
-
-					}
-					//-----------------------------------------------------------------Mehdi
+					
 				}
 				else
 					v->SetUniformi("maskTexture", 1, &ivalue);
@@ -4839,49 +4522,13 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::PreRender(vtkRenderer *ren,
 			{
 
 				ivalue = 1;
-				v->SetUniformi("colorTexture[0]", 1, &ivalue);
+				v->SetUniformi("colorTexture", 1, &ivalue);
 
 
 				if (this->GetNumberOfInputConnections(1)>0)
 				{
-					//---------------------------------------------------Mehdi
-					/*Mehdi
-					ivalue=8;
-					v->SetUniformi("colorTexture2",1,&ivalue);
-					Mehdi*/
-					ivalue = 8;
-					for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)
-					{
-						//MAC!!
-						ivalue = 8;
-						ivalue = ivalue + (iii * 3);
-						char varName[30];
-						sprintf(varName, "colorTexture[%d]", iii + 1);
-						v->SetUniformi(varName, 1, &ivalue); //Mehdi //?
-					}
 
-					if (NUMBER_OF_ADDITIONAL_VOLUMES<MAX_NUMBER_OF_ADDITIONAL_VOLUMES)
-					{
-
-						int ivalue3 = 0;
-						int ivalue1 = 0;
-						for (int iii = 0; iii<MAX_NUMBER_OF_ADDITIONAL_VOLUMES - NUMBER_OF_ADDITIONAL_VOLUMES; iii++)
-						{
-							ivalue1 = (iii * 3) + 7 + (3 * NUMBER_OF_ADDITIONAL_VOLUMES);
-							ivalue2 = (iii * 3) + 8 + (3 * NUMBER_OF_ADDITIONAL_VOLUMES);
-							ivalue3 = (iii * 3) + 9 + (3 * NUMBER_OF_ADDITIONAL_VOLUMES);
-							char varName1[30];
-							char varName2[30];
-							char varName3[30];
-							sprintf(varName1, "dataSetTexture[%d]", NUMBER_OF_ADDITIONAL_VOLUMES + iii + 1);
-							sprintf(varName2, "colorTexture[%d]", NUMBER_OF_ADDITIONAL_VOLUMES + iii + 1);
-							sprintf(varName3, "opacityTexture[%d]", NUMBER_OF_ADDITIONAL_VOLUMES + iii + 1);
-							v->SetUniformi(varName1, 1, &ivalue1); //Mehdi //?
-							v->SetUniformi(varName2, 1, &ivalue2); //Mehdi //?
-							v->SetUniformi(varName3, 1, &ivalue3); //Mehdi //?
-
-						}
-					}
+					
 					//---------------------------------------------------Mehdi
 				}
 
@@ -5166,18 +4813,11 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::PreRender(vtkRenderer *ren,
 				this->OpacityTables = 0;
 				//Mehdi delete this->OpacityTables2;
 				//Mehdi this->OpacityTables2=0;    
-				for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-				{
-					delete this->AdditionalOpacityTables[iii];//Mehdi
-					this->AdditionalOpacityTables[iii] = 0;//Mehdi
-				}
 			}
 			if (this->OpacityTables == 0)
 			{
 				this->OpacityTables = new vtkOpacityTables(numberOfLevels);
 				//Mehdi this->OpacityTables2=new vtkOpacityTables(numberOfLevels);
-				for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-					this->AdditionalOpacityTables[iii] = new vtkOpacityTables(numberOfLevels);//Mehdi
 			}
 
 
@@ -5480,20 +5120,7 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::RenderBlock(vtkRenderer *ren,
 	// opacitytable
 	vtkgl::ActiveTexture(vtkgl::TEXTURE2);
 	this->OpacityTables->Vector[level].Bind();
-	//---------------------------------------Mehdi
-	/*Mehdi
-	// opacitytable2
-	vtkgl::ActiveTexture(vtkgl::TEXTURE9);
-	this->OpacityTables2->Vector[level].Bind();
-	Mehdi*/
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-	{
 
-		//MAC!!!
-		vtkgl::ActiveTexture(vtkgl::TEXTURE9 + (iii * 3));//Mehdi
-		this->AdditionalOpacityTables[iii]->Vector[level].Bind();
-	}
-	//---------------------------------------Mehdi
 	//restore default
 	vtkgl::ActiveTexture(vtkgl::TEXTURE0);
 
@@ -6032,13 +5659,6 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 	// 1. Found out the extent of the subvolume
 	double realExtent[6];
 
-	double AdditionalRealExtent[MAX_NUMBER_OF_ADDITIONAL_VOLUMES][6]; //Mehdi
-	double AdditionalBounds[MAX_NUMBER_OF_ADDITIONAL_VOLUMES][6]; //Mehdi
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++) //Mehdi
-	{
-		this->GetAdditionalTransformedInput(iii)->GetBounds(AdditionalBounds[iii]); //Mehdi
-		this->SlabsFromDatasetToIndex(iii + 1, AdditionalBounds[iii], AdditionalRealExtent[iii]); //Mehdi
-	}
 
 	int subvolumeTextureExtent[6];
 
@@ -6133,55 +5753,15 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 		(this->GetMaskInput() ? this->GetMaskInput()->GetMTime() <= texture->GetBuildTime() : true) &&
 		texture->GetLoadedCellFlag() == this->CellFlag;
 
-	/*Mehdi
-	vtkstd::map<vtkImageData *,vtkKWScalarField *>::iterator it2=
-	this->ScalarsTextures->Map.find(this->GetransformedInput2());
-	vtkKWScalarField *texture2;
-	if(it2==this->ScalarsTextures->Map.end())
-	{
-	texture2=0;
-	}
-	else
-	{
-	texture2=(*it2).second;
-	}
-	Mehdi*/
-
-	vtkKWScalarField *Additionaltexture[MAX_NUMBER_OF_ADDITIONAL_VOLUMES];//Mehdi
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-	{
-		vtkstd::map<vtkImageData *, vtkKWScalarField *>::iterator it =
-			this->ScalarsTextures->Map.find(this->GetAdditionalTransformedInput(iii));
-
-		if (it == this->ScalarsTextures->Map.end())
-		{
-			Additionaltexture[iii] = 0;
-		}
-		else
-		{
-			Additionaltexture[iii] = (*it).second;
-		}
-
-		loaded = loaded &&
-			Additionaltexture[iii] != 0 &&
-			Additionaltexture[iii]->IsLoaded() &&
-			this->GetAdditionalTransformedInput(iii)->GetMTime() <= Additionaltexture[iii]->GetBuildTime() &&
-			Additionaltexture[iii]->GetLoadedCellFlag() == this->CellFlag;
-
-	}
 
 	vtkIdType *loadedExtent;
 	//Mehdi vtkIdType *loadedExtent2;
-	vtkIdType *AdditionalloadedExtent[MAX_NUMBER_OF_ADDITIONAL_VOLUMES]; //Mehdi
 
 	if (loaded)
 	{
 		loadedExtent = texture->GetLoadedExtent();
 		//Mehdi loadedExtent2=texture2->GetLoadedExtent();//?
 
-
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++) //Mehdi
-			AdditionalloadedExtent[iii] = Additionaltexture[iii]->GetLoadedExtent();//Mehdi
 
 		i = 0;
 		while (loaded && i<6)
@@ -6198,26 +5778,6 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 		this->CurrentScalar = texture;
 		vtkgl::ActiveTexture(vtkgl::TEXTURE0);
 		this->CurrentScalar->Bind();
-
-		//carlos
-		//Mehdi this->CurrentScalar2=texture2;//?
-		//Mehdi this->CurrentScalar2=Additionaltexture[0/*M*/];//Mehdi //?
-		//Mehdi vtkgl::ActiveTexture(vtkgl::TEXTURE7/*M*/);//TEXTURE7
-		//Mehdi this->CurrentScalar2->Bind();    
-		for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		{
-			this->AdditionalCurrentScalar[iii] = Additionaltexture[iii];//Mehdi 
-			//MAC!!!
-			vtkgl::ActiveTexture(vtkgl::TEXTURE7 + (iii * 3));//Mehdi
-			this->AdditionalCurrentScalar[iii]->Bind();    //Mehdi 
-		}
-
-		//     vtkgl::ActiveTexture(vtkgl::TEXTURE7);
-		//     this->CurrentMask=mask;
-		//     if(this->CurrentMask!=0)
-		//       {
-		//       this->CurrentMask->Bind();
-		//       }
 	}
 
 	if (!loaded)
@@ -6615,9 +6175,7 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 					}
 
 					loadedExtent = this->CurrentScalar->GetLoadedExtent();
-					//Mehdi loadedExtent2=this->CurrentScalar2->GetLoadedExtent();
-					for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-						AdditionalloadedExtent[iii] = this->AdditionalCurrentScalar[iii]->GetLoadedExtent();
+
 
 
 					//carlos bounds    
@@ -6632,16 +6190,7 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 
 					float lowBounds[3];
 					float highBounds[3];
-					//-------------------------------------------------------Mehdi
-					/*Mehdi
-					// bound for second volume
-					float lowBounds2[3];
-					float highBounds2[3];
-					Mehdi*/
-					// bound for Additional volumes
-					float AdditionallowBounds[MAX_NUMBER_OF_ADDITIONAL_VOLUMES][3];
-					float AdditionalhighBounds[MAX_NUMBER_OF_ADDITIONAL_VOLUMES][3];
-					//-------------------------------------------------------Mehdi
+
 					if (!this->CurrentScalar->GetLoadedCellFlag()) // points
 					{
 						j = 0;
@@ -6655,31 +6204,6 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 							highBounds[j] = static_cast<float>
 								((blocks[k].Extent[j * 2 + 1] -
 								static_cast<double>(loadedExtent[j * 2])) / delta);
-							//------------------------------------------------------------------Mehdi
-							/*Mehdi
-							// Second volume
-							double delta2=
-							static_cast<double>(loadedExtent2[j*2+1]-loadedExtent2[j*2]);
-							lowBounds2[j]=static_cast<float>
-							((blocks[k].Extent[j*2]-
-							static_cast<double>(loadedExtent2[j*2]))/delta2);
-							highBounds2[j]=static_cast<float>
-							((blocks[k].Extent[j*2+1]-
-							static_cast<double>(loadedExtent2[j*2]))/delta2);
-							Mehdi*/
-							// Additional volumes
-							for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)
-							{
-								double delta2 =
-									static_cast<double>(AdditionalloadedExtent[iii][j * 2 + 1] - AdditionalloadedExtent[iii][j * 2]);
-								AdditionallowBounds[iii][j] = static_cast<float>
-									((blocks[k].Extent[j * 2] -
-									static_cast<double>(AdditionalloadedExtent[iii][j * 2])) / delta2);
-								AdditionalhighBounds[iii][j] = static_cast<float>
-									((blocks[k].Extent[j * 2 + 1] -
-									static_cast<double>(AdditionalloadedExtent[iii][j * 2])) / delta2);
-							}
-							//------------------------------------------------------------------Mehdi
 							++j;
 						}
 					}
@@ -6697,68 +6221,10 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 								static_cast<float>((blocks[k].Extent[j * 2 + 1] - 0.5 -
 								static_cast<double>(loadedExtent[j * 2])) / delta);
 
-							//--------------------------------------------------------------------------------Mehdi
-							/*Mehdi
-							// Second volume
-							double delta2=
-							static_cast<double>(loadedExtent2[j*2+1]-loadedExtent2[j*2]);
-							lowBounds2[j]=
-							static_cast<float>((blocks[k].Extent[j*2]-0.5-
-							static_cast<double>(loadedExtent2[j*2]))
-							/delta2);
-							highBounds2[j]=
-							static_cast<float>((blocks[k].Extent[j*2+1]-0.5-
-							static_cast<double>(loadedExtent2[j*2]))
-							/delta2);
-							Mehdi*/
-							// Additional volumes
-							for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-							{
-								double delta2 =
-									static_cast<double>(AdditionalloadedExtent[iii][j * 2 + 1] - AdditionalloadedExtent[iii][j * 2]); //Mehdi
-								AdditionallowBounds[iii][j] =
-									static_cast<float>((blocks[k].Extent[j * 2] - 0.5 -
-									static_cast<double>(AdditionalloadedExtent[iii][j * 2]))
-									/ delta2); //Mehdi
-								AdditionalhighBounds[iii][j] =
-									static_cast<float>((blocks[k].Extent[j * 2 + 1] - 0.5 -
-									static_cast<double>(AdditionalloadedExtent[iii][j * 2]))
-									/ delta2); //Mehdi
-							}
-							//--------------------------------------------------------------------------------Mehdi
 							++j;
 						}
 					}
-					//---------------------------------------------------------------------------------------------Mehdi
-					/*Mehdi
-					// bounds have to be normalized. There are used in the shader
-					// as bounds to a value used to sample a texture.
-					assert("check: positive_low_bounds0" && lowBounds[0]>=0.0);
-					assert("check: positive_low_bounds1" && lowBounds[1]>=0.0);
-					assert("check: positive_low_bounds2" && lowBounds[2]>=0.0);
-					assert("check: increasing_bounds0" && lowBounds[0]<=highBounds[0]);
-					assert("check: increasing_bounds1" && lowBounds[1]<=highBounds[1]);
-					assert("check: increasing_bounds2" && lowBounds[2]<=highBounds[2]);
-					assert("check: high_bounds0_less_than1" && highBounds[0]<=1.0);
-					assert("check: high_bounds1_less_than1" && highBounds[1]<=1.0);
-					assert("check: high_bounds2_less_than1" && highBounds[2]<=1.0);
-					// bounds have to be normalized. There are used in the shader
-					// as bounds to a value used to sample a texture.
-					assert("check: positive_low_bounds0" && lowBounds2[0]>=0.0);
-					assert("check: positive_low_bounds1" && lowBounds2[1]>=0.0);
-					assert("check: positive_low_bounds2" && lowBounds2[2]>=0.0);
-					assert("check: increasing_bounds0" && lowBounds2[0]<=highBounds2[0]);
-					assert("check: increasing_bounds1" && lowBounds2[1]<=highBounds2[1]);
-					assert("check: increasing_bounds2" && lowBounds2[2]<=highBounds2[2]);
-					assert("check: high_bounds0_less_than1" && highBounds2[0]<=1.0);
-					assert("check: high_bounds1_less_than1" && highBounds2[1]<=1.0);
-					assert("check: high_bounds2_less_than1" && highBounds2[2]<=1.0);
-					vtkUniformVariables *v=this->Program->GetUniformVariables();
-					v->SetUniformf("lowBounds",3,lowBounds);
-					v->SetUniformf("highBounds",3,highBounds);
-					v->SetUniformf("lowBounds2",3,lowBounds2);
-					v->SetUniformf("highBounds2",3,highBounds2);
-					Mehdi*/
+
 					// bounds have to be normalized. There are used in the shader
 					// as bounds to a value used to sample a texture.
 					assert("check: positive_low_bounds0" && lowBounds[0] >= 0.0);
@@ -6776,72 +6242,20 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 
 					//Mehdi
 
-					if (Cropped[0] == 1)
+					if (Cropped == 1)
 					{
-						lowBounds[0] += CroppingLowBounds[0][0];
-						lowBounds[1] += CroppingLowBounds[0][1];
-						lowBounds[2] += CroppingLowBounds[0][2];
-						highBounds[0] -= CroppingHighBounds[0][0];
-						highBounds[1] -= CroppingHighBounds[0][1];
-						highBounds[2] -= CroppingHighBounds[0][2];
+						lowBounds[0] += CroppingLowBounds[0];
+						lowBounds[1] += CroppingLowBounds[1];
+						lowBounds[2] += CroppingLowBounds[2];
+						highBounds[0] -= CroppingHighBounds[0];
+						highBounds[1] -= CroppingHighBounds[1];
+						highBounds[2] -= CroppingHighBounds[2];
 					}
 
-					v->SetUniformf("lowBounds[0]", 3, lowBounds);
-					v->SetUniformf("highBounds[0]", 3, highBounds);
+					v->SetUniformf("lowBounds", 3, lowBounds);
+					v->SetUniformf("highBounds", 3, highBounds);
 
-					for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)
-					{
-						// bounds have to be normalized. There are used in the shader
-						// as bounds to a value used to sample a texture.
-						assert("check: positive_low_bounds0" && AdditionallowBounds[iii][0] >= 0.0);
-						assert("check: positive_low_bounds1" && AdditionallowBounds[iii][1] >= 0.0);
-						assert("check: positive_low_bounds2" && AdditionallowBounds[iii][2] >= 0.0);
-
-						assert("check: increasing_bounds0" && AdditionallowBounds[iii][0] <= AdditionalhighBounds[iii][0]);
-						assert("check: increasing_bounds1" && AdditionallowBounds[iii][1] <= AdditionalhighBounds[iii][1]);
-						assert("check: increasing_bounds2" && AdditionallowBounds[iii][2] <= AdditionalhighBounds[iii][2]);
-						assert("check: high_bounds0_less_than1" && AdditionalhighBounds[iii][0] <= 1.0);
-						assert("check: high_bounds1_less_than1" && AdditionalhighBounds[iii][1] <= 1.0);
-						assert("check: high_bounds2_less_than1" && AdditionalhighBounds[iii][2] <= 1.0);
-
-						/*Mehdi
-						if(iii==0)
-						{
-						v->SetUniformf("lowBounds[1]",3,AdditionallowBounds[iii]);//Mehdi //TODO //?
-						v->SetUniformf("highBounds[1]",3,AdditionalhighBounds[iii]);//Mehdi //TODO //?
-						}
-						if(iii==1)
-						{
-						v->SetUniformf("lowBounds[2]",3,AdditionallowBounds[iii]);//Mehdi //TODO //?
-						v->SetUniformf("highBounds[2]",3,AdditionalhighBounds[iii]);//Mehdi //TODO //?
-						}
-						if(iii==2)
-						{
-						v->SetUniformf("lowBounds[3]",3,AdditionallowBounds[iii]);//Mehdi //TODO //?
-						v->SetUniformf("highBounds[3]",3,AdditionalhighBounds[iii]);//Mehdi //TODO //?
-						}
-						Mehdi*/
-
-						//Mehdi
-						if (Cropped[iii + 1] == 1)
-						{
-							AdditionallowBounds[iii][0] += CroppingLowBounds[iii + 1][0];
-							AdditionallowBounds[iii][1] += CroppingLowBounds[iii + 1][1];
-							AdditionallowBounds[iii][2] += CroppingLowBounds[iii + 1][2];
-							AdditionalhighBounds[iii][0] -= CroppingHighBounds[iii + 1][0];
-							AdditionalhighBounds[iii][1] -= CroppingHighBounds[iii + 1][1];
-							AdditionalhighBounds[iii][2] -= CroppingHighBounds[iii + 1][2];
-						}
-
-						char varName1[20];
-						char varName2[20];
-						sprintf(varName1, "lowBounds[%d]", iii + 1);
-						sprintf(varName2, "highBounds[%d]", iii + 1);
-						v->SetUniformf(varName1, 3, AdditionallowBounds[iii]);
-						v->SetUniformf(varName2, 3, AdditionalhighBounds[iii]);
-
-						this->Program->SendUniforms();
-					}
+					
 					//---------------------------------------------------------------------------------------------Mehdi
 
 					this->PrintError("uniform low/high bounds block");
@@ -6849,61 +6263,6 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 					this->LoadProjectionParameters(ren, volume);
 					this->ClipBoundingBox(ren, blocks[k].Bounds, volume);
 
-					GLfloat matrix_TextureCoord_1toN[MAX_NUMBER_OF_ADDITIONAL_VOLUMES][16];
-					GLfloat matrix_TextureCoord_Nto1[MAX_NUMBER_OF_ADDITIONAL_VOLUMES][16];
-					for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++) //Mehdi
-					{
-						// Adds texture coordinate transform to shader
-						vtkMatrix4x4* mat = TextureCoord_1toN[iii]->GetMatrix();
-						mat->Transpose();
-						// prepare matrix for shader
-
-						for (int c = 0; c<4; c++) {
-							for (int r = 0; r<4; r++) {
-								matrix_TextureCoord_1toN[iii][c * 4 + r] =
-									static_cast<GLfloat>(mat->Element[c][r]);
-								printf("%f\t", mat->Element[c][r]);
-							}
-						}
-						//vtkUniformVariables *v=this->Program->GetUniformVariables();
-
-						/*Mehdi
-						if (iii==0) //TODO //? //Mehdi
-						v->SetUniformMatrix("P1toPN[0]",4,4,matrix_TextureCoord_1toN[iii]);
-						if (iii==1) //TODO //? //Mehdi
-						v->SetUniformMatrix("P1toPN[1]",4,4,matrix_TextureCoord_1toN[iii]);
-						if (iii==2) //TODO //? //Mehdi
-						v->SetUniformMatrix("P1toPN[2]",4,4,matrix_TextureCoord_1toN[iii]);
-						Mehdi*/
-						char varName[20];
-						sprintf(varName, "P1toPN[%d]", iii);
-						v->SetUniformMatrix(varName, 4, 4, matrix_TextureCoord_1toN[iii]);
-
-						// Add inverse matrix
-						mat = TextureCoord_1toN[iii]->GetMatrix();
-						mat->Invert();
-						mat->Transpose();
-						// prepare matrix for shader
-
-						for (int c = 0; c<4; c++) {
-							for (int r = 0; r<4; r++) {
-								matrix_TextureCoord_Nto1[iii][c * 4 + r] =
-									static_cast<GLfloat>(mat->Element[c][r]);
-							}
-						}
-						//vtkUniformVariables *v=this->Program->GetUniformVariables();
-
-						/*Mehdi
-						if (iii==0)
-						v->SetUniformMatrix("PNtoP1[0]",4,4,matrix_TextureCoord_Nto1[iii]);
-						if (iii==1)
-						v->SetUniformMatrix("PNtoP1[1]",4,4,matrix_TextureCoord_Nto1[iii]);
-						if (iii==2)
-						v->SetUniformMatrix("PNtoP1[2]",4,4,matrix_TextureCoord_Nto1[iii]);
-						Mehdi*/
-						sprintf(varName, "PNtoP1[%d]", iii);
-						v->SetUniformMatrix(varName, 4, 4, matrix_TextureCoord_Nto1[iii]);
-					}
 
 					this->Program->SendUniforms();
 					abort = this->RenderClippedBoundingBox(1, i, count, ren->GetRenderWindow());
@@ -6926,8 +6285,7 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 	loadedExtent = this->CurrentScalar->GetLoadedExtent();
 
 	//Mehdi    loadedExtent2=this->CurrentScalar2->GetLoadedExtent();
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi
-		AdditionalloadedExtent[iii] = this->AdditionalCurrentScalar[iii]->GetLoadedExtent();//Mehdi
+
 	//carlos bounds    
 	//   vtkIdType *loadedExtent2;
 	//   loadedExtent2=this->CurrentScalar2->GetLoadedExtent();
@@ -6988,19 +6346,19 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 
 	//Mehdi
 
-	if (Cropped[0] == 1)
+	if (Cropped == 1)
 	{
-		lowBounds[0] += CroppingLowBounds[0][0];
-		lowBounds[1] += CroppingLowBounds[0][1];
-		lowBounds[2] += CroppingLowBounds[0][2];
-		highBounds[0] -= CroppingHighBounds[0][0];
-		highBounds[1] -= CroppingHighBounds[0][1];
-		highBounds[2] -= CroppingHighBounds[0][2];
+		lowBounds[0] += CroppingLowBounds[0];
+		lowBounds[1] += CroppingLowBounds[1];
+		lowBounds[2] += CroppingLowBounds[2];
+		highBounds[0] -= CroppingHighBounds[0];
+		highBounds[1] -= CroppingHighBounds[1];
+		highBounds[2] -= CroppingHighBounds[2];
 	}
 
 	vtkUniformVariables *v = this->Program->GetUniformVariables();
-	v->SetUniformf("lowBounds[0]", 3, lowBounds);
-	v->SetUniformf("highBounds[0]", 3, highBounds);
+	v->SetUniformf("lowBounds", 3, lowBounds);
+	v->SetUniformf("highBounds", 3, highBounds);
 
 	//-----------------------------------------------------------------------------------------------------------------------------Mehdi
 	/*Mehdi
@@ -7044,46 +6402,10 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 	float lowBounds[3];
 	float highBounds2[3];
 	Mehdi*/
-	float AdditionallowBounds[MAX_NUMBER_OF_ADDITIONAL_VOLUMES][3]; //Mehdi
-	float AdditionalhighBounds[MAX_NUMBER_OF_ADDITIONAL_VOLUMES][3]; //Mehdi
+
 	//------------------------------------------------------------------------Mehdi
 
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++)//Mehdi //?
-	{
 
-		if (!this->AdditionalCurrentScalar[iii]->GetLoadedCellFlag()) // points
-		{
-			i = 0;
-			while (i<3)
-			{
-				double delta =
-					static_cast<double>(AdditionalloadedExtent[iii][i * 2 + 1] - AdditionalloadedExtent[iii][i * 2] + 1);
-				AdditionallowBounds[iii][i] = static_cast<float>((AdditionalRealExtent[iii][i * 2] + 0.5 - static_cast<double>(AdditionalloadedExtent[iii][i * 2])) / delta);
-				AdditionalhighBounds[iii][i] = static_cast<float>((AdditionalRealExtent[iii][i * 2 + 1] + 0.5 - static_cast<double>(AdditionalloadedExtent[iii][i * 2])) / delta);
-				++i;
-			}
-		}
-		else // cells
-		{
-			i = 0;
-			while (i<3)
-			{
-				double delta =
-					static_cast<double>(AdditionalloadedExtent[iii][i * 2 + 1] - AdditionalloadedExtent[iii][i * 2] + 1);
-
-				// this->LoadedExtent[i*2]==0, texcoord starts at 0, if realExtent==0
-				// otherwise, texcoord start at 1/2N
-				// this->LoadedExtent[i*2]==wholeTextureExtent[i*2+1], texcoord stops at 1, if realExtent==wholeTextureExtent[i*2+1]+1
-				// otherwise it stop at 1-1/2N
-				// N is the number of texels in the loadedtexture not the number of
-				// texels in the whole texture.
-
-				AdditionallowBounds[iii][i] = static_cast<float>((AdditionalRealExtent[iii][i * 2] - static_cast<double>(AdditionalloadedExtent[iii][i * 2])) / delta);
-				AdditionalhighBounds[iii][i] = static_cast<float>((AdditionalRealExtent[iii][i * 2 + 1] - static_cast<double>(AdditionalloadedExtent[iii][i * 2])) / delta);
-				++i;
-			}
-		}
-	}
 	//-----------------------------------------------------------------------------------------------------------------------------Mehdi
 
 
@@ -7103,118 +6425,14 @@ int vtkOpenGLGPUMultiVolumeRayCastMapper::RenderSubVolume(vtkRenderer *ren,
 	v->SetUniformf("highBounds2",3,highBounds2);
 	Mehdi*/
 
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++) //Mehdi
-	{
-		assert("check: positive_low_bounds0" && AdditionallowBounds[iii][0] >= 0.0);
-		assert("check: positive_low_bounds1" && AdditionallowBounds[iii][1] >= 0.0);
-		assert("check: positive_low_bounds2" && AdditionallowBounds[iii][2] >= 0.0);
-
-		assert("check: increasing_bounds0" && AdditionallowBounds[iii][0] <= AdditionalhighBounds[iii][0]);
-		assert("check: increasing_bounds1" && AdditionallowBounds[iii][1] <= AdditionalhighBounds[iii][1]);
-		assert("check: increasing_bounds2" && AdditionallowBounds[iii][2] <= AdditionalhighBounds[iii][2]);
-		assert("check: high_bounds0_less_than1" && AdditionalhighBounds[iii][0] <= 1.0);
-		assert("check: high_bounds1_less_than1" && AdditionalhighBounds[iii][1] <= 1.0);
-		assert("check: high_bounds2_less_than1" && AdditionalhighBounds[iii][2] <= 1.0);
-
-		/*Mehdi
-		if(iii==0)
-		{
-		v->SetUniformf("lowBounds[1]",3,AdditionallowBounds[iii]);
-		v->SetUniformf("highBounds[1]",3,AdditionalhighBounds[iii]);
-		}
-		if(iii==1)
-		{
-		v->SetUniformf("lowBounds[2]",3,AdditionallowBounds[iii]);
-		v->SetUniformf("highBounds[2]",3,AdditionalhighBounds[iii]);
-		}
-		if(iii==2)
-		{
-		v->SetUniformf("lowBounds[3]",3,AdditionallowBounds[iii]);
-		v->SetUniformf("highBounds[3]",3,AdditionalhighBounds[iii]);
-		}
-		Mehdi*/
-
-		//Mehdi
-
-		if (Cropped[iii + 1] == 1)
-		{
-			AdditionallowBounds[iii][0] += CroppingLowBounds[iii + 1][0];
-			AdditionallowBounds[iii][1] += CroppingLowBounds[iii + 1][1];
-			AdditionallowBounds[iii][2] += CroppingLowBounds[iii + 1][2];
-			AdditionalhighBounds[iii][0] -= CroppingHighBounds[iii + 1][0];
-			AdditionalhighBounds[iii][1] -= CroppingHighBounds[iii + 1][1];
-			AdditionalhighBounds[iii][2] -= CroppingHighBounds[iii + 1][2];
-		}
-
-		char varName1[20];
-		char varName2[20];
-		sprintf(varName1, "lowBounds[%d]", iii + 1);
-		sprintf(varName2, "highBounds[%d]", iii + 1);
-		v->SetUniformf(varName1, 3, AdditionallowBounds[iii]);
-		v->SetUniformf(varName2, 3, AdditionalhighBounds[iii]);
-		this->Program->SendUniforms();
-	}
 
 	//-----------------------------------------------------------------------------------------------------------------------------Mehdi
 	this->PrintError("uniform low/high bounds");
 	// other sub-volume rendering code
 	this->LoadProjectionParameters(ren, volume);
 	this->ClipBoundingBox(ren, bounds, volume);
-	GLfloat matrix_TextureCoord_1toN[MAX_NUMBER_OF_ADDITIONAL_VOLUMES][16];
-	GLfloat matrix_TextureCoord_Nto1[MAX_NUMBER_OF_ADDITIONAL_VOLUMES][16];
 
-	for (int iii = 0; iii<NUMBER_OF_ADDITIONAL_VOLUMES; iii++) //Mehdi
-	{
-		// Adds texture coordinate transform to shader
-		vtkMatrix4x4* mat = TextureCoord_1toN[iii]->GetMatrix(); //Mehdi //?
-		mat->Transpose();
-		// prepare matrix for shader
 
-		for (int c = 0; c<4; c++) {
-			for (int r = 0; r<4; r++) {
-				matrix_TextureCoord_1toN[iii][c * 4 + r] =
-					static_cast<GLfloat>(mat->Element[c][r]);
-			}
-		}
-		//vtkUniformVariables *v=this->Program->GetUniformVariables();
-
-		/*Mehdi
-		if (iii==0)
-		v->SetUniformMatrix("P1toPN[0]",4,4,matrix_TextureCoord_1toN[iii]);
-		if (iii==1)
-		v->SetUniformMatrix("P1toPN[1]",4,4,matrix_TextureCoord_1toN[iii]);
-		if (iii==2)
-		v->SetUniformMatrix("P1toPN[2]",4,4,matrix_TextureCoord_1toN[iii]);
-		Mehdi*/
-		char varName[20];
-		sprintf(varName, "P1toPN[%d]", iii);
-		v->SetUniformMatrix(varName, 4, 4, matrix_TextureCoord_1toN[iii]);
-
-		// Add inverse matrix
-		mat = TextureCoord_1toN[iii]->GetMatrix();
-		mat->Invert();
-		mat->Transpose();
-		// prepare matrix for shader
-
-		for (int c = 0; c<4; c++) {
-			for (int r = 0; r<4; r++) {
-				matrix_TextureCoord_Nto1[iii][c * 4 + r] =
-					static_cast<GLfloat>(mat->Element[c][r]);
-			}
-		}
-		//vtkUniformVariables *v=this->Program->GetUniformVariables();
-		/*Mehdi
-		if (iii==0)
-		v->SetUniformMatrix("PNtoP1[0]",4,4,matrix_TextureCoord_Nto1[iii]);
-		if (iii==1)
-		v->SetUniformMatrix("PNtoP1[1]",4,4,matrix_TextureCoord_Nto1[iii]);
-		if (iii==2)
-		v->SetUniformMatrix("PNtoP1[2]",4,4,matrix_TextureCoord_Nto1[iii]);
-		Mehdi*/
-
-		sprintf(varName, "PNtoP1[%d]", iii);
-		v->SetUniformMatrix(varName, 4, 4, matrix_TextureCoord_Nto1[iii]);
-	}
 
 	this->Program->SendUniforms();
 #ifdef APPLE_SNOW_LEOPARD_BUG
@@ -7661,11 +6879,10 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 																	methodCode = temp3;
 																	// free(temp3);
 #else
-// 																	char* temp3 = (char *)malloc(strlen(toAddtoNotAPPLE) + strlen(vtkGPUMultiVolumeRayCastMapper_CompositeFS) + 10);
-// 																	strcpy(temp3, toAddtoNotAPPLE);
-// 																	methodCode = strcat(temp3, vtkGPUMultiVolumeRayCastMapper_CompositeFS);
+																	char* temp3 = (char *)malloc(strlen(toAddtoNotAPPLE) + strlen(vtkGPUMultiVolumeRayCastMapper_CompositeFS) + 10);
+																	strcpy(temp3, toAddtoNotAPPLE);
+																	methodCode = strcat(temp3, vtkGPUMultiVolumeRayCastMapper_CompositeFS);
 																	//   free(temp3);
-      assert(!"Not Implemented Yet");
 #endif
 																	//Mehdi------------------------------------------------------------
 		}
@@ -7792,11 +7009,10 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
  		case vtkOpenGLGPUMultiVolumeRayCastMapperMIPFourDependentNoCropping:
  			croppingCode = vtkGPUVolumeRayCastMapper_MIPFourDependentNoCroppingFS;
 			break;
-      */
-		case vtkOpenGLGPUMultiVolumeRayCastMapperCompositeCropping:
+*/		case vtkOpenGLGPUMultiVolumeRayCastMapperCompositeCropping:
  			croppingCode = vtkGPUVolumeRayCastMapper_CompositeCroppingFS;
  			break;
-	  case vtkOpenGLGPUMultiVolumeRayCastMapperCompositeNoCropping:
+ 		case vtkOpenGLGPUMultiVolumeRayCastMapperCompositeNoCropping:
 			croppingCode = vtkGPUVolumeRayCastMapper_CompositeNoCroppingFS;
  			break;
 /*		case vtkOpenGLGPUMultiVolumeRayCastMapperMinIPCropping:
@@ -7858,20 +7074,18 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 				componentCode = temp;
 				//free(temp);
 #else
-// 				char* temp = (char *)malloc(strlen(toAddtoNotAPPLE) + strlen(vtkGPUMultiVolumeRayCastMapper_OneComponentFS) + 1);
-// 				strcpy(temp, toAddtoNotAPPLE);
-// 				strcat(temp, vtkGPUMultiVolumeRayCastMapper_OneComponentFS);
-// 				componentCode = temp;
+				char* temp = (char *)malloc(strlen(toAddtoNotAPPLE) + strlen(vtkGPUMultiVolumeRayCastMapper_OneComponentFS) + 1);
+				strcpy(temp, toAddtoNotAPPLE);
+				strcat(temp, vtkGPUMultiVolumeRayCastMapper_OneComponentFS);
+				componentCode = temp;
 				// free(temp);
-        assert(!"Not Implemented Yet");
 #endif
 
 				//Mehdi componentCode=vtkGPUMultiVolumeRayCastMapper_OneComponentFS;// multi
 			}
 			else
 			{
-				//componentCode = vtkGPUMultiVolumeRayCastMapper_FourComponentsFS; //multi
-        assert(!"Not Implemented Yet");
+				componentCode = vtkGPUMultiVolumeRayCastMapper_FourComponentsFS; //multi
 			}
 			this->Component->SetSourceCode(componentCode);
 		}
@@ -7906,12 +7120,11 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 				shadeCode = temp2;
 				// free(temp2);
 #else
-// 				char* temp2 = (char *)malloc(strlen(toAddtoNotAPPLE) + strlen(vtkGPUMultiVolumeRayCastMapper_ShadeFS) + 10);
-// 				strcpy(temp2, toAddtoNotAPPLE);
-// 				strcat(temp2, vtkGPUMultiVolumeRayCastMapper_ShadeFS);
-// 				shadeCode = temp2;
+				char* temp2 = (char *)malloc(strlen(toAddtoNotAPPLE) + strlen(vtkGPUMultiVolumeRayCastMapper_ShadeFS) + 10);
+				strcpy(temp2, toAddtoNotAPPLE);
+				strcat(temp2, vtkGPUMultiVolumeRayCastMapper_ShadeFS);
+				shadeCode = temp2;
 				//free(temp2);
-        assert(!"Not Implemented Yet");
 #endif
 				//Mehdi------------------------------------------------------------
 
@@ -7919,8 +7132,7 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 			}
 			else
 			{
-				//shadeCode = vtkGPUMultiVolumeRayCastMapper_NoShadeFS; // multi
-        assert(!"Not Implemented Yet");
+				shadeCode = vtkGPUMultiVolumeRayCastMapper_NoShadeFS; // multi
 			}
 			this->Shade->SetSourceCode(shadeCode);
 		}
