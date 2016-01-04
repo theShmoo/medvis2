@@ -140,14 +140,14 @@ private:
 //-----------------------------------------------------------------------------
 
 // 2 volumes shaders
-extern const char *vtkGPUMultiVolumeRayCastMapper_CompositeFS;
-extern const char *vtkGPUMultiVolumeRayCastMapper_NoShadeFS;
-extern const char *vtkGPUMultiVolumeRayCastMapper_ShadeFS;
-extern const char *vtkGPUMultiVolumeRayCastMapper_OneComponentFS;
-extern const char *vtkGPUMultiVolumeRayCastMapper_FourComponentsFS;
+// extern const char *vtkGPUMultiVolumeRayCastMapper_CompositeFS;
+// extern const char *vtkGPUMultiVolumeRayCastMapper_NoShadeFS;
+// extern const char *vtkGPUMultiVolumeRayCastMapper_ShadeFS;
+// extern const char *vtkGPUMultiVolumeRayCastMapper_OneComponentFS;
+// extern const char *vtkGPUMultiVolumeRayCastMapper_FourComponentsFS;
 
 // extern const char *vtkGPUVolumeRayCastMapper_CompositeFS;
-// extern const char *vtkGPUVolumeRayCastMapper_CompositeCroppingFS;
+extern const char *vtkGPUVolumeRayCastMapper_CompositeCroppingFS;
 extern const char *vtkGPUVolumeRayCastMapper_CompositeNoCroppingFS;
 extern const char *vtkGPUVolumeRayCastMapper_HeaderFS;
 // extern const char *vtkGPUVolumeRayCastMapper_MIPFS;
@@ -158,7 +158,7 @@ extern const char *vtkGPUVolumeRayCastMapper_HeaderFS;
 // extern const char *vtkGPUVolumeRayCastMapper_MIPCroppingFS;
 // extern const char *vtkGPUVolumeRayCastMapper_MIPNoCroppingFS;
 extern const char *vtkGPUVolumeRayCastMapper_ParallelProjectionFS;
-// extern const char *vtkGPUVolumeRayCastMapper_PerspectiveProjectionFS;
+extern const char *vtkGPUVolumeRayCastMapper_PerspectiveProjectionFS;
 // extern const char *vtkGPUVolumeRayCastMapper_ScaleBiasFS;
 // extern const char *vtkGPUVolumeRayCastMapper_MinIPFS;
 // extern const char *vtkGPUVolumeRayCastMapper_MinIPBinaryMaskFS;
@@ -7624,8 +7624,8 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 		}
 		else
 		{
-			//projectionCode = vtkGPUVolumeRayCastMapper_PerspectiveProjectionFS;
-      assert(!"Not Implemented Yet");
+			projectionCode = vtkGPUVolumeRayCastMapper_PerspectiveProjectionFS;
+      //assert(!"Not Implemented Yet");
 		}
 		this->Projection->SetSourceCode(projectionCode);
 	}
@@ -7661,10 +7661,11 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 																	methodCode = temp3;
 																	// free(temp3);
 #else
-																	char* temp3 = (char *)malloc(strlen(toAddtoNotAPPLE) + strlen(vtkGPUMultiVolumeRayCastMapper_CompositeFS) + 10);
-																	strcpy(temp3, toAddtoNotAPPLE);
-																	methodCode = strcat(temp3, vtkGPUMultiVolumeRayCastMapper_CompositeFS);
+// 																	char* temp3 = (char *)malloc(strlen(toAddtoNotAPPLE) + strlen(vtkGPUMultiVolumeRayCastMapper_CompositeFS) + 10);
+// 																	strcpy(temp3, toAddtoNotAPPLE);
+// 																	methodCode = strcat(temp3, vtkGPUMultiVolumeRayCastMapper_CompositeFS);
 																	//   free(temp3);
+      assert(!"Not Implemented Yet");
 #endif
 																	//Mehdi------------------------------------------------------------
 		}
@@ -7791,10 +7792,11 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
  		case vtkOpenGLGPUMultiVolumeRayCastMapperMIPFourDependentNoCropping:
  			croppingCode = vtkGPUVolumeRayCastMapper_MIPFourDependentNoCroppingFS;
 			break;
+      */
 		case vtkOpenGLGPUMultiVolumeRayCastMapperCompositeCropping:
  			croppingCode = vtkGPUVolumeRayCastMapper_CompositeCroppingFS;
  			break;
- */		case vtkOpenGLGPUMultiVolumeRayCastMapperCompositeNoCropping:
+	  case vtkOpenGLGPUMultiVolumeRayCastMapperCompositeNoCropping:
 			croppingCode = vtkGPUVolumeRayCastMapper_CompositeNoCroppingFS;
  			break;
 /*		case vtkOpenGLGPUMultiVolumeRayCastMapperMinIPCropping:
@@ -7856,18 +7858,20 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 				componentCode = temp;
 				//free(temp);
 #else
-				char* temp = (char *)malloc(strlen(toAddtoNotAPPLE) + strlen(vtkGPUMultiVolumeRayCastMapper_OneComponentFS) + 1);
-				strcpy(temp, toAddtoNotAPPLE);
-				strcat(temp, vtkGPUMultiVolumeRayCastMapper_OneComponentFS);
-				componentCode = temp;
+// 				char* temp = (char *)malloc(strlen(toAddtoNotAPPLE) + strlen(vtkGPUMultiVolumeRayCastMapper_OneComponentFS) + 1);
+// 				strcpy(temp, toAddtoNotAPPLE);
+// 				strcat(temp, vtkGPUMultiVolumeRayCastMapper_OneComponentFS);
+// 				componentCode = temp;
 				// free(temp);
+        assert(!"Not Implemented Yet");
 #endif
 
 				//Mehdi componentCode=vtkGPUMultiVolumeRayCastMapper_OneComponentFS;// multi
 			}
 			else
 			{
-				componentCode = vtkGPUMultiVolumeRayCastMapper_FourComponentsFS; //multi
+				//componentCode = vtkGPUMultiVolumeRayCastMapper_FourComponentsFS; //multi
+        assert(!"Not Implemented Yet");
 			}
 			this->Component->SetSourceCode(componentCode);
 		}
@@ -7902,11 +7906,12 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 				shadeCode = temp2;
 				// free(temp2);
 #else
-				char* temp2 = (char *)malloc(strlen(toAddtoNotAPPLE) + strlen(vtkGPUMultiVolumeRayCastMapper_ShadeFS) + 10);
-				strcpy(temp2, toAddtoNotAPPLE);
-				strcat(temp2, vtkGPUMultiVolumeRayCastMapper_ShadeFS);
-				shadeCode = temp2;
+// 				char* temp2 = (char *)malloc(strlen(toAddtoNotAPPLE) + strlen(vtkGPUMultiVolumeRayCastMapper_ShadeFS) + 10);
+// 				strcpy(temp2, toAddtoNotAPPLE);
+// 				strcat(temp2, vtkGPUMultiVolumeRayCastMapper_ShadeFS);
+// 				shadeCode = temp2;
 				//free(temp2);
+        assert(!"Not Implemented Yet");
 #endif
 				//Mehdi------------------------------------------------------------
 
@@ -7914,7 +7919,8 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 			}
 			else
 			{
-				shadeCode = vtkGPUMultiVolumeRayCastMapper_NoShadeFS; // multi
+				//shadeCode = vtkGPUMultiVolumeRayCastMapper_NoShadeFS; // multi
+        assert(!"Not Implemented Yet");
 			}
 			this->Shade->SetSourceCode(shadeCode);
 		}
