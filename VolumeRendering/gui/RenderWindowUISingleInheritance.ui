@@ -1,178 +1,324 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>RenderWindowUISingleInheritance</class>
- <widget class="QMainWindow" name="RenderWindowUISingleInheritance">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>541</width>
-    <height>583</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Direct Volume Rendering</string>
-  </property>
-  <widget class="QWidget" name="centralwidget">
-    <layout class="QHBoxLayout" name="hBox">
-      <item>
-        <widget class="QVTKWidget" name="qvtkWidget">
-          <property name="geometry">
-            <rect>
-              <x>10</x>
-              <y>20</y>
-              <width>511</width>
-              <height>541</height>
-            </rect>
-          </property>
-        </widget>
-      </item>
-      <item>
-        <layout class="QVBoxLayout" name="vBox">
-          <item>
-            <widget class="QWidget" name="formLayoutWidget">
+  <class>RenderWindowUISingleInheritance</class>
+  <widget class="QMainWindow" name="RenderWindowUISingleInheritance">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>751</width>
+        <height>603</height>
+      </rect>
+    </property>
+    <property name="font">
+      <font>
+        <family>Futura LT Book</family>
+      </font>
+    </property>
+    <property name="windowTitle">
+      <string>Direct Volume Rendering</string>
+    </property>
+    <widget class="QWidget" name="centralwidget">
+      <layout class="QGridLayout" name="centralGrid">
+        <item row="0" column="0">
+          <widget class="QSplitter" name="hSplitter">
+            <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="QVTKWidget" name="qvtkWidget">
               <property name="geometry">
                 <rect>
-                  <x>20</x>
-                  <y>10</y>
-                  <width>160</width>
-                  <height>142</height>
-                </rect>
-              </property>
-              <layout class="QFormLayout" name="formLayout">
-                <item row="0" column="0">
-                  <widget class="QLabel" name="ambientLabel">
-                    <property name="text">
-                      <string>ambient</string>
-                    </property>
-                  </widget>
-                </item>
-                <item row="2" column="0">
-                  <widget class="QLabel" name="diffuseLabel">
-                    <property name="text">
-                      <string>diffuse</string>
-                    </property>
-                  </widget>
-                </item>
-                <item row="3" column="0">
-                  <widget class="QLabel" name="specularLabel">
-                    <property name="text">
-                      <string>specular</string>
-                    </property>
-                  </widget>
-                </item>
-                <item row="4" column="0">
-                  <widget class="QLabel" name="powerLabel">
-                    <property name="text">
-                      <string>power</string>
-                    </property>
-                  </widget>
-                </item>
-                <item row="5" column="0">
-                  <widget class="QLabel" name="opacityLabel">
-                    <property name="text">
-                      <string>opacity</string>
-                    </property>
-                  </widget>
-                </item>
-                <item row="0" column="1">
-                  <widget class="QSlider" name="ambientSlider">
-                    <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="tickPosition">
-                      <enum>QSlider::TicksAbove</enum>
-                    </property>
-                  </widget>
-                </item>
-                <item row="2" column="1">
-                  <widget class="QSlider" name="diffuseSlider">
-                    <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="tickPosition">
-                      <enum>QSlider::TicksAbove</enum>
-                    </property>
-                  </widget>
-                </item>
-                <item row="3" column="1">
-                  <widget class="QSlider" name="specSlider">
-                    <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="tickPosition">
-                      <enum>QSlider::TicksAbove</enum>
-                    </property>
-                  </widget>
-                </item>
-                <item row="4" column="1">
-                  <widget class="QSlider" name="powerSlider">
-                    <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="tickPosition">
-                      <enum>QSlider::TicksAbove</enum>
-                    </property>
-                  </widget>
-                </item>
-                <item row="5" column="1">
-                  <widget class="QSlider" name="opacitySlider">
-                    <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="tickPosition">
-                      <enum>QSlider::TicksAbove</enum>
-                    </property>
-                  </widget>
-                </item>
-              </layout>
-            </widget>
-          </item>
-          <item>
-            <widget class="Qtfe" name="qtfe">
-              <property name="geometry">
-                <rect>
-                  <x>10</x>
-                  <y>20</y>
-                  <width>511</width>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>300</width>
                   <height>541</height>
                 </rect>
               </property>
-              <widget class="QImageTweak" name="git">
+            </widget>
+            <widget class="QSplitter" name="vSplitter">
+              <property name="orientation">
+                <enum>Qt::Vertical</enum>
+              </property>
+              <widget class="QGroupBox" name="groupBoxShading">
+                <property name="font">
+                  <font>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                  </font>
+                </property>
+                <property name="title">
+                  <string>Shading</string>
+                </property>
+                <widget class="QWidget" name="formLayoutWidgetShading">
+                  <property name="font">
+                    <font>
+                      <weight>50</weight>
+                      <bold>false</bold>
+                    </font>
+                  </property>
+                  <layout class="QFormLayout" name="formLayoutShading">
+                    <property name="topMargin">
+                      <number>15</number>
+                    </property>
+                    <property name="leftMargin">
+                      <number>7</number>
+                    </property>
+                    <property name="rightMargin">
+                      <number>7</number>
+                    </property>
+                    <property name="bottomMargin">
+                      <number>7</number>
+                    </property>
+                    <item row="0" column="0">
+                      <widget class="QLabel" name="ambientLabel">
+                        <property name="text">
+                          <string>ambient</string>
+                        </property>
+                      </widget>
+                    </item>
+                    <item row="2" column="0">
+                      <widget class="QLabel" name="diffuseLabel">
+                        <property name="text">
+                          <string>diffuse</string>
+                        </property>
+                      </widget>
+                    </item>
+                    <item row="3" column="0">
+                      <widget class="QLabel" name="specularLabel">
+                        <property name="text">
+                          <string>specular</string>
+                        </property>
+                      </widget>
+                    </item>
+                    <item row="4" column="0">
+                      <widget class="QLabel" name="powerLabel">
+                        <property name="text">
+                          <string>power</string>
+                        </property>
+                      </widget>
+                    </item>
+                    <item row="5" column="0">
+                      <widget class="QLabel" name="opacityLabel">
+                        <property name="text">
+                          <string>opacity</string>
+                        </property>
+                      </widget>
+                    </item>
+                    <item row="0" column="1">
+                      <widget class="QSlider" name="ambientSlider">
+                        <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="tickPosition">
+                          <enum>QSlider::TicksAbove</enum>
+                        </property>
+                      </widget>
+                    </item>
+                    <item row="2" column="1">
+                      <widget class="QSlider" name="diffuseSlider">
+                        <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="tickPosition">
+                          <enum>QSlider::TicksAbove</enum>
+                        </property>
+                      </widget>
+                    </item>
+                    <item row="3" column="1">
+                      <widget class="QSlider" name="specSlider">
+                        <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="tickPosition">
+                          <enum>QSlider::TicksAbove</enum>
+                        </property>
+                      </widget>
+                    </item>
+                    <item row="4" column="1">
+                      <widget class="QSlider" name="powerSlider">
+                        <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="tickPosition">
+                          <enum>QSlider::TicksAbove</enum>
+                        </property>
+                      </widget>
+                    </item>
+                    <item row="5" column="1">
+                      <widget class="QSlider" name="opacitySlider">
+                        <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="tickPosition">
+                          <enum>QSlider::TicksAbove</enum>
+                        </property>
+                      </widget>
+                    </item>
+                  </layout>
+                </widget>
+              </widget>
+              <widget class="QGroupBox" name="groupBoxFilter">
+                <property name="font">
+                  <font>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                  </font>
+                </property>
+                <property name="title">
+                  <string>Filter</string>
+                </property>
+                <widget class="QWidget" name="formLayoutWidgetFilter">
+                  <property name="font">
+                    <font>
+                      <weight>50</weight>
+                      <bold>false</bold>
+                    </font>
+                  </property>
+                  <layout class="QFormLayout" name="formLayoutFilter">
+                    <property name="topMargin">
+                      <number>15</number>
+                    </property>
+                    <property name="leftMargin">
+                      <number>7</number>
+                    </property>
+                    <property name="rightMargin">
+                      <number>7</number>
+                    </property>
+                    <property name="bottomMargin">
+                      <number>7</number>
+                    </property>
+                    <item row="0" column="0">
+                      <widget class="QLabel" name="filterLabel">
+                        <property name="text">
+                          <string> Filter:</string>
+                        </property>
+                      </widget>
+                    </item>
+                    <item row="0" column="1">
+                      <widget class="QComboBox" name="cbFilter">
+                        <item>
+                          <property name="text">
+                            <string>No Filter</string>
+                          </property>
+                        </item>
+                        <item>
+                          <property name="text">
+                            <string>Bilateral Filter</string>
+                          </property>
+                        </item>
+                        <item>
+                          <property name="text">
+                            <string>Gauss Filter</string>
+                          </property>
+                        </item>
+                        <item>
+                          <property name="text">
+                            <string>Median Filter</string>
+                          </property>
+                        </item>
+                      </widget>
+                    </item>
+                    <item row="1" column="0">
+                      <widget class="QLabel" name="kernelSizeLabel">
+                        <property name="text">
+                          <string>Kernel Size:</string>
+                        </property>
+                      </widget>
+                    </item>
+                    <item row="1" column="1">
+                      <widget class="QSpinBox" name="sbKernelSize">
+                        <property name="minimum">
+                          <number>1</number>
+                        </property>
+                        <property name="maximum">
+                          <number>10</number>
+                        </property>
+                        <property name="value">
+                          <number>5</number>
+                        </property>
+                      </widget>
+                    </item>
+                    <item row="2" column="1">
+                      <widget class="QPushButton" name="changeFilter">
+                        <property name="text">
+                          <string>Change Filter</string>
+                        </property>
+                      </widget>
+                    </item>
+                  </layout>
+                </widget>
               </widget>
             </widget>
-          </item>
-        </layout>
-      </item>
-    </layout>
-  </widget>
+            <widget class="QGroupBox" name="groupBoxTransferFunction">
+              <property name="font">
+                <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                </font>
+              </property>
+              <property name="title">
+                <string>Transfer Function</string>
+              </property>
+              <widget class="QWidget" name="gridLayoutWidget">
+                <property name="font">
+                  <font>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                  </font>
+                </property>
+                <layout class="QGridLayout" name="gridLayout">
+                  <property name="topMargin">
+                    <number>15</number>
+                  </property>
+                  <property name="leftMargin">
+                    <number>7</number>
+                  </property>
+                  <property name="rightMargin">
+                    <number>7</number>
+                  </property>
+                  <property name="bottomMargin">
+                    <number>7</number>
+                  </property>
+                  <item row="0" column="0">
+                    <widget class="Qtfe" name="qtfe">
+                      <widget class="QImageTweak" name="git">
+                      </widget>
+                    </widget>
+                  </item>
+                </layout>
+              </widget>
+            </widget>
+          </widget>
+        </item>
+      </layout>
+    </widget>
 
-  <action name="actionExit">
-    <property name="text">
-      <string>Exit</string>
-    </property>
-  </action>
-  
- </widget>
- <customwidgets>
-  <customwidget>
-   <class>QVTKWidget</class>
-   <extends>QWidget</extends>
-   <header>QVTKWidget.h</header>
-  </customwidget>
-   <customwidget>
-     <class>Qtfe</class>
-     <extends>QWidget</extends>
-     <header>Qtfe.h</header>
-   </customwidget>
-   <customwidget>
-     <class>QImageTweak</class>
-     <extends>QWidget</extends>
-     <header>QImageTweak.h</header>
-   </customwidget>
- </customwidgets>
- <resources>
- 
- </resources>
- <connections/>
+    <action name="actionExit">
+      <property name="text">
+        <string>Exit</string>
+      </property>
+    </action>
+
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>QVTKWidget</class>
+      <extends>QWidget</extends>
+      <header>QVTKWidget.h</header>
+    </customwidget>
+    <customwidget>
+      <class>Qtfe</class>
+      <extends>QWidget</extends>
+      <header>Qtfe.h</header>
+    </customwidget>
+    <customwidget>
+      <class>QImageTweak</class>
+      <extends>QWidget</extends>
+      <header>QImageTweak.h</header>
+    </customwidget>
+  </customwidgets>
+  <resources>
+
+  </resources>
+  <connections/>
 </ui>

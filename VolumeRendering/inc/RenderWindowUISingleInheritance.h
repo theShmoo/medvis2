@@ -9,11 +9,12 @@
 class Ui_RenderWindowUISingleInheritance;
 class InputParser;
 class DataReader;
-class vtkOpenGLGPUMultiVolumeRayCastMapper;
+class vtkVolumeMapper;
 class vtkVolume;
 class vtkVolumeProperty;
 class vtkRenderer;
 class vtkRenderWindow;
+class vtkImageSpatialAlgorithm;
 
 class RenderWindowUISingleInheritance : public QMainWindow
 {
@@ -24,9 +25,9 @@ public:
   RenderWindowUISingleInheritance(InputParser *inputParser);
   ~RenderWindowUISingleInheritance();
 
-  vtkOpenGLGPUMultiVolumeRayCastMapper* createVolumeMapper(InputParser * inputParser, vtkVolume* volume);
+  vtkVolumeMapper* createVolumeMapper(InputParser * inputParser, vtkVolume* volume);
 
-  void addTransferFunction(InputParser * inputParser, vtkVolume* volume, vtkOpenGLGPUMultiVolumeRayCastMapper* mapper);
+  void addTransferFunction(InputParser * inputParser, vtkVolume* volume, vtkVolumeMapper* mapper);
 
   public slots:
 
@@ -36,8 +37,8 @@ public:
   virtual void on_power_change(int position);
   virtual void on_diffuse_change(int position);
   virtual void on_opacity_change(int position);
-
   virtual void on_transfer_function_change();
+  virtual void on_filter_changed();
 
 private:
 
@@ -46,6 +47,8 @@ private:
   DataReader *dataReader;
   vtkSmartPointer<vtkVolumeProperty> volumeProp;
   vtkSmartPointer<vtkRenderer> renderer;
+  vtkImageSpatialAlgorithm* filter;
+  vtkSmartPointer<vtkVolumeMapper> mapper;
   vtkRenderWindow *renWin;
   bool bReady;
 };

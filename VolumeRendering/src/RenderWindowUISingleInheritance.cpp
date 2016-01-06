@@ -26,7 +26,10 @@
 #include "vtkSmartVolumeMapper.h"
 #include "vtkSmartPointer.h"
 #include "vtkOpenGLGPUMultiVolumeRayCastMapper.h"
-#include <vtkImageMedian3D.h>
+#include "vtkImageAnisotropicDiffusion3D.h"
+#include "vtkImageMedian3D.h"
+#include "vtkImageSobel3D.h"
+#include <assert.h>
 
 //#include "vtkGDCMImageReader/vtkGDCMImageWriter"
 
@@ -38,6 +41,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
   // create data reader and the user interface
   this->dataReader = new DataReader();
 
+  filter = nullptr;
 
   this->ui = new Ui_RenderWindowUISingleInheritance;
   this->ui->setupUi(this);
@@ -57,6 +61,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
   connect(this->ui->powerSlider, SIGNAL(valueChanged(int)), this, SLOT(on_power_change(int)));
   connect(this->ui->opacitySlider, SIGNAL(valueChanged(int)), this, SLOT(on_opacity_change(int)));
   connect(this->ui->qtfe, SIGNAL(functionChanged()), this, SLOT(on_transfer_function_change()));
+  connect(this->ui->changeFilter, SIGNAL(clicked()), this, SLOT(on_filter_changed()));
 
   // Read the data
   this->dataReader->readFile((DataReader::TFileType)inputParser->getFileType(), inputParser->getFileName(), inputParser->getDirName());
@@ -66,7 +71,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
   vtkSmartPointer<vtkVolume> volume = vtkSmartPointer<vtkVolume>::New(); 
 
   // create out mapper
-  vtkSmartPointer<vtkOpenGLGPUMultiVolumeRayCastMapper> mapper = createVolumeMapper(inputParser, volume);
+  vtkOpenGLGPUMultiVolumeRayCastMapper* mapper = static_cast<vtkOpenGLGPUMultiVolumeRayCastMapper*>(createVolumeMapper(inputParser, volume));
   mapper->setNumberOfAdditionalVolumes(0);
   mapper->SetBlendModeToComposite();
 
@@ -90,6 +95,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
 
 RenderWindowUISingleInheritance::~RenderWindowUISingleInheritance()
 {
+  filter->Delete();
   delete dataReader;
   delete ui;
 }
@@ -138,7 +144,7 @@ void RenderWindowUISingleInheritance::on_diffuse_change(int position)
   {
     float fPosition = position / 10.0f;
     printf("diffuse: %f\n", fPosition);
-    volumeProp->SetDiffuse(fPosition);
+    volumeProp->SetDiffuse(fPosition);    
     renWin->Render();
   }
 }
@@ -147,9 +153,10 @@ void RenderWindowUISingleInheritance::on_opacity_change(int position)
 {
   if (bReady)
   {
-    float fPosition = position / 10.0f;
-    printf("diffuse: %f\n", fPosition);
+    float fPosition = position;
+    printf("opacity: %f\n", fPosition);
     volumeProp->SetScalarOpacityUnitDistance(fPosition);
+    volumeProp->GetScalarOpacity()->Modified();
     renWin->Render();
   }
 }
@@ -178,12 +185,58 @@ void RenderWindowUISingleInheritance::on_transfer_function_change()
       otf->AddPoint(x[i], a[i]);
     }
     delete x, r, g, b, a;
+    ctf->Modified();
+    otf->Modified();
     renWin->Render();
   }
 }
 
+void RenderWindowUISingleInheritance::on_filter_changed()
+{
+  if (filter)
+  {
+    mapper->SetInputConnection(dataReader->GetOutputPort());
+    filter->Delete();
+  }
 
-void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputParser, vtkVolume* volume, vtkOpenGLGPUMultiVolumeRayCastMapper* mapper)
+  int i = this->ui->cbFilter->currentIndex();
+  int kernelSize = this->ui->sbKernelSize->value();
+  
+  switch (i)
+  {
+  case 0: // no filter
+    // nothing to do
+    break;
+  case 1: // Bilateral Filter
+    filter = vtkImageAnisotropicDiffusion3D::New();
+    break;
+  case 2: // Gauss Filter
+  {
+    filter = vtkImageSobel3D::New();
+    vtkImageSobel3D* pFilter = vtkImageSobel3D::SafeDownCast(filter);
+    //pFilter->SetKernelSize(kernelSize, kernelSize, kernelSize);
+    break;
+  }
+  case 3: // Median Filter
+  {
+    filter = vtkImageMedian3D::New();
+    vtkImageMedian3D* pFilter = vtkImageMedian3D::SafeDownCast(filter);
+    pFilter->SetKernelSize(kernelSize, kernelSize, kernelSize);
+    break;
+  }
+  default:
+    assert(!"Filter not supported!");
+  }
+
+  if (i > 0)
+  {
+    filter->SetInputConnection(dataReader->GetOutputPort());
+    filter->Update();
+    mapper->SetInputConnection(filter->GetOutputPort());
+  }
+}
+
+void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputParser, vtkVolume* volume, vtkVolumeMapper* mapper)
 {
   // Create our transfer function
   vtkSmartPointer<vtkColorTransferFunction> colorFun = vtkSmartPointer<vtkColorTransferFunction>::New();
@@ -360,16 +413,11 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
   }
 }
 
-vtkOpenGLGPUMultiVolumeRayCastMapper* RenderWindowUISingleInheritance::createVolumeMapper(InputParser * inputParser, vtkVolume* volume)
+vtkVolumeMapper* RenderWindowUISingleInheritance::createVolumeMapper(InputParser * inputParser, vtkVolume* volume)
 {
-  // Add the programmable filter to filter the data before rendering
-  vtkSmartPointer<vtkImageMedian3D> medianFilter = vtkSmartPointer<vtkImageMedian3D>::New();
-  medianFilter->SetKernelSize(5, 5, 5);
 
-  medianFilter->SetInputConnection(dataReader->getOutputPort());
-
-  vtkSmartPointer<vtkOpenGLGPUMultiVolumeRayCastMapper> mapper = vtkSmartPointer<vtkOpenGLGPUMultiVolumeRayCastMapper>::New();
-  mapper->SetInputConnection(medianFilter->GetOutputPort());
+  mapper = vtkSmartPointer<vtkOpenGLGPUMultiVolumeRayCastMapper>::New();
+  mapper->SetInputConnection(dataReader->GetOutputPort());
 
   // Set the sample distance on the ray to be 1/2 the average spacing
 //  double spacing[3];

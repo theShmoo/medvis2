@@ -25,10 +25,10 @@ public:
 
   void resampleData(double resampleFactore);
 
-  vtkAlgorithm * getReader() const { return reader; };
-  vtkImageData * getImageData() const { return input; };
-  vtkAlgorithmOutput * getOutputPort() const { return outputPort; };
-  vtkImageResample * getResample() const { return resample; };
+  vtkAlgorithm * GetReader() const { return reader; };
+  vtkImageData * GetImageData() const { return input; };
+  vtkAlgorithmOutput * GetOutputPort() const { return outputPort; };
+  vtkImageResample * GetResample() const { return resample; };
 
 private:
   vtkAlgorithmOutput *outputPort;
