@@ -26,6 +26,7 @@
 #include "vtkSmartVolumeMapper.h"
 #include "vtkSmartPointer.h"
 #include "vtkOpenGLGPUMultiVolumeRayCastMapper.h"
+#include <vtkImageMedian3D.h>
 
 //#include "vtkGDCMImageReader/vtkGDCMImageWriter"
 
@@ -68,7 +69,6 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
   vtkSmartPointer<vtkOpenGLGPUMultiVolumeRayCastMapper> mapper = createVolumeMapper(inputParser, volume);
   mapper->setNumberOfAdditionalVolumes(0);
   mapper->SetBlendModeToComposite();
-
 
   // Add the transfer function to the volume
   addTransferFunction(inputParser, volume, mapper);
@@ -362,15 +362,20 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
 
 vtkOpenGLGPUMultiVolumeRayCastMapper* RenderWindowUISingleInheritance::createVolumeMapper(InputParser * inputParser, vtkVolume* volume)
 {
+  // Add the programmable filter to filter the data before rendering
+  vtkSmartPointer<vtkImageMedian3D> medianFilter = vtkSmartPointer<vtkImageMedian3D>::New();
+  medianFilter->SetKernelSize(5, 5, 5);
+
+  medianFilter->SetInputConnection(dataReader->getOutputPort());
+
   vtkSmartPointer<vtkOpenGLGPUMultiVolumeRayCastMapper> mapper = vtkSmartPointer<vtkOpenGLGPUMultiVolumeRayCastMapper>::New();
-  mapper->SetInputConnection(dataReader->getOutputPort());
+  mapper->SetInputConnection(medianFilter->GetOutputPort());
 
   // Set the sample distance on the ray to be 1/2 the average spacing
-  double spacing[3];
-  this->dataReader->getImageData()->GetSpacing(spacing);
+//  double spacing[3];
+//  this->dataReader->getImageData()->GetSpacing(spacing);
 
  // mapper->SetSampleDistance((spacing[0] + spacing[1] + spacing[2]) / 12.0);
-  
 
   volume->SetMapper(mapper);
 
