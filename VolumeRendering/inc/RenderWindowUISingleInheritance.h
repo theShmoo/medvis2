@@ -14,7 +14,7 @@ class vtkVolume;
 class vtkVolumeProperty;
 class vtkRenderer;
 class vtkRenderWindow;
-class vtkImageSpatialAlgorithm;
+class vtkImageAlgorithm;
 
 class RenderWindowUISingleInheritance : public QMainWindow
 {
@@ -47,7 +47,7 @@ private:
   DataReader *dataReader;
   vtkSmartPointer<vtkVolumeProperty> volumeProp;
   vtkSmartPointer<vtkRenderer> renderer;
-  vtkImageSpatialAlgorithm* filter;
+  vtkImageAlgorithm* filter;
   vtkSmartPointer<vtkVolumeMapper> mapper;
   vtkRenderWindow *renWin;
   bool bReady;

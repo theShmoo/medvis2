@@ -28,7 +28,7 @@
 #include "vtkOpenGLGPUMultiVolumeRayCastMapper.h"
 #include "vtkImageAnisotropicDiffusion3D.h"
 #include "vtkImageMedian3D.h"
-#include "vtkImageSobel3D.h"
+#include "vtkImageGaussianSmooth.h"
 #include <assert.h>
 
 //#include "vtkGDCMImageReader/vtkGDCMImageWriter"
@@ -197,6 +197,7 @@ void RenderWindowUISingleInheritance::on_filter_changed()
   {
     mapper->SetInputConnection(dataReader->GetOutputPort());
     filter->Delete();
+    filter = nullptr;
   }
 
   int i = this->ui->cbFilter->currentIndex();
@@ -212,9 +213,9 @@ void RenderWindowUISingleInheritance::on_filter_changed()
     break;
   case 2: // Gauss Filter
   {
-    filter = vtkImageSobel3D::New();
-    vtkImageSobel3D* pFilter = vtkImageSobel3D::SafeDownCast(filter);
-    //pFilter->SetKernelSize(kernelSize, kernelSize, kernelSize);
+    filter = vtkImageGaussianSmooth::New();
+    vtkImageGaussianSmooth* pFilter = vtkImageGaussianSmooth::SafeDownCast(filter);
+    pFilter->SetRadiusFactor(kernelSize / 2.0);
     break;
   }
   case 3: // Median Filter
@@ -234,6 +235,9 @@ void RenderWindowUISingleInheritance::on_filter_changed()
     filter->Update();
     mapper->SetInputConnection(filter->GetOutputPort());
   }
+  volumeProp->GetRGBTransferFunction()->Modified();
+  volumeProp->GetScalarOpacity()->Modified();
+  renWin->Render();
 }
 
 void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputParser, vtkVolume* volume, vtkVolumeMapper* mapper)
