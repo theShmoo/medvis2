@@ -30,6 +30,7 @@
 #include "vtkImageMedian3D.h"
 #include "vtkImageGaussianSmooth.h"
 #include <assert.h>
+#include "GaussianFilter.h"
 
 #include "vtkOpenGLTexture.h"
 
@@ -218,9 +219,9 @@ void RenderWindowUISingleInheritance::on_filter_changed()
     break;
   case 2: // Gauss Filter
   {
-    filter = vtkImageGaussianSmooth::New();
-    vtkImageGaussianSmooth* pFilter = vtkImageGaussianSmooth::SafeDownCast(filter);
-    pFilter->SetRadiusFactor(kernelSize / 2.0);
+    filter = GaussianFilter::New();
+    GaussianFilter* pFilter = GaussianFilter::SafeDownCast(filter);
+    pFilter->SetKernelSize(kernelSize);
     break;
   }
   case 3: // Median Filter
