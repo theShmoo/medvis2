@@ -6756,7 +6756,7 @@ void vtkOpenGLGPUMultiVolumeRayCastMapper::BuildProgram(vtkRenderWindow *w,
 		// SourceCode is postponed.
 		// addition to collection is postponed.
 	}
-
+	
 	//  cout<<"projection="<<parallelProjection<<endl;
 	//  cout<<"method="<<raycastMethod<<endl;
 	if (parallelProjection != this->LastParallelProjection)

@@ -31,12 +31,17 @@
 #include "vtkImageGaussianSmooth.h"
 #include <assert.h>
 
+#include "vtkOpenGLTexture.h"
+
 //#include "vtkGDCMImageReader/vtkGDCMImageWriter"
 
 
 // Constructor
 RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *inputParser)
 {
+	vtkSmartPointer<vtkOpenGLTexture> t = vtkSmartPointer<vtkOpenGLTexture>::New();
+
+	
   bReady = false;
   // create data reader and the user interface
   this->dataReader = new DataReader();
