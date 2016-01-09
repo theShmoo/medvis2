@@ -42,8 +42,7 @@ vtkCxxSetObjectMacro(vtkGPUMultiVolumeRayCastMapper, MaskInput,
 	vtkImageData);
 vtkCxxSetObjectMacro(vtkGPUMultiVolumeRayCastMapper, TransformedInput,
 	vtkImageData);
-//Mehdi vtkCxxSetObjectMacro(vtkGPUMultiVolumeRayCastMapper, TransformedInput2, vtkImageData*);
-//Mehdi :
+
 #define vtkSetObjectBodyMacro2(name,type,args, volNumber)\
 {\
 	if (this->name[volNumber] != args)\
@@ -58,21 +57,20 @@ vtkCxxSetObjectMacro(vtkGPUMultiVolumeRayCastMapper, TransformedInput,
 		this->Modified();\
 	}\
 }
-//Mehdi :
+
 #define vtkCxxSetObjectMacro2(class,name,type)\
 	void class::Set##name(type* _arg, int volNumber)\
 {\
 	vtkSetObjectBodyMacro2(name, type, _arg, volNumber);\
 }
 
-void vtkGPUMultiVolumeRayCastMapper::setNumberOfAdditionalVolumes(int numAddVolumes)//Mehdi
+void vtkGPUMultiVolumeRayCastMapper::setNumberOfAdditionalVolumes(int numAddVolumes)
 {
 	NUMBER_OF_ADDITIONAL_VOLUMES = numAddVolumes;
 	this->SetNumberOfInputPorts(numAddVolumes + 1);
 }
 vtkGPUMultiVolumeRayCastMapper::vtkGPUMultiVolumeRayCastMapper()
 {
-	//Mehdi  this->Property2                  = NULL;
 
 	this->AutoAdjustSampleDistances = 1;
 	this->ImageSampleDistance = 1.0;
@@ -112,35 +110,23 @@ vtkGPUMultiVolumeRayCastMapper::vtkGPUMultiVolumeRayCastMapper()
 		{
 			this->MaxMemoryInBytes = info->GetDedicatedSystemMemory();
 		}
-		// we ignore info->GetSharedSystemMemory(); as this is very slow.
 	}
 	l->Delete();
 
-	if (this->MaxMemoryInBytes == 0) // use some default value: 128MB.
+	if (this->MaxMemoryInBytes == 0) 
 	{
 		this->MaxMemoryInBytes = 128 * 1024 * 1024;
 	}
 
-	this->MaxMemoryFraction = 0.75;//?
+	this->MaxMemoryFraction = 0.75;
 
 	this->ReportProgress = true;
 
 	this->TransformedInput = NULL;
 	this->LastInput = NULL;
 
-	//--------------------------------------------------------------------------------Mehdi
-	/*Mehdi
-	this->SetNumberOfInputPorts(2);
-	this->TransformedInput2 = NULL;
-	this->LastInput2 = NULL;
-	this->SecondInputUserTransform = (vtkTransform*) vtkTransform::New();
-	this->SecondInputUserTransform->Identity();
-	Mehdi*/
-
+	
 	this->SetNumberOfInputPorts(1);
-
-	//--------------------------------------------------------------------------------Mehdi
-
 }
 
 // ----------------------------------------------------------------------------
@@ -149,16 +135,9 @@ vtkGPUMultiVolumeRayCastMapper::~vtkGPUMultiVolumeRayCastMapper()
 	this->SetMaskInput(NULL);
 	this->SetTransformedInput(NULL);
 	this->LastInput = NULL;
-	//Mehdi this->SetTransformedInput2(NULL);
-	//Mehdi this->LastInput2 = NULL;
-	//Mehdi this->SecondInputUserTransform->Delete();
-
-
 }
 
 
-// ----------------------------------------------------------------------------
-//New functions added
 void vtkGPUMultiVolumeRayCastMapper::SetInput(int port, vtkDataSet *genericInput)
 {
 	vtkImageData *input =
@@ -174,18 +153,16 @@ void vtkGPUMultiVolumeRayCastMapper::SetInput(int port, vtkDataSet *genericInput
 	}
 }
 
-// ----------------------------------------------------------------------------
+
 void vtkGPUMultiVolumeRayCastMapper::SetInput(int port, vtkImageData *input)
 {
 	if (input)
 	{
-//-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ich bin ein change marker.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.--.-.-
-		//this->SetInputConnection(port, input->GetProducerPort());
+
 		this->SetInputData(input);
 	}
 	else
 	{
-		// Setting a NULL input removes the connection.
 		this->SetInputConnection(port, 0);
 	}
 }
@@ -202,69 +179,6 @@ vtkImageData * vtkGPUMultiVolumeRayCastMapper::GetInput(int port)
 		this->GetExecutive()->GetInputData(port, 0));
 }
 
-
-/*Mehdi
-void vtkGPUMultiVolumeRayCastMapper::SetProperty2(vtkVolumeProperty *property)
-{
-if( this->Property2 != property )
-{
-if (this->Property2 != NULL) {this->Property2->UnRegister(this);}
-this->Property2 = property;
-if (this->Property2 != NULL)
-{
-this->Property2->Register(this);
-this->Property2->UpdateMTimes();
-}
-this->Modified();
-}
-}
-Mehdi*/
-/*void vtkGPUMultiVolumeRayCastMapper::SetAdditionalProperty(int volNumber, vtkVolumeProperty *property) //Mehdi
-{
-
-	if (this->Property[volNumber] != property)
-	{
-		if (this->Property[volNumber] != NULL) { this->Property[volNumber]->UnRegister(this); }
-		this->Property[volNumber] = property;
-		if (this->Property[volNumber] != NULL)
-		{
-			this->Property[volNumber]->Register(this);
-			this->Property[volNumber]->UpdateMTimes();
-		}
-		this->Modified();
-	}
-
-}
-
-/*Mehdi
-vtkVolumeProperty *vtkGPUMultiVolumeRayCastMapper::GetProperty2()
-{
-if( this->Property2 == NULL )
-{
-this->Property2 = vtkVolumeProperty::New();
-this->Property2->Register(this);
-this->Property2->Delete();
-}
-return this->Property2;
-}
-Mehdi*/
-
-/*
-vtkVolumeProperty *vtkGPUMultiVolumeRayCastMapper::GetAdditionalProperty(int volNumber) //Mehdi
-{
-
-	if (this->Property[volNumber] == NULL)
-	{
-		this->Property[volNumber] = vtkVolumeProperty::New();
-		this->Property[volNumber]->Register(this);
-		this->Property[volNumber]->Delete();
-	}
-	return this->Property[volNumber];
-
-}
-*/
-
-// ----------------------------------------------------------------------------
 vtkGPUMultiVolumeRayCastMapper *vtkGPUMultiVolumeRayCastMapper::New()
 {
 	// First try to create the object from the vtkObjectFactory
@@ -410,31 +324,15 @@ int vtkGPUMultiVolumeRayCastMapper::ValidateRender(vtkRenderer *ren,
 	// Check that we have input data
 	vtkImageData *input = this->GetInput(0);
 
-
-	//-----------------------------------------------------------------------------Mehdi
-	/*Mehdi
-	if(goodSoFar && (input==0||input2==0))
-	{
-
-	vtkErrorMacro("at least one of Inputs is NULL but is required");
-	goodSoFar = 0;
-	}
-	Mehdi*/
-	if (goodSoFar)//Mehdi
+	if (goodSoFar)
 	{
 		int tmp = (input == 0);
 	}
-	//-----------------------------------------------------------------------------Mehdi
 	if (goodSoFar)
 	{
-//-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ich bin ein change marker.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.--.-.-
 
-		//input->Update();
 input->Modified();
 this->Update();
-		//Mehdi input2->Update();
-		
-			//Additionalinput[iii]->Update();//Mehdi
 	}
 
 	// If we have a timestamp change or data change then create a new clone.
@@ -446,7 +344,6 @@ this->Update();
 			if (tmp)
 			{
 				this->LastInput = input;
-				//Mehdi this->LastInput2 = input2;
 
 				vtkImageData* clone;
 				if (!this->TransformedInput)
@@ -461,24 +358,7 @@ this->Update();
 				}
 
 				clone->ShallowCopy(input);
-				//------------------------------------------------------------------------Mehdi
-				/*Mehdi
-				vtkImageData* clone2;
 
-				if(!this->TransformedInput2)
-				{
-				clone2 = vtkImageData::New();
-				this->SetTransformedInput2(clone2);
-				clone2->Delete();
-				}
-				else
-				{
-				clone2 = this->TransformedInput2;
-				}
-				clone2->ShallowCopy(input2);
-				Mehdi*/
-
-				//------------------------------------------------------------------------Mehdi
 
 				// @TODO: This is the workaround to deal with GPUVolumeRayCastMapper
 				// not able to handle extents starting from non zero values.
@@ -506,34 +386,12 @@ this->Update();
 				clone->SetOrigin(origin);
 				clone->SetExtent(extents);
 
-				//-----------------------------------------------------------Mehdi
-				/*Mehdi
-				// Get the current extents.
 				int extents2[6], real_extents2[6];
-				clone2->GetExtent(extents2);
-				clone2->GetExtent(real_extents2);
-				// Get the current origin and spacing.
 				double origin2[3], spacing2[3];
-				clone2->GetOrigin(origin2);
-				clone2->GetSpacing(spacing2);
-				for (int cc=0; cc < 3; cc++)
-				{
-				// Transform the origin and the extents.
-				origin2[cc] = origin2[cc] + extents2[2*cc]*spacing2[cc];
-				extents2[2*cc+1] -= extents2[2*cc];
-				extents2[2*cc] -= extents2[2*cc];
-				}
-				clone2->SetOrigin(origin2);
-				clone2->SetExtent(extents2);
-				Mehdi*/
-				int extents2[6], real_extents2[6];//Mehdi
-				double origin2[3], spacing2[3];//Mehdi
 
-				//-----------------------------------------------------------Mehdi
-				break;//Mehdi
+				break;
 			}
 
-			//tmp=((Additionalinput[iii] != this->AdditionalLastInput[iii]) || (Additionalinput[iii]->GetMTime() > this->AdditionalTransformedInput[iii]->GetMTime()));//Mehdi
 		}
 	}
 	// Update the date then make sure we have scalars. Note
@@ -541,20 +399,12 @@ this->Update();
 	// scalars are not supported.
 	vtkDataArray *scalars = NULL;
 
-	//Mehdi  vtkDataArray *scalars2 = NULL;
-
-
-
 	if (goodSoFar)
 	{
 		// Here is where we update the input
-//-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ich bin ein change marker.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.--.-.-
 		this->UpdateInformation();
 		this->SetUpdateExtentToWholeExtent();
 		this->Update();
-		//this->TransformedInput->UpdateInformation();
-		//this->TransformedInput->SetUpdateExtentToWholeExtent();
-		//this->TransformedInput->Update();
 
 		// Now make sure we can find scalars
 		scalars = this->GetScalars(this->TransformedInput, this->ScalarMode,
@@ -575,14 +425,6 @@ this->Update();
 			vtkErrorMacro("Only point or cell scalar support - found field scalars instead.");
 			goodSoFar = 0;
 		}
-
-		// Here is where we update the second input
-		/*Mehdi
-		this->TransformedInput2->UpdateInformation();
-		this->TransformedInput2->SetUpdateExtentToWholeExtent();
-		this->TransformedInput2->Update();
-		Mehdi*/
-
 	}
 
 	// Make sure the scalar type is actually supported. This mappers supports
@@ -613,38 +455,6 @@ this->Update();
 			// Don't need to do anything here
 			break;
 		}
-
-		//---------------------------------------------------------------------------------------------Mehdi
-		/*Mehdi
-		// for second input
-		switch(scalars2->GetDataType())
-		{
-		case VTK_CHAR:
-		vtkErrorMacro(<< "scalar of type VTK_CHAR is not supported "
-		<< "because this type is platform dependent. "
-		<< "Use VTK_SIGNED_CHAR or VTK_UNSIGNED_CHAR instead.");
-		goodSoFar = 0;
-		break;
-		case VTK_BIT:
-		vtkErrorMacro("scalar of type VTK_BIT is not supported by this mapper.");
-		goodSoFar = 0;
-		break;
-		case VTK_ID_TYPE:
-		vtkErrorMacro("scalar of type VTK_ID_TYPE is not supported by this mapper.");
-		goodSoFar = 0;
-		break;
-		case VTK_STRING:
-		vtkErrorMacro("scalar of type VTK_STRING is not supported by this mapper.");
-		goodSoFar = 0;
-		break;
-		default:
-		// Don't need to do anything here
-		break;
-		}
-
-		Mehdi*/
-
-		//---------------------------------------------------------------------------------------------Mehdi
 	}
 	// Check on the blending type - we support composite and min / max intensity
 	if (goodSoFar)
@@ -660,54 +470,6 @@ this->Update();
 				<< "are supported by the current implementation.");
 		}
 	}
-
-	/*Mehdi-TODO
-	// This mapper supports 1 component data, or 4 component if it is not independent
-	// component (i.e. the four components define RGBA)
-	int numberOfComponents = 0;
-	//Mehdi int numberOfComponents2 = 0;
-	int AdditionalnumberOfComponents[MAX_NUMBER_OF_VOLUMES];//Mehdi
-	for(int i=0;i<MAX_NUMBER_OF_VOLUMES;i++)//Mehdi
-	AdditionalnumberOfComponents[i]=0;//Mehdi
-
-	if ( goodSoFar )
-	{
-	numberOfComponents=scalars->GetNumberOfComponents();
-
-	//Mehdi numberOfComponents2=scalars2->GetNumberOfComponents();
-	AdditionalnumberOfComponents[i]=scalars2->GetNumberOfComponents();
-	if(
-	!( numberOfComponents==1 ||
-	(numberOfComponents==4 &&
-	vol->GetProperty()->GetIndependentComponents()==0))
-	||
-	!( numberOfComponents2==1 ||
-	(numberOfComponents2==4 &&
-	vol->GetProperty()->GetIndependentComponents()==0))
-	)
-	{
-	goodSoFar = 0;
-	vtkErrorMacro(<< "Only one component scalars, or four "
-	<< "component with non-independent components, "
-	<< "are supported by this mapper.");
-	}
-	}
-
-	// If this is four component data, then it better be unsigned char (RGBA).
-	if( goodSoFar &&
-	numberOfComponents == 4 &&
-	scalars->GetDataType() != VTK_UNSIGNED_CHAR)
-	{
-	goodSoFar = 0;
-	vtkErrorMacro("Only unsigned char is supported for 4-component scalars!");
-	}
-	if(goodSoFar && numberOfComponents!=1 &&
-	this->BlendMode==vtkVolumeMapper::ADDITIVE_BLEND)
-	{
-	goodSoFar=0;
-	vtkErrorMacro("Additive mode only works with 1-component scalars!");
-	}
-	*/
 
 	// return our status
 	return goodSoFar;
@@ -745,10 +507,6 @@ void vtkGPUMultiVolumeRayCastMapper::CreateCanonicalView(
 	vtkImageData *bigImage = vtkImageData::New();
 	bigImage->SetDimensions(size[0], size[1], 1);
 
-//-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ich bin ein change marker.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.--.-.-
-	/*bigImage->SetScalarTypeToUnsignedChar();
-	bigImage->SetNumberOfScalarComponents(3);
-	bigImage->AllocateScalars();*/
 	bigImage->AllocateScalars(VTK_UNSIGNED_CHAR, 3);
 
 	this->CanonicalViewImageData = bigImage;
@@ -832,7 +590,6 @@ void vtkGPUMultiVolumeRayCastMapper::CreateCanonicalView(
 
 	// Shrink to image to the desired size
 	vtkImageResample *resample = vtkImageResample::New();
-//-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ich bin ein change marker.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.--.-.-
 	resample->SetInputData(bigImage);
 
 	//resample->SetInput(bigImage);
@@ -876,7 +633,7 @@ void vtkGPUMultiVolumeRayCastMapper::CreateCanonicalView(
 	this->GeneratingCanonicalView = 0;
 }
 
-// ----------------------------------------------------------------------------
+
 // Print method for vtkGPUMultiVolumeRayCastMapper
 void vtkGPUMultiVolumeRayCastMapper::PrintSelf(ostream& os, vtkIndent indent)
 {
@@ -920,14 +677,6 @@ void vtkGPUMultiVolumeRayCastMapper::ClipCroppingRegionPlanes()
 		this->CroppingRegionPlanes[2]<this->CroppingRegionPlanes[3] &&
 		this->CroppingRegionPlanes[4]<this->CroppingRegionPlanes[5]);
 
-	// vtkVolumeMapper::Render() will have something like:
-	//  if(this->Cropping && (this->CroppingRegionPlanes[0]>=this->CroppingRegionPlanes[1] ||
-	//                        this->CroppingRegionPlanes[2]>=this->CroppingRegionPlanes[3] ||
-	//                        this->CroppingRegionPlanes[4]>=this->CroppingRegionPlanes[5]))
-	//    {
-	//    // silentely  stop because the cropping is not valid.
-	//    return;
-	//    }
 
 	double volBounds[6];
 	this->GetInput(0)->GetBounds(volBounds);
