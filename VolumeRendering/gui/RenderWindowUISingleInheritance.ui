@@ -6,7 +6,7 @@
       <rect>
         <x>0</x>
         <y>0</y>
-        <width>751</width>
+        <width>1100</width>
         <height>603</height>
       </rect>
     </property>
@@ -38,6 +38,12 @@
             <widget class="QSplitter" name="vSplitter">
               <property name="orientation">
                 <enum>Qt::Vertical</enum>
+              </property>
+              <property name="minimumSize">
+                <size>
+                  <width>200</width>
+                  <height>0</height>
+                </size>
               </property>
               <widget class="QGroupBox" name="groupBoxShading">
                 <property name="font">
@@ -258,6 +264,12 @@
               </property>
               <property name="title">
                 <string>Transfer Function</string>
+              </property>
+              <property name="minimumSize">
+                <size>
+                  <width>240</width>
+                  <height>0</height>
+                </size>
               </property>
               <widget class="QWidget" name="gridLayoutWidget">
                 <property name="font">

@@ -6,7 +6,7 @@
 #include <QMouseEvent>
 #include <QList>
 
-// Warning : QtfeCanal is not supposed to be used outside Qtfe
+//! A canal of the Qtfe this class should not get used outside of the Qtfe widget and therefor it is not documented
 class QtfeCanal : public QWidget 
 {
 	Q_OBJECT
