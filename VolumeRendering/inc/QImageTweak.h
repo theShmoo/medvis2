@@ -5,13 +5,14 @@
 #include <Qtfe.h>
 
 #include <math.h>
-
+//! A QT class for showing the transfer function of the Qtfe widget
 class QImageTweak : public QWidget
 {
 	Q_OBJECT
 
 public:
 
+  //! Conctructor which creates the canals and the output and binds the canals to the outpus
 	QImageTweak(Qtfe * editor) : editor(editor)
 	{
 		resize(256,256);
@@ -28,11 +29,14 @@ public:
 	}
 
 protected slots:
+  //! This function is called when the color map gets changed
 	void colorMapChanged(){repaint();}
 
 protected:
+  //! The Transfer function
 	Qtfe* editor;
 
+  //! This function draws the transfer function
 	virtual void paintEvent(QPaintEvent* event)
 	{
 		QWidget::paintEvent(event);

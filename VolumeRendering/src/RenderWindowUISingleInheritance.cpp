@@ -80,7 +80,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
   vtkSmartPointer<vtkVolume> volume = vtkSmartPointer<vtkVolume>::New(); 
 
   // create out mapper
-  vtkOpenGLGPUMultiVolumeRayCastMapper* mapper = static_cast<vtkOpenGLGPUMultiVolumeRayCastMapper*>(createVolumeMapper(inputParser, volume));
+  vtkOpenGLGPUMultiVolumeRayCastMapper* mapper = static_cast<vtkOpenGLGPUMultiVolumeRayCastMapper*>(createVolumeMapper(volume));
   mapper->setNumberOfAdditionalVolumes(0);
   mapper->SetBlendModeToComposite();
 
@@ -467,7 +467,7 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
   }
 }
 
-vtkVolumeMapper* RenderWindowUISingleInheritance::createVolumeMapper(InputParser * inputParser, vtkVolume* volume)
+vtkVolumeMapper* RenderWindowUISingleInheritance::createVolumeMapper(vtkVolume* volume)
 {
 
   mapper = vtkSmartPointer<vtkOpenGLGPUMultiVolumeRayCastMapper>::New();
