@@ -32,6 +32,7 @@ set(KIT_GLSL_SRCS
    vtkGPUVolumeRayCastMapper_CompositeNoCroppingFS
    vtkGPUVolumeRayCastMapper_PerspectiveProjectionFS
    vtkGPUVolumeRayCastMapper_CompositeCroppingFS
+   PostProcessGradientFilter
 )
 
 # Needs vtkEncodeString, VTK_ENCODESTRING_EXE

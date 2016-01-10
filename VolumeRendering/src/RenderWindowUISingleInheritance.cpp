@@ -18,6 +18,9 @@
 #include "vtkPlanes.h"
 #include "vtkProperty.h"
 #include "vtkRenderer.h"
+
+#include "vtkOpenGLRenderer.h"
+
 #include "vtkRenderWindow.h"
 #include "vtkRenderWindowInteractor.h"
 #include "vtkVolume.h"
@@ -37,8 +40,9 @@
 #include "MedianFilter.h"
 #include "BilateralFilter.h"
 
+#include "GradientPostprocessFilter.h"
 //#include "vtkGDCMImageReader/vtkGDCMImageWriter"
-
+#include "vtkSobelGradientMagnitudePass.h";
 
 // Constructor
 RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *inputParser)
@@ -56,7 +60,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
   this->ui->setupUi(this);
 
   // Create the renderer
-  renderer = vtkSmartPointer<vtkRenderer>::New();
+  renderer = vtkSmartPointer<vtkOpenGLRenderer>::New();
 
   // VTK/Qt wedded
   renWin = this->ui->qvtkWidget->GetRenderWindow();
@@ -98,6 +102,11 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
 
   // interact with data
   renWin->Render();
+
+  //GradientPostprocessFilter *sobelf = GradientPostprocessFilter::New();
+  //vtkSobelGradientMagnitudePass *sobelf = vtkSobelGradientMagnitudePass::New();
+
+  //renderer->SetPass(sobelf);
 
   bReady = true;
 }

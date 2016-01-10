@@ -13,6 +13,7 @@ class vtkVolumeMapper;
 class vtkVolume;
 class vtkVolumeProperty;
 class vtkRenderer;
+class vtkOpenGLRenderer;
 class vtkRenderWindow;
 class vtkImageAlgorithm;
 
@@ -46,7 +47,7 @@ private:
   Ui_RenderWindowUISingleInheritance *ui;
   DataReader *dataReader;
   vtkSmartPointer<vtkVolumeProperty> volumeProp;
-  vtkSmartPointer<vtkRenderer> renderer;
+  vtkSmartPointer<vtkOpenGLRenderer> renderer;
   vtkImageAlgorithm* filter;
   vtkSmartPointer<vtkVolumeMapper> mapper;
   vtkRenderWindow *renWin;
