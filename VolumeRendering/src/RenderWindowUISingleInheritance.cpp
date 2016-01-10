@@ -32,12 +32,19 @@
 #include <assert.h>
 #include "GaussianFilter.h"
 
+#include "vtkOpenGLTexture.h"
+
+#include "MedianFilter.h"
+
 //#include "vtkGDCMImageReader/vtkGDCMImageWriter"
 
 
 // Constructor
 RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *inputParser)
 {
+	vtkSmartPointer<vtkOpenGLTexture> t = vtkSmartPointer<vtkOpenGLTexture>::New();
+
+	
   bReady = false;
   // create data reader and the user interface
   this->dataReader = new DataReader();
@@ -225,9 +232,12 @@ void RenderWindowUISingleInheritance::on_filter_changed()
   }
   case 3: // Median Filter
   {
-    filter = vtkImageMedian3D::New();
+	filter = MedianFilter::New();
+	MedianFilter* pFilter = MedianFilter::SafeDownCast(filter);
+	pFilter->setKernelSize(kernelSize);
+    /*filter = vtkImageMedian3D::New();
     vtkImageMedian3D* pFilter = vtkImageMedian3D::SafeDownCast(filter);
-    pFilter->SetKernelSize(kernelSize, kernelSize, kernelSize);
+    pFilter->SetKernelSize(kernelSize, kernelSize, kernelSize);*/
     break;
   }
   default:
