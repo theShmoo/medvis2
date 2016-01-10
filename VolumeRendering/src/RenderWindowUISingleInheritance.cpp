@@ -316,6 +316,13 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
     // Use compositing and functions set to highlight skin in CT data
     // Not for use on RGB data
   case 3:
+    qtfe->removeAllRGBPoints();
+    qtfe->setSource(-3024, 3071);
+    qtfe->addRGBAPoint(-3024, 0, 0, 0, 0);
+    qtfe->addRGBAPoint(-1000, .62, .36, .18, 0);
+    qtfe->addRGBAPoint(-500, .88, .60, .29, 1);
+    qtfe->addRGBAPoint(3071, .83, .66, 1, 1);
+
     colorFun->AddRGBPoint(-3024, 0, 0, 0, 0.5, 0.0);
     colorFun->AddRGBPoint(-1000, .62, .36, .18, 0.5, 0.0);
     colorFun->AddRGBPoint(-500, .88, .60, .29, 0.33, 0.45);
@@ -329,10 +336,19 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
     mapper->SetBlendModeToComposite();
     volumeProp->ShadeOn();
     volumeProp->SetAmbient(0.1);
+    this->ui->ambientSlider->setValue(1);
+
     volumeProp->SetDiffuse(0.9);
+    this->ui->diffuseSlider->setValue(9);
+
     volumeProp->SetSpecular(0.2);
+    this->ui->specSlider->setValue(2);
+
     volumeProp->SetSpecularPower(10.0);
+    this->ui->specSlider->setValue(10);
+
     volumeProp->SetScalarOpacityUnitDistance(0.8919);
+    this->ui->specSlider->setValue(9);
     break;
 
     // CT_Bone
@@ -359,23 +375,18 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
     mapper->SetBlendModeToComposite();
     volumeProp->ShadeOn();
     volumeProp->SetAmbient(0.1);
-
     this->ui->ambientSlider->setValue(1);
 
     volumeProp->SetDiffuse(0.9);
-
     this->ui->diffuseSlider->setValue(9);
 
     volumeProp->SetSpecular(0.2);
-
     this->ui->specSlider->setValue(2);
 
     volumeProp->SetSpecularPower(10.0);
-
     this->ui->specSlider->setValue(10);
 
     volumeProp->SetScalarOpacityUnitDistance(0.8919);
-
     this->ui->specSlider->setValue(9);
 
     break;
@@ -384,6 +395,14 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
     // Use compositing and functions set to highlight muscle in CT data
     // Not for use on RGB data
   case 5:
+    qtfe->removeAllRGBPoints();
+    qtfe->setSource(-3024, 3071);
+    qtfe->addRGBAPoint(-3024, 0, 0, 0, 0);
+    qtfe->addRGBAPoint(-155, .55, .25, .15, 0);
+    qtfe->addRGBAPoint(217, .88, .60, .29, .68);
+    qtfe->addRGBAPoint(420, 1, .94, .95, .83);
+    qtfe->addRGBAPoint(3071, .83, .66, 1, .80);
+
     colorFun->AddRGBPoint(-3024, 0, 0, 0, 0.5, 0.0);
     colorFun->AddRGBPoint(-155, .55, .25, .15, 0.5, .92);
     colorFun->AddRGBPoint(217, .88, .60, .29, 0.33, 0.45);
@@ -399,16 +418,27 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
     mapper->SetBlendModeToComposite();
     volumeProp->ShadeOn();
     volumeProp->SetAmbient(0.1);
+    this->ui->ambientSlider->setValue(1);
+
     volumeProp->SetDiffuse(0.9);
+    this->ui->diffuseSlider->setValue(9);
+
     volumeProp->SetSpecular(0.2);
+    this->ui->specSlider->setValue(2);
+
     volumeProp->SetSpecularPower(10.0);
+    this->ui->specSlider->setValue(10);
+
     volumeProp->SetScalarOpacityUnitDistance(0.8919);
+    this->ui->specSlider->setValue(9);
     break;
 
     // RGB_Composite
     // Use compositing and functions set to highlight red/green/blue regions
     // in RGB data. Not for use on single component data
   case 6:
+    assert(!"NO TF Widget support yet");
+
     opacityFun->AddPoint(0, 0.0);
     opacityFun->AddPoint(5.0, 0.0);
     opacityFun->AddPoint(30.0, 0.05);
