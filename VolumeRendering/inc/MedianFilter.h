@@ -10,15 +10,15 @@ public:
 	vtkTypeMacro(MedianFilter, vtkImageSpatialAlgorithm);
 	void PrintSelf(ostream& os, vtkIndent indent);
 
-
-	void SetKernelSize(int size0, int size1, int size2);
-
 	// Description:
 	// Return the number of elements in the median mask
 	vtkGetMacro(NumberOfElements, int);
-	int KernelSize;
-	float getMedian(float* list);
+	
+  int KernelSize;
+
 	void setKernelSize(int n);
+
+  float getMedian(float* list);
 
 protected:
 	MedianFilter();
@@ -33,8 +33,6 @@ protected:
 		int extent[6], int id);
 
 private:
-
-	int KernelMiddle;
 
 	MedianFilter(const MedianFilter&);  // Not implemented.
 	void operator=(const MedianFilter&);  // Not implemented.

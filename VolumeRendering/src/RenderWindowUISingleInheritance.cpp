@@ -35,6 +35,7 @@
 #include "vtkOpenGLTexture.h"
 
 #include "MedianFilter.h"
+#include "BilateralFilter.h"
 
 //#include "vtkGDCMImageReader/vtkGDCMImageWriter"
 
@@ -221,7 +222,11 @@ void RenderWindowUISingleInheritance::on_filter_changed()
     // nothing to do
     break;
   case 1: // Bilateral Filter
-    filter = vtkImageAnisotropicDiffusion3D::New();
+  {
+    filter = BilateralFilter::New();
+    BilateralFilter* pFilter = BilateralFilter::SafeDownCast(filter);
+    pFilter->setKernelSize(kernelSize);
+  }
     break;
   case 2: // Gauss Filter
   {
