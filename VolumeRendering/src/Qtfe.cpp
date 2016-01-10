@@ -1,24 +1,3 @@
-/************************************************************************
-
-Copyright (C) 2012 Eric Heitz (er.heitz@gmail.com). All rights reserved.
-
-This file is part of Qtfe (Qt Transfer Function Editor).
-
-Qtfe is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as 
-published by the Free Software Foundation, either version 3 of 
-the License, or (at your option) any later version.
-
-Qtfe is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License
-along with Qtfe.  If not, see <http://www.gnu.org/licenses/>.
-
-************************************************************************/
-
 #include "Qtfe.h"
 #include "QImageTweak.h"
 
@@ -80,11 +59,16 @@ void Qtfe::addCanal(int n, QString name)
 		canals.push_back(canal);
     canal->setMinimumHeight(40);
     if (n == 3)
-      canal->setAllowInteraction(true);
+    {
+      alphacanal = canal;
+      canal->SetAllowAddingPoints(true);
+    }
     QLabel * label = new QLabel(name);
     this->layout()->addWidget(label);
 		this->layout()->addWidget(canal);
-		QObject::connect(canal, SIGNAL(canalChanged()), this, SLOT(canalChanged()));
+    QObject::connect(canal, SIGNAL(canalChanged()), this, SLOT(canalChanged()));
+    QObject::connect(canal, SIGNAL(pointAdded()), this, SLOT(pointAdded()));
+    QObject::connect(canal, SIGNAL(pointRemoved(int)), this, SLOT(pointRemoved(int)));
 }
 
 void Qtfe::addOutputs(int n)
@@ -136,11 +120,41 @@ qreal Qtfe::evalf(int canal, qreal x) const
 
 void Qtfe::canalChanged()
 {
-	for(int i=0 ; i < outputs.size() ; ++i)
-	{
-		outputs[i]->repaint();
-	}
-	emit functionChanged();
+  for (int i = 0; i < outputs.size(); ++i)
+  {
+    outputs[i]->repaint();
+  }
+  emit functionChanged();
+}
+
+void Qtfe::pointAdded()
+{
+  QPointF *point = alphacanal->getPoints().back();
+  for (int i = 0; i < canals.size(); ++i)
+  {
+    if (canals[i] != alphacanal)
+      canals[i]->insertPoint(*point);
+  }
+  for (int i = 0; i < outputs.size(); ++i)
+  {
+    outputs[i]->repaint();
+  }
+  emit functionChanged();
+}
+
+void Qtfe::pointRemoved(int position)
+{
+  QPointF *point = alphacanal->getPoints().back();
+  for (int i = 0; i < canals.size(); ++i)
+  {
+    if (canals[i] != alphacanal)
+      canals[i]->removePointAtPosition(position);
+  }
+  for (int i = 0; i < outputs.size(); ++i)
+  {
+    outputs[i]->repaint();
+  }
+  emit functionChanged();
 }
 
 void Qtfe::save()

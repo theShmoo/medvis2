@@ -1,24 +1,3 @@
-/************************************************************************
-
-Copyright (C) 2012 Eric Heitz (er.heitz@gmail.com). All rights reserved.
-
-This file is part of Qtfe (Qt Transfer Function Editor).
-
-Qtfe is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as 
-published by the Free Software Foundation, either version 3 of 
-the License, or (at your option) any later version.
-
-Qtfe is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License
-along with Qtfe.  If not, see <http://www.gnu.org/licenses/>.
-
-************************************************************************/
-
 #include "QtfeCanal.h"
 
 #include <QPainter>
@@ -27,7 +6,7 @@ const int QtfeCanal::pointSizePixel = 5;
 const int QtfeCanal::circleSizePixel = 9;
 const int QtfeCanal::lineWidth = 2;
 
-QtfeCanal::QtfeCanal() : first(0.0, 0.0), last(1.0, 1.0), selected(NULL), pressed(false), bAllowInteraction(true)
+QtfeCanal::QtfeCanal() : first(0.0, 0.0), last(1.0, 1.0), selected(NULL), pressed(false), bAllowInteraction(true), bAllowAddingOrRemovingPoints(false)
 {
 	this->setMouseTracking(true);
 	
@@ -53,10 +32,13 @@ const QList<QPointF*>& QtfeCanal::getPoints() const
 
 void QtfeCanal::removeAllPoints()
 {
+  selected = NULL;
   for (int i = 0; i < list.size(); ++i)
     if (list[i] != &first && list[i] != &last)
       delete list[i];
   list.clear();
+  repaint();
+  emit canalChanged();
 }
 
 void QtfeCanal::setFirstPoint(qreal v)
@@ -64,7 +46,7 @@ void QtfeCanal::setFirstPoint(qreal v)
 	first.setY(qMin(qMax(v,0.0),1.0));
 	selected = NULL;
 	repaint();
-	emit canalChanged(); 
+  emit canalChanged();
 }
 
 void QtfeCanal::setLastPoint(qreal v)
@@ -72,7 +54,7 @@ void QtfeCanal::setLastPoint(qreal v)
 	last.setY(qMin(qMax(v,0.0),1.0));
 	selected = NULL;
 	repaint();
-	emit canalChanged(); 
+  emit canalChanged();
 }
 
 void QtfeCanal::insertPoint(const QPointF& p)
@@ -82,8 +64,16 @@ void QtfeCanal::insertPoint(const QPointF& p)
 	selected = NULL;
 	qSort(list.begin(), list.end(), cmp);
 	repaint();
-	emit canalChanged(); 
 }
+
+void QtfeCanal::removePointAtPosition(int position)
+{
+  delete list.at(position);
+  list.removeAt(position);
+  selected = NULL;
+  repaint();
+}
+
 
 void QtfeCanal::resizeEvent ( QResizeEvent * event )
 {
@@ -168,7 +158,7 @@ void QtfeCanal::mousePressEvent(QMouseEvent * event)
     if (event->button() == Qt::LeftButton)
     {
       pressed = true;
-      if (!selected)
+      if (!selected && bAllowAddingOrRemovingPoints)
       {
         for (int i = 1; i < list.size(); ++i)
         {
@@ -183,18 +173,19 @@ void QtfeCanal::mousePressEvent(QMouseEvent * event)
         list.push_back(selected);
         qSort(list.begin(), list.end(), cmp);
         this->repaint();
-        emit canalChanged();
+        emit pointAdded();
       }
     }
-    if (event->button() == Qt::RightButton && selected)
+    if (event->button() == Qt::RightButton && selected && bAllowAddingOrRemovingPoints)
     {
       if (selected != &first && selected != &last)
       {
-        list.removeOne(selected);
+        int position = list.indexOf(selected);
+        list.removeAt(position);
         delete selected;
         selected = NULL;
         this->repaint();
-        emit canalChanged();
+        emit pointRemoved(position);
       }
     }
   }

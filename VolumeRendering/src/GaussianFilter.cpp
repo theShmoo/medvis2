@@ -13,8 +13,7 @@ vtkStandardNewMacro(GaussianFilter);
 //----------------------------------------------------------------------------
 GaussianFilter::GaussianFilter()
 {
-  this->KernelSize = 3;
-  this->Sigma = ItlComputeSigma();
+  SetKernelSize(3);
 }
 
 //----------------------------------------------------------------------------
@@ -396,7 +395,15 @@ void GaussianFilter::ThreadedRequestData(
   temp1Data->Delete();
 }
 
-double GaussianFilter::ItlComputeSigma()
+double GaussianFilter::ItlComputeSigma(int _KernelSize)
 {
-  return 0.3*((KernelSize - 1)*0.5 - 1) + 0.8;
+  return 0.3*((_KernelSize - 1)*0.5 - 1) + 0.8;
+}
+
+void GaussianFilter::SetKernelSize(int _KernelSize)
+{
+  KernelSize = _KernelSize;
+  if (KernelSize % 2 == 0)
+    KernelSize++;
+  Sigma = ItlComputeSigma(KernelSize);
 }

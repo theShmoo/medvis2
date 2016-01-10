@@ -96,7 +96,11 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
 
 RenderWindowUISingleInheritance::~RenderWindowUISingleInheritance()
 {
-  filter->Delete();
+  if (filter)
+  {
+    filter->Delete();
+    filter = nullptr;
+  }
   delete dataReader;
   delete ui;
 }

@@ -1,24 +1,3 @@
-/************************************************************************
-
-Copyright (C) 2012 Eric Heitz (er.heitz@gmail.com). All rights reserved.
-
-This file is part of Qtfe (Qt Transfer Function Editor).
-
-Qtfe is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as 
-published by the Free Software Foundation, either version 3 of 
-the License, or (at your option) any later version.
-
-Qtfe is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License
-along with Qtfe.  If not, see <http://www.gnu.org/licenses/>.
-
-************************************************************************/
-
 #ifndef _Q_TFE_CANAL_
 #define _Q_TFE_CANAL_
 
@@ -44,11 +23,16 @@ private:
 	void setLastPoint(qreal y);
 	void insertPoint(const QPointF& p);
   void removeAllPoints();
+  void removePointAtPosition(int position);
   bool getAllowInteraction() const { return bAllowInteraction; }
   void setAllowInteraction(bool val) { bAllowInteraction = val; }
+  bool IsAllowAddingPoints() const { return bAllowAddingOrRemovingPoints; }
+  void SetAllowAddingPoints(bool val) { bAllowAddingOrRemovingPoints = val; }
 
 signals:
-	void canalChanged();
+  void canalChanged();
+  void pointAdded();
+  void pointRemoved(int pointNummer);
 
 private:
 	virtual void paintEvent(QPaintEvent* event);
@@ -68,7 +52,9 @@ private:
 	QPointF* selected;
 	qreal pMin, pMax;
   bool bAllowInteraction;
-	// paint
+  bool bAllowAddingOrRemovingPoints;
+
+  // paint
 	QImage * background;
 	QPoint listPos2WidgetPos(QPointF pf);
 	QPointF WidgetPos2listPos(QPoint p);

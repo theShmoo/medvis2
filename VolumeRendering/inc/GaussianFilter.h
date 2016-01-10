@@ -21,7 +21,7 @@ public:
   // Description:
   // Set/Get the kernel Size of the filter
   int GetKernelSize() const { return KernelSize; }
-  void SetKernelSize(int val) { KernelSize = val; }
+  void SetKernelSize(int _KernelSize);
   
   // Description:
   // Set/Get the sigma of the filter
@@ -47,7 +47,7 @@ protected:
                            vtkInformationVector *outputVector,
                            vtkImageData ***inData, vtkImageData **outData,
                            int outExt[6], int id);
-  double ItlComputeSigma();
+  double ItlComputeSigma(int _KernelSize);
 
 private:
   GaussianFilter(const GaussianFilter&);  // Not implemented.
