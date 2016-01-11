@@ -9,6 +9,7 @@
 class Ui_RenderWindowUISingleInheritance;
 class InputParser;
 class DataReader;
+class GradientPostprocessFilter;
 class vtkVolumeMapper;
 class vtkVolume;
 class vtkVolumeProperty;
@@ -63,7 +64,10 @@ private:
   DataReader *dataReader;
   //! the properties of the volume (e.g.: ambient)
   vtkSmartPointer<vtkVolumeProperty> volumeProp;
+  //! the open gl renderer
   vtkSmartPointer<vtkOpenGLRenderer> renderer;
+  //! The post process filter
+  GradientPostprocessFilter * postprocessFilter;
   //! the currently active filter. if no filter is active this is null
   vtkImageAlgorithm* filter;
   //! the volume mapper
