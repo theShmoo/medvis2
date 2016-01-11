@@ -1,6 +1,7 @@
 // This is included here because it is forward declared in
 #include "RenderWindowUISingleInheritance.h"
 #include "ui_RenderWindowUISingleInheritance.h"
+
 #include "InputParser.h"
 #include "DataReader.h"
 #include "Qtfe.h"
@@ -44,7 +45,7 @@
 
 #include "GradientPostprocessFilter.h"
 //#include "vtkGDCMImageReader/vtkGDCMImageWriter"
-#include "vtkSobelGradientMagnitudePass.h";
+#include "vtkSobelGradientMagnitudePass.h"
 
 // Constructor
 RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *inputParser)
@@ -105,10 +106,10 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
   // interact with data
   renWin->Render();
 
-  //GradientPostprocessFilter *sobelf = GradientPostprocessFilter::New();
+  postprocessFilter = GradientPostprocessFilter::New();
   //vtkSobelGradientMagnitudePass *sobelf = vtkSobelGradientMagnitudePass::New();
 
-  //renderer->SetPass(sobelf);
+  renderer->SetPass(postprocessFilter);
 
   bReady = true;
 }
@@ -119,6 +120,12 @@ RenderWindowUISingleInheritance::~RenderWindowUISingleInheritance()
   {
     filter->Delete();
     filter = nullptr;
+  }
+
+  if (postprocessFilter)
+  {
+    postprocessFilter->Delete();
+    postprocessFilter = nullptr;
   }
   delete dataReader;
   delete ui;

@@ -58,7 +58,7 @@ void GradientPostprocessFilter::Render(const vtkRenderState *s)
 {
 	vtkRenderer *renderer = s->GetRenderer();
 
-	vtkOpenGLRenderWindow *context = vtkOpenGLRenderWindow::SafeDownCast(renderer->GetRenderWindow());
+	vtkSmartPointer<vtkOpenGLRenderWindow> context = vtkOpenGLRenderWindow::SafeDownCast(renderer->GetRenderWindow());
 
 	GLint drawBuffer;
 	glGetIntegerv(GL_DRAW_BUFFER, &drawBuffer);
@@ -68,7 +68,7 @@ void GradientPostprocessFilter::Render(const vtkRenderState *s)
 	int winSize[2];
 	s->GetWindowSize(winSize);
 
-	this->DelegatePass->Render(s);
+	//this->DelegatePass->Render(s);
 
 	if (this->Pass == 0)
 	{
@@ -79,7 +79,7 @@ void GradientPostprocessFilter::Render(const vtkRenderState *s)
 	if (this->FrameBufferObject == 0)
 	{
 		this->FrameBufferObject = vtkFrameBufferObject::New();
-		this->FrameBufferObject = s->GetFrameBuffer();
+		//this->FrameBufferObject = s->GetFrameBuffer();
 		this->FrameBufferObject->SetContext(context);
 	}
 
@@ -96,7 +96,8 @@ void GradientPostprocessFilter::Render(const vtkRenderState *s)
 	}
 	this->FrameBufferObject->SetNumberOfRenderTargets(1);
 	this->FrameBufferObject->SetColorBuffer(0, this->passTexture);
-	unsigned int* indices = { 0 };
+	unsigned int* indices = new unsigned int[1];
+  indices[0] = 0;
 	this->FrameBufferObject->SetActiveBuffers(1, indices);
 
 	this->FrameBufferObject->Start(winSize[0], winSize[1], false);
