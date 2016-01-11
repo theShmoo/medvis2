@@ -29,7 +29,7 @@
 #include "vtkXMLImageDataReader.h"
 #include "vtkSmartVolumeMapper.h"
 #include "vtkSmartPointer.h"
-#include "vtkOpenGLGPUMultiVolumeRayCastMapper.h"
+#include "VolumeRayCastMapperOpenGL.h"
 #include "vtkImageAnisotropicDiffusion3D.h"
 #include "vtkImageMedian3D.h"
 #include "vtkImageGaussianSmooth.h"
@@ -46,6 +46,7 @@
 #include "GradientPostprocessFilter.h"
 //#include "vtkGDCMImageReader/vtkGDCMImageWriter"
 #include "vtkSobelGradientMagnitudePass.h"
+#include "SeparableGradientFilter.h"
 
 // Constructor
 RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *inputParser)
@@ -87,7 +88,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
   vtkSmartPointer<vtkVolume> volume = vtkSmartPointer<vtkVolume>::New(); 
 
   // create out mapper
-  vtkOpenGLGPUMultiVolumeRayCastMapper* mapper = static_cast<vtkOpenGLGPUMultiVolumeRayCastMapper*>(createVolumeMapper(volume));
+  VolumeRayCastMapperOpenGL* mapper = static_cast<VolumeRayCastMapperOpenGL*>(createVolumeMapper(volume));
   mapper->setNumberOfAdditionalVolumes(0);
   mapper->SetBlendModeToComposite();
 
@@ -106,10 +107,10 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
   // interact with data
   renWin->Render();
 
-  postprocessFilter = GradientPostprocessFilter::New();
+  //postprocessFilter = GradientPostprocessFilter::New();
   //vtkSobelGradientMagnitudePass *sobelf = vtkSobelGradientMagnitudePass::New();
 
-  renderer->SetPass(postprocessFilter);
+  //renderer->SetPass(postprocessFilter);
 
   bReady = true;
 }
@@ -255,12 +256,14 @@ void RenderWindowUISingleInheritance::on_filter_changed()
   }
   case 3: // Median Filter
   {
-	filter = MedianFilter::New();
-	MedianFilter* pFilter = MedianFilter::SafeDownCast(filter);
-	pFilter->setKernelSize(kernelSize);
-    /*filter = vtkImageMedian3D::New();
-    vtkImageMedian3D* pFilter = vtkImageMedian3D::SafeDownCast(filter);
-    pFilter->SetKernelSize(kernelSize, kernelSize, kernelSize);*/
+    filter = MedianFilter::New();
+    MedianFilter* pFilter = MedianFilter::SafeDownCast(filter);
+    pFilter->SetKernelSize(kernelSize);
+    break;
+  }
+  case 4: // Gradient Filter
+  {
+    filter = SeparableGradientFilter::New();
     break;
   }
   default:
@@ -269,9 +272,19 @@ void RenderWindowUISingleInheritance::on_filter_changed()
 
   if (i > 0)
   {
-    filter->SetInputConnection(dataReader->GetOutputPort());
-    filter->Update();
-    mapper->SetInputConnection(filter->GetOutputPort());
+//     if (i == 4)
+//     {
+      filter->SetInputConnection(dataReader->GetOutputPort());
+      filter->Update();
+      mapper->SetInputConnection(filter->GetOutputPort());
+//     }
+//     else
+//     {
+//       filter->SetInputConnection(dataReader->GetOutputPort());
+//       filter->Update();
+//       mapper->SetInputConnection(1, filter->GetOutputPort());
+//       mapper->SetInputConnection(0, dataReader->GetOutputPort());
+//     }
   }
   volumeProp->GetRGBTransferFunction()->Modified();
   volumeProp->GetScalarOpacity()->Modified();
@@ -488,7 +501,7 @@ void RenderWindowUISingleInheritance::addTransferFunction(InputParser * inputPar
 vtkVolumeMapper* RenderWindowUISingleInheritance::createVolumeMapper(vtkVolume* volume)
 {
 
-  mapper = vtkSmartPointer<vtkOpenGLGPUMultiVolumeRayCastMapper>::New();
+  mapper = vtkSmartPointer<VolumeRayCastMapperOpenGL>::New();
   mapper->SetInputConnection(dataReader->GetOutputPort());
 
   // Set the sample distance on the ray to be 1/2 the average spacing

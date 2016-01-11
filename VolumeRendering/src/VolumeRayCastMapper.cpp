@@ -11,7 +11,7 @@ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
 PURPOSE.  See the above copyright notice for more information.
 =========================================================================*/
 
-#include "vtkGPUMultiVolumeRayCastMapper.h"
+#include "VolumeRayCastMapper.h"
 #include "vtkObjectFactory.h"
 #include "vtkImageData.h"
 #include "vtkPointData.h"
@@ -37,10 +37,10 @@ PURPOSE.  See the above copyright notice for more information.
 #include "vtkDataSet.h"
 #include "vtkExecutive.h"
 
-vtkInstantiatorNewMacro(vtkGPUMultiVolumeRayCastMapper);
-vtkCxxSetObjectMacro(vtkGPUMultiVolumeRayCastMapper, MaskInput,
+vtkInstantiatorNewMacro(VolumeRayCastMapper);
+vtkCxxSetObjectMacro(VolumeRayCastMapper, MaskInput,
 	vtkImageData);
-vtkCxxSetObjectMacro(vtkGPUMultiVolumeRayCastMapper, TransformedInput,
+vtkCxxSetObjectMacro(VolumeRayCastMapper, TransformedInput,
 	vtkImageData);
 
 #define vtkSetObjectBodyMacro2(name,type,args, volNumber)\
@@ -64,12 +64,12 @@ vtkCxxSetObjectMacro(vtkGPUMultiVolumeRayCastMapper, TransformedInput,
 	vtkSetObjectBodyMacro2(name, type, _arg, volNumber);\
 }
 
-void vtkGPUMultiVolumeRayCastMapper::setNumberOfAdditionalVolumes(int numAddVolumes)
+void VolumeRayCastMapper::setNumberOfAdditionalVolumes(int numAddVolumes)
 {
 	NUMBER_OF_ADDITIONAL_VOLUMES = numAddVolumes;
 	this->SetNumberOfInputPorts(numAddVolumes + 1);
 }
-vtkGPUMultiVolumeRayCastMapper::vtkGPUMultiVolumeRayCastMapper()
+VolumeRayCastMapper::VolumeRayCastMapper()
 {
 
 	this->AutoAdjustSampleDistances = 1;
@@ -88,7 +88,7 @@ vtkGPUMultiVolumeRayCastMapper::vtkGPUMultiVolumeRayCastMapper()
 	this->MaskInput = NULL;
 	this->MaskBlendFactor = 1.0f;
 	this->MaskType
-		= vtkGPUMultiVolumeRayCastMapper::LabelMapMaskType;
+		= VolumeRayCastMapper::LabelMapMaskType;
 
 
 	this->AMRMode = 0;
@@ -130,7 +130,7 @@ vtkGPUMultiVolumeRayCastMapper::vtkGPUMultiVolumeRayCastMapper()
 }
 
 // ----------------------------------------------------------------------------
-vtkGPUMultiVolumeRayCastMapper::~vtkGPUMultiVolumeRayCastMapper()
+VolumeRayCastMapper::~VolumeRayCastMapper()
 {
 	this->SetMaskInput(NULL);
 	this->SetTransformedInput(NULL);
@@ -138,7 +138,7 @@ vtkGPUMultiVolumeRayCastMapper::~vtkGPUMultiVolumeRayCastMapper()
 }
 
 
-void vtkGPUMultiVolumeRayCastMapper::SetInput(int port, vtkDataSet *genericInput)
+void VolumeRayCastMapper::SetInput(int port, vtkDataSet *genericInput)
 {
 	vtkImageData *input =
 		vtkImageData::SafeDownCast(genericInput);
@@ -154,7 +154,7 @@ void vtkGPUMultiVolumeRayCastMapper::SetInput(int port, vtkDataSet *genericInput
 }
 
 
-void vtkGPUMultiVolumeRayCastMapper::SetInput(int port, vtkImageData *input)
+void VolumeRayCastMapper::SetInput(int port, vtkImageData *input)
 {
 	if (input)
 	{
@@ -168,7 +168,7 @@ void vtkGPUMultiVolumeRayCastMapper::SetInput(int port, vtkImageData *input)
 }
 
 
-vtkImageData * vtkGPUMultiVolumeRayCastMapper::GetInput(int port)
+vtkImageData * VolumeRayCastMapper::GetInput(int port)
 {
 	if (this->GetNumberOfInputConnections(port) < 1)
 	{
@@ -179,12 +179,12 @@ vtkImageData * vtkGPUMultiVolumeRayCastMapper::GetInput(int port)
 		this->GetExecutive()->GetInputData(port, 0));
 }
 
-vtkGPUMultiVolumeRayCastMapper *vtkGPUMultiVolumeRayCastMapper::New()
+VolumeRayCastMapper *VolumeRayCastMapper::New()
 {
 	// First try to create the object from the vtkObjectFactory
 	vtkObject* ret =
 		vtkObjectFactory::CreateInstance("vtkGPUMultiVolumeRayCastMapper");
-	return static_cast<vtkGPUMultiVolumeRayCastMapper*>(ret);
+	return static_cast<VolumeRayCastMapper*>(ret);
 }
 
 // ----------------------------------------------------------------------------
@@ -198,7 +198,7 @@ vtkGPUMultiVolumeRayCastMapper *vtkGPUMultiVolumeRayCastMapper::New()
 //   - Stop the timer and record results
 //   - Invoke an end event
 // ----------------------------------------------------------------------------
-void vtkGPUMultiVolumeRayCastMapper::Render(vtkRenderer *ren, vtkVolume *vol)
+void VolumeRayCastMapper::Render(vtkRenderer *ren, vtkVolume *vol)
 {
 	// Catch renders that are happening due to a canonical view render and
 	// handle them separately.
@@ -249,7 +249,7 @@ void vtkGPUMultiVolumeRayCastMapper::Render(vtkRenderer *ren, vtkVolume *vol)
 // Special version for rendering a canonical view - we don't do things like
 // invoke start or end events, and we don't capture the render time.
 // ----------------------------------------------------------------------------
-void vtkGPUMultiVolumeRayCastMapper::CanonicalViewRender(vtkRenderer *ren,
+void VolumeRayCastMapper::CanonicalViewRender(vtkRenderer *ren,
 	vtkVolume *vol)
 {
 	// Make sure everything about this render is OK
@@ -269,7 +269,7 @@ void vtkGPUMultiVolumeRayCastMapper::CanonicalViewRender(vtkRenderer *ren,
 // a volume or 0 or less) it will fail silently. If everything is OK, it will
 // return with a value of 1.
 // ----------------------------------------------------------------------------
-int vtkGPUMultiVolumeRayCastMapper::ValidateRender(vtkRenderer *ren,
+int VolumeRayCastMapper::ValidateRender(vtkRenderer *ren,
 	vtkVolume *vol)
 {
 	// Check that we have everything we need to render.
@@ -481,13 +481,13 @@ this->Update();
 // Called by the AMR Volume Mapper.
 // Set the flag that tells if the scalars are on point data (0) or
 // cell data (1).
-void vtkGPUMultiVolumeRayCastMapper::SetCellFlag(int cellFlag)
+void VolumeRayCastMapper::SetCellFlag(int cellFlag)
 {
 	this->CellFlag = cellFlag;
 }
 
 // ----------------------------------------------------------------------------
-void vtkGPUMultiVolumeRayCastMapper::CreateCanonicalView(
+void VolumeRayCastMapper::CreateCanonicalView(
 	vtkRenderer *ren,
 	vtkVolume *volume,
 	vtkImageData *image,
@@ -635,7 +635,7 @@ void vtkGPUMultiVolumeRayCastMapper::CreateCanonicalView(
 
 
 // Print method for vtkGPUMultiVolumeRayCastMapper
-void vtkGPUMultiVolumeRayCastMapper::PrintSelf(ostream& os, vtkIndent indent)
+void VolumeRayCastMapper::PrintSelf(ostream& os, vtkIndent indent)
 {
 	this->Superclass::PrintSelf(os, indent);
 
@@ -669,7 +669,7 @@ void vtkGPUMultiVolumeRayCastMapper::PrintSelf(ostream& os, vtkIndent indent)
 //             this->CroppingRegionPlanes[0]<this->CroppingRegionPlanes[1] &&
 //             this->CroppingRegionPlanes[2]<this->CroppingRegionPlanes[3] &&
 //             this->CroppingRegionPlanes[4]<this->CroppingRegionPlanes[5])
-void vtkGPUMultiVolumeRayCastMapper::ClipCroppingRegionPlanes()
+void VolumeRayCastMapper::ClipCroppingRegionPlanes()
 {
 	assert("pre: volume_exists" && this->GetInput(0) != 0);
 	assert("pre: valid_cropping" && this->Cropping &&
@@ -708,13 +708,13 @@ void vtkGPUMultiVolumeRayCastMapper::ClipCroppingRegionPlanes()
 }
 
 //----------------------------------------------------------------------------
-void vtkGPUMultiVolumeRayCastMapper::SetMaskTypeToBinary()
+void VolumeRayCastMapper::SetMaskTypeToBinary()
 {
-	this->MaskType = vtkGPUMultiVolumeRayCastMapper::BinaryMaskType;
+	this->MaskType = VolumeRayCastMapper::BinaryMaskType;
 }
 
 //----------------------------------------------------------------------------
-void vtkGPUMultiVolumeRayCastMapper::SetMaskTypeToLabelMap()
+void VolumeRayCastMapper::SetMaskTypeToLabelMap()
 {
-	this->MaskType = vtkGPUMultiVolumeRayCastMapper::LabelMapMaskType;
+	this->MaskType = VolumeRayCastMapper::LabelMapMaskType;
 }

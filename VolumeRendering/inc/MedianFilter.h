@@ -16,7 +16,7 @@ public:
 	
   int KernelSize;
 
-	void setKernelSize(int n);
+	void SetKernelSize(int n);
 
   float getMedian(float* list);
 

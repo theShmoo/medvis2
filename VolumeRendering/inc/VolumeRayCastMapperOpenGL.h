@@ -23,7 +23,7 @@ PURPOSE.  See the above copyright notice for more information.
 // vtkGPUVolumeRayCastMapper
 
 
-#include "vtkGPUMultiVolumeRayCastMapper.h"
+#include "VolumeRayCastMapper.h"
 
 class vtkVolume;
 class vtkRenderer;
@@ -53,11 +53,11 @@ class vtkTransform;
 
 #include "vtkSmartPointer.h"
 
-class vtkOpenGLGPUMultiVolumeRayCastMapper : public vtkGPUMultiVolumeRayCastMapper
+class VolumeRayCastMapperOpenGL : public VolumeRayCastMapper
 {
 public:
-	static vtkOpenGLGPUMultiVolumeRayCastMapper *New();
-	vtkTypeMacro(vtkOpenGLGPUMultiVolumeRayCastMapper, vtkGPUMultiVolumeRayCastMapper);
+	static VolumeRayCastMapperOpenGL *New();
+	vtkTypeMacro(VolumeRayCastMapperOpenGL, VolumeRayCastMapper);
 	virtual void PrintSelf(ostream& os, vtkIndent indent);
 
 	// Description:
@@ -105,8 +105,8 @@ protected:
 	void SetClippingPlane();//Mehdi
 
 
-	vtkOpenGLGPUMultiVolumeRayCastMapper();
-	~vtkOpenGLGPUMultiVolumeRayCastMapper();
+	VolumeRayCastMapperOpenGL();
+	~VolumeRayCastMapperOpenGL();
 
 	// The render method called by the superclass
 	virtual void GPURender(vtkRenderer *ren,
@@ -491,7 +491,7 @@ protected:
 	vtkShaderProgram2 *ScaleBiasProgram;
 
 private:
-	vtkOpenGLGPUMultiVolumeRayCastMapper(const vtkOpenGLGPUMultiVolumeRayCastMapper&);  // Not implemented.
-	void operator=(const vtkOpenGLGPUMultiVolumeRayCastMapper&);  // Not implemented.
+	VolumeRayCastMapperOpenGL(const VolumeRayCastMapperOpenGL&);  // Not implemented.
+	void operator=(const VolumeRayCastMapperOpenGL&);  // Not implemented.
 };
 
