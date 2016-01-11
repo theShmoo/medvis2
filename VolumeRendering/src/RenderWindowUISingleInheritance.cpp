@@ -34,11 +34,13 @@
 #include "vtkImageGaussianSmooth.h"
 #include <assert.h>
 #include "GaussianFilter.h"
+#include "vtkImageSobel3D.h"
 
 #include "vtkOpenGLTexture.h"
 
 #include "MedianFilter.h"
 #include "BilateralFilter.h"
+#include "SeparableBilateralFilter.h"
 
 #include "GradientPostprocessFilter.h"
 //#include "vtkGDCMImageReader/vtkGDCMImageWriter"
@@ -232,9 +234,9 @@ void RenderWindowUISingleInheritance::on_filter_changed()
     break;
   case 1: // Bilateral Filter
   {
-    filter = BilateralFilter::New();
-    BilateralFilter* pFilter = BilateralFilter::SafeDownCast(filter);
-    pFilter->setKernelSize(kernelSize);
+    filter = SeparableBilateralFilter::New();
+    SeparableBilateralFilter* pFilter = SeparableBilateralFilter::SafeDownCast(filter);
+    pFilter->SetKernelSize(kernelSize);
   }
     break;
   case 2: // Gauss Filter

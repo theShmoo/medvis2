@@ -51,6 +51,7 @@ void BilateralFilterExecute(BilateralFilter *self,
   int index = 0;
   int elementcount = pow(kernelSize,3);
   double Sigma = self->GetSigma();
+  double Sigmas2 = (2 * Sigma * Sigma);
   double* gaussK = self->GetGaussKernel();
 
   for (int z = 0; z < dimensions[2]; z++)
@@ -60,8 +61,8 @@ void BilateralFilterExecute(BilateralFilter *self,
       for (int x = 0; x < dimensions[0]; x++)
       {
         index = 0;
-        float sum = 0.0f;
-        float totalWeight = 0.0f;
+        double sum = 0.0f;
+        double totalWeight = 0.0f;
         float intensityCenter = inData->GetScalarComponentAsFloat(x, y, z, 0);
         for (int kernelz = -halfkernelsize; kernelz <= halfkernelsize; kernelz++)
         {
@@ -84,9 +85,9 @@ void BilateralFilterExecute(BilateralFilter *self,
                 zKoord = 0;
               if (zKoord >= dimensions[2])
                 zKoord = dimensions[2] - 1;
-              int id = (kernelx + halfkernelsize) * kernelSize * kernelSize + (kernely + halfkernelsize) * kernelSize + kernelz + halfkernelsize;
-              int v = inData->GetScalarComponentAsFloat(xKoord, yKoord, zKoord, 0);
-              double weight = gaussK[id] * exp(-((abs(v - intensityCenter)) / (2 * Sigma * Sigma)));
+              //int id = (kernelx + halfkernelsize) * kernelSize * kernelSize + (kernely + halfkernelsize) * kernelSize + kernelz + halfkernelsize;
+              float v = inData->GetScalarComponentAsFloat(xKoord, yKoord, zKoord, 0);
+              double weight = gaussK[index] * exp(-((abs(v - intensityCenter)) / Sigmas2));
               totalWeight += weight;
               sum += (weight * v);
               index++;
@@ -95,7 +96,7 @@ void BilateralFilterExecute(BilateralFilter *self,
         }
 
         sum /= totalWeight;
-        outData->SetScalarComponentFromFloat(x, y, z, 0, sum);
+        outData->SetScalarComponentFromFloat(x, y, z, 0, static_cast<float>(sum/totalWeight));
       }
     }
   }
