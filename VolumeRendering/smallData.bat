@@ -1,0 +1,1 @@
+VolumeRendering -CT_Bone -DICOM Data/digest_article
