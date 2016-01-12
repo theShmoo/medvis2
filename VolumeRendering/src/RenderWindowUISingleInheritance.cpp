@@ -42,7 +42,7 @@
 #include "GradientPostprocessFilter.h"
 //#include "vtkGDCMImageReader/vtkGDCMImageWriter"
 #include "vtkSobelGradientMagnitudePass.h"
-#include "SeparableGradientFilter.h"
+#include "GradientFilter.h"
 
 // Constructor
 RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *inputParser)
@@ -260,7 +260,7 @@ void RenderWindowUISingleInheritance::on_filter_changed()
   }
   case 4: // Gradient Filter
   {
-    filter = SeparableGradientFilter::New();
+    filter = GradientFilter::New();
     break;
   }
   default:

@@ -53,11 +53,16 @@ class vtkTransform;
 
 #include "vtkSmartPointer.h"
 
+//! Class for raycasting with opengl shaders. Copyright by Ken Martin, Will Schroeder, Bill Lorensen, Carlos Falcón and Karl Krissian. Modified by us so we can use it for our pupose
 class VolumeRayCastMapperOpenGL : public VolumeRayCastMapper
 {
 public:
+	//! Creates a new raycastmapper and returns it
 	static VolumeRayCastMapperOpenGL *New();
+
 	vtkTypeMacro(VolumeRayCastMapperOpenGL, VolumeRayCastMapper);
+
+	//! Write relevant parameter of this class in the out-console
 	virtual void PrintSelf(ostream& os, vtkIndent indent);
 
 	// Description:
@@ -84,25 +89,25 @@ public:
 	// \pre headerMessage_exists: headerMessage!=0
 	static void PrintError(const char *headerMessage);
 
-	void AddClippingPlane(int vol, vtkPlane *plane); //Mehdi
-	void RemoveClippingPlane(int vol); //Mehdi
-	vtkPlane* GetClippingPlane(int vol); //Mehdi
+	void AddClippingPlane(int vol, vtkPlane *plane); 
+	void RemoveClippingPlane(int vol); 
+	vtkPlane* GetClippingPlane(int vol); 
 
-	void SetCroppingRegionPlanes(int vol, double xMin, double xMax, double yMin, double yMax, double zMin, double zMax); //Mehdi
-	void SetCroppingRegionPlanes(int vol, double *args); //Mehdi
+	void SetCroppingRegionPlanes(int vol, double xMin, double xMax, double yMin, double yMax, double zMin, double zMax); 
+	void SetCroppingRegionPlanes(int vol, double *args); 
 	void SetCropping(int vol, int arg);
 
 protected:
 
-	vtkPlane* ClippingPlane;//Mehdi
-	int Clipped;//Mehdi
-	int Cropped;//Mehdi
-	bool ClippedModified;//Mehdi
+	vtkPlane* ClippingPlane;
+	int Clipped;
+	int Cropped;
+	bool ClippedModified;
 
-	double CroppingLowBounds[3]; //Mehdi
-	double CroppingHighBounds[3]; //Mehdi
+	double CroppingLowBounds[3]; 
+	double CroppingHighBounds[3];
 
-	void SetClippingPlane();//Mehdi
+	void SetClippingPlane();
 
 
 	VolumeRayCastMapperOpenGL();
@@ -192,7 +197,7 @@ protected:
 	int LoadScalarField(vtkImageData *input,
 		int type,
 		int textureExtent[6],
-		vtkVolume *volume);//Mehdi
+		vtkVolume *volume);
 	// Description:
 	// Allocate memory and load color table on the GPU or
 	// reload it if the transfer function changed.

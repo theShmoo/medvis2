@@ -35,8 +35,6 @@ protected:
   //! Destuctor of the bilateral filter
   ~BilateralFilter();
 
-  
-  //! not in use, look at ItlCreateGaussFilter
   //void CreateGaussFilter(int elementcount, int halfkernelsize, int kernelSize, BilateralFilter * self);
 
   //! The Requestfunction of the bilateral filter called by the vtk-pipeline. This function calls BilateralFilterExecute who does the filteroperation and returns the output  
@@ -68,7 +66,6 @@ private:
   //! The current values of the filter kernel
   double *GaussFilter;
 
-  //! not in use
   //int NumberElements;
 
 };

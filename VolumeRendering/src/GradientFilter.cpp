@@ -1,4 +1,4 @@
-#include "SeparableGradientFilter.h"
+#include "GradientFilter.h"
 
 #include "vtkCellData.h"
 #include "vtkDataArray.h"
@@ -11,11 +11,11 @@
 
 #include <math.h>
 
-vtkStandardNewMacro(SeparableGradientFilter);
+vtkStandardNewMacro(GradientFilter);
 
 //----------------------------------------------------------------------------
-// Construct an instance of SeparableGradientFilter fitler.
-SeparableGradientFilter::SeparableGradientFilter()
+// Construct an instance of GradientFilter fitler.
+GradientFilter::GradientFilter()
 {
   this->KernelSize[0] = 3;
   this->KernelSize[1] = 3;
@@ -27,7 +27,7 @@ SeparableGradientFilter::SeparableGradientFilter()
 }
 
 //----------------------------------------------------------------------------
-void SeparableGradientFilter::PrintSelf(ostream& os, vtkIndent indent)
+void GradientFilter::PrintSelf(ostream& os, vtkIndent indent)
 {
   this->Superclass::PrintSelf(os, indent);
 }
@@ -37,7 +37,7 @@ void SeparableGradientFilter::PrintSelf(ostream& os, vtkIndent indent)
 // it handles boundaries. Pixels are just replicated to get values
 // out of extent.
 template <class T>
-void SeparableGradientFilterExecute(SeparableGradientFilter *self,
+void GradientFilterExecute(GradientFilter *self,
 	vtkImageData *inData, T *inPtr,
 	vtkImageData *outData, T *outPtr,
 	int outExt[6], int id,
@@ -182,7 +182,7 @@ void SeparableGradientFilterExecute(SeparableGradientFilter *self,
 // templated function for the input Data type.  The output Data
 // must be of type double.  This method does handle boundary conditions.
 // The third axis is the component axis for the output.
-void SeparableGradientFilter::ThreadedRequestData(
+void GradientFilter::ThreadedRequestData(
   vtkInformation *vtkNotUsed(request),
   vtkInformationVector **inputVector,
   vtkInformationVector *vtkNotUsed(outputVector),
@@ -213,7 +213,7 @@ void SeparableGradientFilter::ThreadedRequestData(
 	switch (inArray->GetDataType())
 	{
 		vtkTemplateMacro(
-			SeparableGradientFilterExecute(this, inData[0][0],
+			GradientFilterExecute(this, inData[0][0],
 			static_cast<VTK_TT *>(inPtr),
 			outData[0], static_cast<VTK_TT *>(outPtr),
 			outExt, id, inArray));

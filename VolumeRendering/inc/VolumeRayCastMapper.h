@@ -31,29 +31,29 @@ class vtkTransform;
 class VTK_VOLUMERENDERING_EXPORT VolumeRayCastMapper : public vtkVolumeMapper
 {
 public:
-	int NUMBER_OF_ADDITIONAL_VOLUMES; //Mehdi //?
+	//! This Value stores the number of additional volumes. In our case its allways zero
+	int NUMBER_OF_ADDITIONAL_VOLUMES; 
+
+	//! Creates a new raycastmapper and returns it
 	static VolumeRayCastMapper *New();
+
 	vtkTypeMacro(VolumeRayCastMapper, vtkVolumeMapper);
+
+	//! Write relevant parameter of this class in the out-console
 	void PrintSelf(ostream& os, vtkIndent indent);
 
 	// Define the Input for additional datasets 
+	//! Sets the input of the vtk pipeline and its port
 	void SetInput(int port, vtkImageData *input);
+
+	//! Sets the input of the vtk pipeline and its port
 	void SetInput(int port, vtkDataSet *genericInput);
+
+	//! Returns the imagedata
 	vtkImageData * GetInput(int port = 0);
-
-	// set/get the properties of the second volume
-	//Mehdi void SetProperty2(vtkVolumeProperty *property);
-	//Mehdi vtkVolumeProperty *GetProperty2();
-
-	void SetAdditionalProperty(int volNumber, vtkVolumeProperty *property);//Mehdi
-	vtkVolumeProperty *GetAdditionalProperty(int volNumber);//Mehdi
-	void setNumberOfAdditionalVolumes(int numAddVolumes);//Mehdi
-	// set/get a user transformation for 2nd input user transform
-	//Mehdi void SetSecondInputUserTransform(vtkTransform *t);
-	//Mehdi vtkTransform *GetSecondInputUserTransform();
-
-	void SetAdditionalInputUserTransform(int volNumber, vtkTransform *t); //Mehdi
-	vtkTransform *GetAdditionalInputUserTransform(int volNumber); //Mehdi
+	
+	//! Sets number of additional volumes (in our case its allways zero)
+	void setNumberOfAdditionalVolumes(int numAddVolumes);
 
 	// Description:
 	// If AutoAdjustSampleDistances is on, the the ImageSampleDistance
@@ -318,18 +318,10 @@ protected:
 	int            MaskType;
 
 	vtkImageData * TransformedInput;
-	// need to duplicate the TransformedInput
-	//Mehdi  vtkImageData * TransformedInput2;
-
 
 	vtkGetObjectMacro(TransformedInput, vtkImageData);
 	void SetTransformedInput(vtkImageData*);
 
-
-	/*Mehdi
-	vtkGetObjectMacro(TransformedInput2, vtkImageData);
-	void SetTransformedInput2(vtkImageData*);
-	Mehdi*/
 
 #define vtkGetObjectMacro2(name,type)                                   \
 	virtual type *Get##name(int _arg)                                      \
