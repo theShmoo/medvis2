@@ -27,7 +27,7 @@ class vtkTransform;
 
 #define VTK_VOLUMERENDERING_EXPORT
 
-//class vtkKWAMRVolumeMapper; // friend class.
+//! Class for raycasting with opengl shaders. Copyright by Ken Martin, Will Schroeder, Bill Lorensen, Carlos Falcón and Karl Krissian. Modified by us so we can use it for our pupose
 class VTK_VOLUMERENDERING_EXPORT VolumeRayCastMapper : public vtkVolumeMapper
 {
 public:

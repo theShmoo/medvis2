@@ -107,6 +107,7 @@ RenderWindowUISingleInheritance::RenderWindowUISingleInheritance(InputParser *in
   // interact with data
   renWin->Render();
 
+  postprocessFilter = nullptr;
   //postprocessFilter = GradientPostprocessFilter::New();
   //vtkSobelGradientMagnitudePass *sobelf = vtkSobelGradientMagnitudePass::New();
 
