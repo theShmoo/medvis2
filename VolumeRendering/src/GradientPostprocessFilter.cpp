@@ -68,7 +68,6 @@ void GradientPostprocessFilter::Render(const vtkRenderState *s)
 	int winSize[2];
 	s->GetWindowSize(winSize);
 
-	//this->DelegatePass->Render(s);
 
 	if (this->Pass == 0)
 	{
@@ -79,7 +78,6 @@ void GradientPostprocessFilter::Render(const vtkRenderState *s)
 	if (this->FrameBufferObject == 0)
 	{
 		this->FrameBufferObject = vtkFrameBufferObject::New();
-		//this->FrameBufferObject = s->GetFrameBuffer();
 		this->FrameBufferObject->SetContext(context);
 	}
 
@@ -136,7 +134,7 @@ void GradientPostprocessFilter::Render(const vtkRenderState *s)
 
 	int sourceId = tu->Allocate();
 	vtkgl::ActiveTexture(vtkgl::TEXTURE0 + sourceId);
-	this->passTexture->Bind();
+	this->Pass->Bind();
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	var->SetUniformi("tex", 1, &sourceId);
