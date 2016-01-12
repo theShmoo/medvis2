@@ -1,9 +1,12 @@
 #include "SeparableGradientFilter.h"
 
+#include "vtkCellData.h"
+#include "vtkDataArray.h"
 #include "vtkImageData.h"
 #include "vtkInformation.h"
 #include "vtkInformationVector.h"
 #include "vtkObjectFactory.h"
+#include "vtkPointData.h"
 #include "vtkStreamingDemandDrivenPipeline.h"
 
 #include <math.h>
@@ -30,48 +33,38 @@ void SeparableGradientFilter::PrintSelf(ostream& os, vtkIndent indent)
 }
 
 //----------------------------------------------------------------------------
-int SeparableGradientFilter::RequestInformation(vtkInformation *request,
-  vtkInformationVector **inputVector,
-  vtkInformationVector *outputVector)
-{
-  int retval =
-    this->Superclass::RequestInformation(request, inputVector, outputVector);
-  vtkInformation *outInfo = outputVector->GetInformationObject(0);
-  vtkDataObject::SetPointDataActiveScalarInfo(outInfo, VTK_DOUBLE, 1);
-  return retval;
-}
-
-//----------------------------------------------------------------------------
 // This execute method handles boundaries.
 // it handles boundaries. Pixels are just replicated to get values
 // out of extent.
 template <class T>
 void SeparableGradientFilterExecute(SeparableGradientFilter *self,
-  vtkImageData *inData, T *inPtr,
-  vtkImageData *outData, int *outExt,
-  double *outPtr, int id, vtkInformation *inInfo)
+	vtkImageData *inData, T *inPtr,
+	vtkImageData *outData, T *outPtr,
+	int outExt[6], int id,
+	vtkDataArray *inArray)
 {
   double r0, r1, r2, *r;
   // For looping though output (and input) pixels.
   int min0, max0, min1, max1, min2, max2;
   int outIdx0, outIdx1, outIdx2;
   vtkIdType outInc0, outInc1, outInc2;
-  double *outPtr0, *outPtr1, *outPtr2, *outPtrV;
+  T *outPtr0, *outPtr1, *outPtr2, *outPtrV;
   vtkIdType inInc0, inInc1, inInc2;
   T *inPtr0, *inPtr1, *inPtr2;
   // For sobel function convolution (Left Right incs for each axis)
   vtkIdType inInc0L, inInc0R, inInc1L, inInc1R, inInc2L, inInc2R;
   T *inPtrL, *inPtrR;
   double sum;
+  double x,y,z;
   // Boundary of input image
   int inWholeMin0, inWholeMax0, inWholeMin1, inWholeMax1;
   int inWholeMin2, inWholeMax2;
-  int inWholeExt[6];
+  int *inWholeExt;
   unsigned long count = 0;
   unsigned long target;
 
   // Get boundary information
-  inInfo->Get(vtkStreamingDemandDrivenPipeline::WHOLE_EXTENT(), inWholeExt);
+  inWholeExt = inData->GetExtent();
   inWholeMin0 = inWholeExt[0];
   inWholeMax0 = inWholeExt[1];
   inWholeMin1 = inWholeExt[2];
@@ -143,8 +136,7 @@ void SeparableGradientFilterExecute(SeparableGradientFilter *self,
           + inPtrL[inInc2L] + inPtrL[inInc2R]);
         sum -= static_cast<double>(0.586 * (inPtrL[inInc1L + inInc2L] + inPtrL[inInc1L + inInc2R]
           + inPtrL[inInc1R + inInc2L] + inPtrL[inInc1R + inInc2R]));
-        *outPtrV = sum * r0;
-        ++outPtrV;
+        x = sum * r0;
         // 02 Plane
         inPtrL = inPtr0 + inInc1L;
         inPtrR = inPtr0 + inInc1R;
@@ -157,8 +149,7 @@ void SeparableGradientFilterExecute(SeparableGradientFilter *self,
           + inPtrL[inInc2L] + inPtrL[inInc2R]);
         sum -= static_cast<double>(0.586 * (inPtrL[inInc0L + inInc2L] + inPtrL[inInc0L + inInc2R]
           + inPtrL[inInc0R + inInc2L] + inPtrL[inInc0R + inInc2R]));
-        *outPtrV = sum * r1;
-        ++outPtrV;
+        y = sum * r1;
         // 01 Plane
         inPtrL = inPtr0 + inInc2L;
         inPtrR = inPtr0 + inInc2R;
@@ -171,8 +162,9 @@ void SeparableGradientFilterExecute(SeparableGradientFilter *self,
           + inPtrL[inInc1L] + inPtrL[inInc1R]);
         sum -= static_cast<double>(0.586 * (inPtrL[inInc0L + inInc1L] + inPtrL[inInc0L + inInc1R]
           + inPtrL[inInc0R + inInc1L] + inPtrL[inInc0R + inInc1R]));
-        *outPtrV = static_cast<double>(sum * r2);
-        ++outPtrV;
+		z = sum * r2;
+		*outPtrV = static_cast<double>(sqrt(x*x + y*y + z*z));
+		++outPtrV;
 
         outPtr0 += outInc0;
         inPtr0 += inInc0;
@@ -198,39 +190,35 @@ void SeparableGradientFilter::ThreadedRequestData(
   vtkImageData **outData,
   int outExt[6], int id)
 {
-  void *inPtr, *outPtr;
-  int inExt[6], wholeExt[6];
+	void *inPtr;
+	void *outPtr = outData[0]->GetScalarPointerForExtent(outExt);
 
-  vtkInformation *inInfo = inputVector[0]->GetInformationObject(0);
-  inInfo->Get(vtkStreamingDemandDrivenPipeline::WHOLE_EXTENT(), wholeExt);
-  this->InternalRequestUpdateExtent(inExt, outExt, wholeExt);
+	vtkDataArray *inArray = this->GetInputArrayToProcess(0, inputVector);
+	if (id == 0)
+	{
+		outData[0]->GetPointData()->GetScalars()->SetName(inArray->GetName());
+	}
 
-  inPtr = inData[0][0]->GetScalarPointerForExtent(inExt);
-  outPtr = outData[0]->GetScalarPointerForExtent(outExt);
+	inPtr = inArray->GetVoidPointer(0);
 
-  // this filter cannot handle multi component input.
-  if (inData[0][0]->GetNumberOfScalarComponents() != 1)
-  {
-    vtkWarningMacro("Expecting input with only one compenent.\n");
-  }
+	// this filter expects that input is the same type as output.
+	if (inArray->GetDataType() != outData[0]->GetScalarType())
+	{
+		vtkErrorMacro(<< "Execute: input data type, " << inArray->GetDataType()
+			<< ", must match out ScalarType "
+			<< outData[0]->GetScalarType());
+		return;
+	}
 
-  // this filter expects that output is type double.
-  if (outData[0]->GetScalarType() != VTK_DOUBLE)
-  {
-    vtkErrorMacro(<< "Execute: output ScalarType, "
-      << vtkImageScalarTypeNameMacro(outData[0]->GetScalarType())
-      << ", must be double");
-    return;
-  }
-
-  switch (inData[0][0]->GetScalarType())
-  {
-    vtkTemplateMacro(
-      SeparableGradientFilterExecute(this, inData[0][0],
-      static_cast<VTK_TT *>(inPtr), outData[0], outExt,
-      static_cast<double *>(outPtr), id, inInfo));
-  default:
-    vtkErrorMacro(<< "Execute: Unknown ScalarType");
-    return;
-  }
+	switch (inArray->GetDataType())
+	{
+		vtkTemplateMacro(
+			SeparableGradientFilterExecute(this, inData[0][0],
+			static_cast<VTK_TT *>(inPtr),
+			outData[0], static_cast<VTK_TT *>(outPtr),
+			outExt, id, inArray));
+	default:
+		vtkErrorMacro(<< "Execute: Unknown input ScalarType");
+		return;
+	}
 }

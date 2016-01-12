@@ -30,12 +30,8 @@
 #include "vtkSmartVolumeMapper.h"
 #include "vtkSmartPointer.h"
 #include "VolumeRayCastMapperOpenGL.h"
-#include "vtkImageAnisotropicDiffusion3D.h"
-#include "vtkImageMedian3D.h"
-#include "vtkImageGaussianSmooth.h"
 #include <assert.h>
 #include "GaussianFilter.h"
-#include "vtkImageSobel3D.h"
 
 #include "vtkOpenGLTexture.h"
 

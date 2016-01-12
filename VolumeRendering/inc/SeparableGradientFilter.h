@@ -19,9 +19,6 @@ protected:
     vtkInformationVector *outputVector,
     vtkImageData ***inData, vtkImageData **outData,
     int outExt[6], int id);
-  virtual int RequestInformation(vtkInformation *request,
-    vtkInformationVector **inputVector,
-    vtkInformationVector *outputVector);
 
 private:
   SeparableGradientFilter(const SeparableGradientFilter&);  // Not implemented.
