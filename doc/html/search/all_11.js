@@ -34,6 +34,7 @@ var searchData=
   ['shade',['Shade',['../class_volume_ray_cast_mapper_open_g_l.html#a4865fbaa527a90ba2be9edfe8d6f6487',1,'VolumeRayCastMapperOpenGL']]],
   ['shadefs',['ShadeFS',['../_shade_f_s_8cxx.html#a99f18e0f52ce6e39298b29cb1b4bf66e',1,'ShadeFS():&#160;ShadeFS.cxx'],['../_volume_ray_cast_mapper_open_g_l_8cpp.html#a99f18e0f52ce6e39298b29cb1b4bf66e',1,'ShadeFS():&#160;ShadeFS.cxx']]],
   ['shadefs_2ecxx',['ShadeFS.cxx',['../_shade_f_s_8cxx.html',1,'']]],
+  ['shadefs_2eglsl',['ShadeFS.glsl',['../_shade_f_s_8glsl.html',1,'']]],
   ['sigma',['Sigma',['../class_bilateral_filter.html#a712eac8b07ca91d18a5c3e1d32e748c4',1,'BilateralFilter::Sigma()'],['../class_gaussian_filter.html#a744c74dcf11994b5eeca3479a4be4b5c',1,'GaussianFilter::Sigma()'],['../class_separable_bilateral_filter.html#a2f0ce9ee071a9978ea1334e77f9e0401',1,'SeparableBilateralFilter::Sigma()']]],
   ['sizechanged',['SizeChanged',['../class_volume_ray_cast_mapper_open_g_l.html#aae6d853034adb56f9194dae8f96cdc1e',1,'VolumeRayCastMapperOpenGL']]],
   ['slabsfromdatasettoindex',['SlabsFromDatasetToIndex',['../class_volume_ray_cast_mapper_open_g_l.html#ada8e996576e13eada70db69568933575',1,'VolumeRayCastMapperOpenGL']]],
