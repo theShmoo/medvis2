@@ -28,12 +28,12 @@ class vtkTransform;
 #define VTK_VOLUMERENDERING_EXPORT
 
 //! Class for raycasting with opengl shaders. Copyright by Ken Martin, Will Schroeder, Bill Lorensen, Carlos Falcón and Karl Krissian. Modified by us so we can use it for our pupose
-class VTK_VOLUMERENDERING_EXPORT vtkGPUMultiVolumeRayCastMapper : public vtkVolumeMapper
+class VTK_VOLUMERENDERING_EXPORT VolumeRayCastMapper : public vtkVolumeMapper
 {
 public:
 	int NUMBER_OF_ADDITIONAL_VOLUMES; //Mehdi //?
-	static vtkGPUMultiVolumeRayCastMapper *New();
-	vtkTypeMacro(vtkGPUMultiVolumeRayCastMapper, vtkVolumeMapper);
+	static VolumeRayCastMapper *New();
+	vtkTypeMacro(VolumeRayCastMapper, vtkVolumeMapper);
 	void PrintSelf(ostream& os, vtkIndent indent);
 
 	// Define the Input for additional datasets 
@@ -232,8 +232,8 @@ public:
 	//ETX
 
 protected:
-	vtkGPUMultiVolumeRayCastMapper();
-	~vtkGPUMultiVolumeRayCastMapper();
+	VolumeRayCastMapper();
+	~VolumeRayCastMapper();
 
 	// Check to see that the render will be OK
 	int ValidateRender(vtkRenderer *, vtkVolume *);
@@ -344,7 +344,7 @@ protected:
 	vtkImageData* LastInput;
 
 private:
-	vtkGPUMultiVolumeRayCastMapper(const vtkGPUMultiVolumeRayCastMapper&);  // Not implemented.
-	void operator=(const vtkGPUMultiVolumeRayCastMapper&);  // Not implemented.
+	VolumeRayCastMapper(const VolumeRayCastMapper&);  // Not implemented.
+	void operator=(const VolumeRayCastMapper&);  // Not implemented.
 };
 

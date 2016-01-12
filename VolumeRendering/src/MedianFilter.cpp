@@ -13,7 +13,7 @@ vtkStandardNewMacro(MedianFilter);
 
 MedianFilter::MedianFilter()
 {
-  this->setKernelSize(3);
+  this->SetKernelSize(3);
 }
 
 
@@ -21,7 +21,7 @@ MedianFilter::~MedianFilter()
 {
 }
 
-void MedianFilter::setKernelSize(int n)
+void MedianFilter::SetKernelSize(int n)
 {
   if (n % n == 0)
     n++;

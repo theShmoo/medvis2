@@ -11,3 +11,8 @@ VolumeRendering/src/vtkGPUVolumeRayCastMapper_HeaderFS.cxx
 VolumeRendering/src/vtkGPUVolumeRayCastMapper_ParallelProjectionFS.cxx
 VolumeRendering/src/PostProcessGradientFilter.cxx
 VolumeRendering/src/vtkGPUVolumeRayCastMapper_PerspectiveProjectionFS.cxx
+VolumeRendering/src/CompositeFS.cxx
+VolumeRendering/src/FourComponentsFS.cxx
+VolumeRendering/src/NoShadeFS.cxx
+VolumeRendering/src/OneComponentFS.cxx
+VolumeRendering/src/ShadeFS.cxx

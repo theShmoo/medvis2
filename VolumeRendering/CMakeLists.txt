@@ -22,11 +22,11 @@ INCLUDE_DIRECTORIES(
 )
 
 set(KIT_GLSL_SRCS
-   vtkGPUMultiVolumeRayCastMapper_CompositeFS
-   vtkGPUMultiVolumeRayCastMapper_OneComponentFS
-   vtkGPUMultiVolumeRayCastMapper_FourComponentsFS
-   vtkGPUMultiVolumeRayCastMapper_NoShadeFS
-   vtkGPUMultiVolumeRayCastMapper_ShadeFS
+   CompositeFS
+   OneComponentFS
+   FourComponentsFS
+   NoShadeFS
+   ShadeFS
    vtkGPUVolumeRayCastMapper_HeaderFS
    vtkGPUVolumeRayCastMapper_ParallelProjectionFS
    vtkGPUVolumeRayCastMapper_CompositeNoCroppingFS

@@ -22,7 +22,7 @@ public:
 	int KernelSize;
 
 	//! Set the cernelsize to n(all axis have the same size)
-	void setKernelSize(int n);
+	void SetKernelSize(int n);
 
 	//! Calculate and return the median of the elements of a given list
 	float getMedian(float* list);
