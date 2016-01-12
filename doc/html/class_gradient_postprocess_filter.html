@@ -88,6 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="class_gradient_postprocess_filter-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">GradientPostprocessFilter Class Reference</div>  </div>
@@ -109,64 +110,372 @@ Inheritance diagram for GradientPostprocessFilter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a407f4125d8d0906b3dcb51abc0f08196"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a407f4125d8d0906b3dcb51abc0f08196"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkTypeMacro</b> (<a class="el" href="class_gradient_postprocess_filter.html">GradientPostprocessFilter</a>, vtkImageProcessingPass)</td></tr>
+<tr class="memitem:a407f4125d8d0906b3dcb51abc0f08196"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a407f4125d8d0906b3dcb51abc0f08196">vtkTypeMacro</a> (<a class="el" href="class_gradient_postprocess_filter.html">GradientPostprocessFilter</a>, vtkImageProcessingPass)</td></tr>
 <tr class="separator:a407f4125d8d0906b3dcb51abc0f08196"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33e8be629a5f9e69eaeb6fb495dc413d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33e8be629a5f9e69eaeb6fb495dc413d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a33e8be629a5f9e69eaeb6fb495dc413d">PrintSelf</a> (ostream &amp;os, vtkIndent indent)</td></tr>
-<tr class="memdesc:a33e8be629a5f9e69eaeb6fb495dc413d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write relevant parameter of this class in the out-console. <br /></td></tr>
+<tr class="memitem:a33e8be629a5f9e69eaeb6fb495dc413d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a33e8be629a5f9e69eaeb6fb495dc413d">PrintSelf</a> (ostream &amp;os, vtkIndent indent)</td></tr>
+<tr class="memdesc:a33e8be629a5f9e69eaeb6fb495dc413d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write relevant parameter of this class in the out-console.  <a href="#a33e8be629a5f9e69eaeb6fb495dc413d">More...</a><br /></td></tr>
 <tr class="separator:a33e8be629a5f9e69eaeb6fb495dc413d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54f612635c56ffcf3a967e930b78bc06"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54f612635c56ffcf3a967e930b78bc06"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a54f612635c56ffcf3a967e930b78bc06">Render</a> (const vtkRenderState *s)</td></tr>
-<tr class="memdesc:a54f612635c56ffcf3a967e930b78bc06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renderfunktion of the filter. In the Renderstate are all relevant information for postprocessrendering. <br /></td></tr>
+<tr class="memitem:a54f612635c56ffcf3a967e930b78bc06"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a54f612635c56ffcf3a967e930b78bc06">Render</a> (const vtkRenderState *s)</td></tr>
+<tr class="memdesc:a54f612635c56ffcf3a967e930b78bc06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renderfunktion of the filter. In the Renderstate are all relevant information for postprocessrendering.  <a href="#a54f612635c56ffcf3a967e930b78bc06">More...</a><br /></td></tr>
 <tr class="separator:a54f612635c56ffcf3a967e930b78bc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a422bbc413eb86c8e22c3ab2df5b234d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a422bbc413eb86c8e22c3ab2df5b234d7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a422bbc413eb86c8e22c3ab2df5b234d7">ReleaseGraphicsResources</a> (vtkWindow *w)</td></tr>
-<tr class="memdesc:a422bbc413eb86c8e22c3ab2df5b234d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all used Framebuffers and Textures. <br /></td></tr>
+<tr class="memitem:a422bbc413eb86c8e22c3ab2df5b234d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a422bbc413eb86c8e22c3ab2df5b234d7">ReleaseGraphicsResources</a> (vtkWindow *w)</td></tr>
+<tr class="memdesc:a422bbc413eb86c8e22c3ab2df5b234d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all used Framebuffers and Textures.  <a href="#a422bbc413eb86c8e22c3ab2df5b234d7">More...</a><br /></td></tr>
 <tr class="separator:a422bbc413eb86c8e22c3ab2df5b234d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a7a6de9515b229a11104606e48a9d9bee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a6de9515b229a11104606e48a9d9bee"></a>
-static <a class="el" href="class_gradient_postprocess_filter.html">GradientPostprocessFilter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a7a6de9515b229a11104606e48a9d9bee">New</a> ()</td></tr>
-<tr class="memdesc:a7a6de9515b229a11104606e48a9d9bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creats a new Filterobject and returns it. <br /></td></tr>
+<tr class="memitem:a7a6de9515b229a11104606e48a9d9bee"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_gradient_postprocess_filter.html">GradientPostprocessFilter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a7a6de9515b229a11104606e48a9d9bee">New</a> ()</td></tr>
+<tr class="memdesc:a7a6de9515b229a11104606e48a9d9bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creats a new Filterobject and returns it.  <a href="#a7a6de9515b229a11104606e48a9d9bee">More...</a><br /></td></tr>
 <tr class="separator:a7a6de9515b229a11104606e48a9d9bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a63e618a1a21b2d4dffa0dfd0a7e94329"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63e618a1a21b2d4dffa0dfd0a7e94329"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a63e618a1a21b2d4dffa0dfd0a7e94329">GradientPostprocessFilter</a> ()</td></tr>
-<tr class="memdesc:a63e618a1a21b2d4dffa0dfd0a7e94329"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constuctor of the postprocess gradient filter. <br /></td></tr>
+<tr class="memitem:a63e618a1a21b2d4dffa0dfd0a7e94329"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a63e618a1a21b2d4dffa0dfd0a7e94329">GradientPostprocessFilter</a> ()</td></tr>
+<tr class="memdesc:a63e618a1a21b2d4dffa0dfd0a7e94329"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constuctor of the postprocess gradient filter.  <a href="#a63e618a1a21b2d4dffa0dfd0a7e94329">More...</a><br /></td></tr>
 <tr class="separator:a63e618a1a21b2d4dffa0dfd0a7e94329"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95c256c1fc3c0a121214c239417bcd15"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95c256c1fc3c0a121214c239417bcd15"></a>
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a95c256c1fc3c0a121214c239417bcd15">~GradientPostprocessFilter</a> ()</td></tr>
-<tr class="memdesc:a95c256c1fc3c0a121214c239417bcd15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destuctor of the postprocess gradient filter. <br /></td></tr>
+<tr class="memitem:a95c256c1fc3c0a121214c239417bcd15"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a95c256c1fc3c0a121214c239417bcd15">~GradientPostprocessFilter</a> ()</td></tr>
+<tr class="memdesc:a95c256c1fc3c0a121214c239417bcd15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destuctor of the postprocess gradient filter.  <a href="#a95c256c1fc3c0a121214c239417bcd15">More...</a><br /></td></tr>
 <tr class="separator:a95c256c1fc3c0a121214c239417bcd15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a64574a5b440e02824a2049186626e512"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64574a5b440e02824a2049186626e512"></a>
-vtkFrameBufferObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a64574a5b440e02824a2049186626e512">FrameBufferObject</a></td></tr>
-<tr class="memdesc:a64574a5b440e02824a2049186626e512"><td class="mdescLeft">&#160;</td><td class="mdescRight">Framebuffer for save rendering (if this renderpass failed, the original buffer is not corrupted) <br /></td></tr>
+<tr class="memitem:a64574a5b440e02824a2049186626e512"><td class="memItemLeft" align="right" valign="top">vtkFrameBufferObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a64574a5b440e02824a2049186626e512">FrameBufferObject</a></td></tr>
+<tr class="memdesc:a64574a5b440e02824a2049186626e512"><td class="mdescLeft">&#160;</td><td class="mdescRight">Framebuffer for save rendering (if this renderpass failed, the original buffer is not corrupted)  <a href="#a64574a5b440e02824a2049186626e512">More...</a><br /></td></tr>
 <tr class="separator:a64574a5b440e02824a2049186626e512"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abce997df801ebe22f43d5cdbada895e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abce997df801ebe22f43d5cdbada895e4"></a>
-vtkTextureObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#abce997df801ebe22f43d5cdbada895e4">Pass</a></td></tr>
-<tr class="memdesc:abce997df801ebe22f43d5cdbada895e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture from the previous Renderpasses. <br /></td></tr>
+<tr class="memitem:abce997df801ebe22f43d5cdbada895e4"><td class="memItemLeft" align="right" valign="top">vtkTextureObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#abce997df801ebe22f43d5cdbada895e4">Pass</a></td></tr>
+<tr class="memdesc:abce997df801ebe22f43d5cdbada895e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture from the previous Renderpasses.  <a href="#abce997df801ebe22f43d5cdbada895e4">More...</a><br /></td></tr>
 <tr class="separator:abce997df801ebe22f43d5cdbada895e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bfa1c2591d3d10d4ee8e7b3fbb4431d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5bfa1c2591d3d10d4ee8e7b3fbb4431d"></a>
-vtkTextureObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a5bfa1c2591d3d10d4ee8e7b3fbb4431d">passTexture</a></td></tr>
-<tr class="memdesc:a5bfa1c2591d3d10d4ee8e7b3fbb4431d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture for the current renderpass. <br /></td></tr>
+<tr class="memitem:a5bfa1c2591d3d10d4ee8e7b3fbb4431d"><td class="memItemLeft" align="right" valign="top">vtkTextureObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a5bfa1c2591d3d10d4ee8e7b3fbb4431d">passTexture</a></td></tr>
+<tr class="memdesc:a5bfa1c2591d3d10d4ee8e7b3fbb4431d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture for the current renderpass.  <a href="#a5bfa1c2591d3d10d4ee8e7b3fbb4431d">More...</a><br /></td></tr>
 <tr class="separator:a5bfa1c2591d3d10d4ee8e7b3fbb4431d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a507f45bd40985ae5687e6c8fcc372e2d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a507f45bd40985ae5687e6c8fcc372e2d"></a>
-vtkShaderProgram2 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a507f45bd40985ae5687e6c8fcc372e2d">Program</a></td></tr>
-<tr class="memdesc:a507f45bd40985ae5687e6c8fcc372e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shaderprogramm of the gradient filter shaders. <br /></td></tr>
+<tr class="memitem:a507f45bd40985ae5687e6c8fcc372e2d"><td class="memItemLeft" align="right" valign="top">vtkShaderProgram2 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a507f45bd40985ae5687e6c8fcc372e2d">Program</a></td></tr>
+<tr class="memdesc:a507f45bd40985ae5687e6c8fcc372e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shaderprogramm of the gradient filter shaders.  <a href="#a507f45bd40985ae5687e6c8fcc372e2d">More...</a><br /></td></tr>
 <tr class="separator:a507f45bd40985ae5687e6c8fcc372e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a319f12c6082283ae844064391066ece7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#a319f12c6082283ae844064391066ece7">GradientPostprocessFilter</a> (const <a class="el" href="class_gradient_postprocess_filter.html">GradientPostprocessFilter</a> &amp;)</td></tr>
+<tr class="separator:a319f12c6082283ae844064391066ece7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab74a7eb44c943f40bd04cf28329c82b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gradient_postprocess_filter.html#ab74a7eb44c943f40bd04cf28329c82b5">operator=</a> (const <a class="el" href="class_gradient_postprocess_filter.html">GradientPostprocessFilter</a> &amp;)</td></tr>
+<tr class="separator:ab74a7eb44c943f40bd04cf28329c82b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class is a 2D gradient Filter for post processing (With Opengl shader). Unfortunately it doesent work in this project. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a63e618a1a21b2d4dffa0dfd0a7e94329"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GradientPostprocessFilter::GradientPostprocessFilter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constuctor of the postprocess gradient filter. </p>
+
+</div>
+</div>
+<a class="anchor" id="a95c256c1fc3c0a121214c239417bcd15"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GradientPostprocessFilter::~GradientPostprocessFilter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destuctor of the postprocess gradient filter. </p>
+
+</div>
+</div>
+<a class="anchor" id="a319f12c6082283ae844064391066ece7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GradientPostprocessFilter::GradientPostprocessFilter </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_gradient_postprocess_filter.html">GradientPostprocessFilter</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a7a6de9515b229a11104606e48a9d9bee"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_gradient_postprocess_filter.html">GradientPostprocessFilter</a>* GradientPostprocessFilter::New </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creats a new Filterobject and returns it. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab74a7eb44c943f40bd04cf28329c82b5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GradientPostprocessFilter::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_gradient_postprocess_filter.html">GradientPostprocessFilter</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a33e8be629a5f9e69eaeb6fb495dc413d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GradientPostprocessFilter::PrintSelf </td>
+          <td>(</td>
+          <td class="paramtype">ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkIndent&#160;</td>
+          <td class="paramname"><em>indent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write relevant parameter of this class in the out-console. </p>
+
+</div>
+</div>
+<a class="anchor" id="a422bbc413eb86c8e22c3ab2df5b234d7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GradientPostprocessFilter::ReleaseGraphicsResources </td>
+          <td>(</td>
+          <td class="paramtype">vtkWindow *&#160;</td>
+          <td class="paramname"><em>w</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete all used Framebuffers and Textures. </p>
+
+</div>
+</div>
+<a class="anchor" id="a54f612635c56ffcf3a967e930b78bc06"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GradientPostprocessFilter::Render </td>
+          <td>(</td>
+          <td class="paramtype">const vtkRenderState *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Renderfunktion of the filter. In the Renderstate are all relevant information for postprocessrendering. </p>
+
+</div>
+</div>
+<a class="anchor" id="a407f4125d8d0906b3dcb51abc0f08196"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GradientPostprocessFilter::vtkTypeMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_gradient_postprocess_filter.html">GradientPostprocessFilter</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageProcessingPass&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a64574a5b440e02824a2049186626e512"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vtkFrameBufferObject* GradientPostprocessFilter::FrameBufferObject</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Framebuffer for save rendering (if this renderpass failed, the original buffer is not corrupted) </p>
+
+</div>
+</div>
+<a class="anchor" id="abce997df801ebe22f43d5cdbada895e4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vtkTextureObject* GradientPostprocessFilter::Pass</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Texture from the previous Renderpasses. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5bfa1c2591d3d10d4ee8e7b3fbb4431d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vtkTextureObject* GradientPostprocessFilter::passTexture</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Texture for the current renderpass. </p>
+
+</div>
+</div>
+<a class="anchor" id="a507f45bd40985ae5687e6c8fcc372e2d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vtkShaderProgram2* GradientPostprocessFilter::Program</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Shaderprogramm of the gradient filter shaders. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>E:/TU_Andi/Vismed2/medvis2/VolumeRendering/inc/<a class="el" href="_gradient_postprocess_filter_8h_source.html">GradientPostprocessFilter.h</a></li>
-<li>E:/TU_Andi/Vismed2/medvis2/VolumeRendering/src/GradientPostprocessFilter.cpp</li>
+<li>E:/TU_Andi/Vismed2/medvis2/VolumeRendering/src/<a class="el" href="_gradient_postprocess_filter_8cpp.html">GradientPostprocessFilter.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

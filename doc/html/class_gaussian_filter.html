@@ -88,6 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="class_gaussian_filter-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">GaussianFilter Class Reference</div>  </div>
@@ -109,88 +110,692 @@ Inheritance diagram for GaussianFilter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a32097d658186b164b908eb19813fd121"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32097d658186b164b908eb19813fd121"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkTypeMacro</b> (<a class="el" href="class_gaussian_filter.html">GaussianFilter</a>, vtkThreadedImageAlgorithm)</td></tr>
+<tr class="memitem:a32097d658186b164b908eb19813fd121"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a32097d658186b164b908eb19813fd121">vtkTypeMacro</a> (<a class="el" href="class_gaussian_filter.html">GaussianFilter</a>, vtkThreadedImageAlgorithm)</td></tr>
 <tr class="separator:a32097d658186b164b908eb19813fd121"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9af35feb8608d1b82bdd8b8fedce6821"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9af35feb8608d1b82bdd8b8fedce6821"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a9af35feb8608d1b82bdd8b8fedce6821">PrintSelf</a> (ostream &amp;os, vtkIndent indent)</td></tr>
-<tr class="memdesc:a9af35feb8608d1b82bdd8b8fedce6821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write relevant parameter of this class in the out-console. <br /></td></tr>
+<tr class="memitem:a9af35feb8608d1b82bdd8b8fedce6821"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a9af35feb8608d1b82bdd8b8fedce6821">PrintSelf</a> (ostream &amp;os, vtkIndent indent)</td></tr>
+<tr class="memdesc:a9af35feb8608d1b82bdd8b8fedce6821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write relevant parameter of this class in the out-console.  <a href="#a9af35feb8608d1b82bdd8b8fedce6821">More...</a><br /></td></tr>
 <tr class="separator:a9af35feb8608d1b82bdd8b8fedce6821"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6279fa9d8001f0beba9292fecb20101d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6279fa9d8001f0beba9292fecb20101d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a6279fa9d8001f0beba9292fecb20101d">GetKernelSize</a> () const </td></tr>
-<tr class="memdesc:a6279fa9d8001f0beba9292fecb20101d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the kernelsize (all axis have the same size) <br /></td></tr>
+<tr class="memitem:a6279fa9d8001f0beba9292fecb20101d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a6279fa9d8001f0beba9292fecb20101d">GetKernelSize</a> () const </td></tr>
+<tr class="memdesc:a6279fa9d8001f0beba9292fecb20101d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the kernelsize (all axis have the same size)  <a href="#a6279fa9d8001f0beba9292fecb20101d">More...</a><br /></td></tr>
 <tr class="separator:a6279fa9d8001f0beba9292fecb20101d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee6e43d9b3ca1bd3f098e5fa11d96099"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee6e43d9b3ca1bd3f098e5fa11d96099"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#aee6e43d9b3ca1bd3f098e5fa11d96099">SetKernelSize</a> (int _KernelSize)</td></tr>
-<tr class="memdesc:aee6e43d9b3ca1bd3f098e5fa11d96099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the kernelsize to n(all axis have the same size) <br /></td></tr>
+<tr class="memitem:aee6e43d9b3ca1bd3f098e5fa11d96099"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#aee6e43d9b3ca1bd3f098e5fa11d96099">SetKernelSize</a> (int _KernelSize)</td></tr>
+<tr class="memdesc:aee6e43d9b3ca1bd3f098e5fa11d96099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the kernelsize to n(all axis have the same size)  <a href="#aee6e43d9b3ca1bd3f098e5fa11d96099">More...</a><br /></td></tr>
 <tr class="separator:aee6e43d9b3ca1bd3f098e5fa11d96099"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8535af8788b498e66ccc67348e27b67a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8535af8788b498e66ccc67348e27b67a"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a8535af8788b498e66ccc67348e27b67a">GetSigma</a> () const </td></tr>
-<tr class="memdesc:a8535af8788b498e66ccc67348e27b67a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the sigma value (standart deviation) of the gaussian filter. <br /></td></tr>
+<tr class="memitem:a8535af8788b498e66ccc67348e27b67a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a8535af8788b498e66ccc67348e27b67a">GetSigma</a> () const </td></tr>
+<tr class="memdesc:a8535af8788b498e66ccc67348e27b67a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the sigma value (standart deviation) of the gaussian filter.  <a href="#a8535af8788b498e66ccc67348e27b67a">More...</a><br /></td></tr>
 <tr class="separator:a8535af8788b498e66ccc67348e27b67a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59c777c21e22fed359339fc3ee4754f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59c777c21e22fed359339fc3ee4754f9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a59c777c21e22fed359339fc3ee4754f9">SetSigma</a> (double val)</td></tr>
-<tr class="memdesc:a59c777c21e22fed359339fc3ee4754f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sigma value (standart deviation) of the gaussian filter. <br /></td></tr>
+<tr class="memitem:a59c777c21e22fed359339fc3ee4754f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a59c777c21e22fed359339fc3ee4754f9">SetSigma</a> (double val)</td></tr>
+<tr class="memdesc:a59c777c21e22fed359339fc3ee4754f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sigma value (standart deviation) of the gaussian filter.  <a href="#a59c777c21e22fed359339fc3ee4754f9">More...</a><br /></td></tr>
 <tr class="separator:a59c777c21e22fed359339fc3ee4754f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a73fa4c1db655038ce541e04d842c5059"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73fa4c1db655038ce541e04d842c5059"></a>
-static <a class="el" href="class_gaussian_filter.html">GaussianFilter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a73fa4c1db655038ce541e04d842c5059">New</a> ()</td></tr>
-<tr class="memdesc:a73fa4c1db655038ce541e04d842c5059"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creats a new Filterobject and returns it. <br /></td></tr>
+<tr class="memitem:a73fa4c1db655038ce541e04d842c5059"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_gaussian_filter.html">GaussianFilter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a73fa4c1db655038ce541e04d842c5059">New</a> ()</td></tr>
+<tr class="memdesc:a73fa4c1db655038ce541e04d842c5059"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creats a new Filterobject and returns it.  <a href="#a73fa4c1db655038ce541e04d842c5059">More...</a><br /></td></tr>
 <tr class="separator:a73fa4c1db655038ce541e04d842c5059"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a940b368adec31820482c203f45469370"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a940b368adec31820482c203f45469370"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a940b368adec31820482c203f45469370">GaussianFilter</a> ()</td></tr>
-<tr class="memdesc:a940b368adec31820482c203f45469370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constuctor of the gaussian filter. <br /></td></tr>
+<tr class="memitem:a940b368adec31820482c203f45469370"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a940b368adec31820482c203f45469370">GaussianFilter</a> ()</td></tr>
+<tr class="memdesc:a940b368adec31820482c203f45469370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constuctor of the gaussian filter.  <a href="#a940b368adec31820482c203f45469370">More...</a><br /></td></tr>
 <tr class="separator:a940b368adec31820482c203f45469370"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3d55efb13e1e7f93572626ebaeb7b25"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3d55efb13e1e7f93572626ebaeb7b25"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#ae3d55efb13e1e7f93572626ebaeb7b25">~GaussianFilter</a> ()</td></tr>
-<tr class="memdesc:ae3d55efb13e1e7f93572626ebaeb7b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destuctor of the bilateral filter. <br /></td></tr>
+<tr class="memitem:ae3d55efb13e1e7f93572626ebaeb7b25"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#ae3d55efb13e1e7f93572626ebaeb7b25">~GaussianFilter</a> ()</td></tr>
+<tr class="memdesc:ae3d55efb13e1e7f93572626ebaeb7b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destuctor of the bilateral filter.  <a href="#ae3d55efb13e1e7f93572626ebaeb7b25">More...</a><br /></td></tr>
 <tr class="separator:ae3d55efb13e1e7f93572626ebaeb7b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94466d4f4fc70eefcd849c24f6aa47d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94466d4f4fc70eefcd849c24f6aa47d7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a94466d4f4fc70eefcd849c24f6aa47d7">ComputeKernel</a> (double *kernel, int min, int max)</td></tr>
-<tr class="memdesc:a94466d4f4fc70eefcd849c24f6aa47d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the filter kernel and the weights for the gaussian filter. <br /></td></tr>
+<tr class="memitem:a94466d4f4fc70eefcd849c24f6aa47d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a94466d4f4fc70eefcd849c24f6aa47d7">ComputeKernel</a> (double *kernel, int min, int max)</td></tr>
+<tr class="memdesc:a94466d4f4fc70eefcd849c24f6aa47d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the filter kernel and the weights for the gaussian filter.  <a href="#a94466d4f4fc70eefcd849c24f6aa47d7">More...</a><br /></td></tr>
 <tr class="separator:a94466d4f4fc70eefcd849c24f6aa47d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae16d7604d6bf109dcfd90f60d1e0529d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae16d7604d6bf109dcfd90f60d1e0529d"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#ae16d7604d6bf109dcfd90f60d1e0529d">RequestUpdateExtent</a> (vtkInformation *, vtkInformationVector **, vtkInformationVector *)</td></tr>
-<tr class="memdesc:ae16d7604d6bf109dcfd90f60d1e0529d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used from the vtk pipeline for updating extend. <br /></td></tr>
+<tr class="memitem:ae16d7604d6bf109dcfd90f60d1e0529d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#ae16d7604d6bf109dcfd90f60d1e0529d">RequestUpdateExtent</a> (vtkInformation *, vtkInformationVector **, vtkInformationVector *)</td></tr>
+<tr class="memdesc:ae16d7604d6bf109dcfd90f60d1e0529d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used from the vtk pipeline for updating extend.  <a href="#ae16d7604d6bf109dcfd90f60d1e0529d">More...</a><br /></td></tr>
 <tr class="separator:ae16d7604d6bf109dcfd90f60d1e0529d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0499c83e6c7196245c60098fa9290ac0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0499c83e6c7196245c60098fa9290ac0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a0499c83e6c7196245c60098fa9290ac0">InternalRequestUpdateExtent</a> (int *, int *)</td></tr>
-<tr class="memdesc:a0499c83e6c7196245c60098fa9290ac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used from the vtk pipeline for updating kernelsize. <br /></td></tr>
+<tr class="memitem:a0499c83e6c7196245c60098fa9290ac0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a0499c83e6c7196245c60098fa9290ac0">InternalRequestUpdateExtent</a> (int *, int *)</td></tr>
+<tr class="memdesc:a0499c83e6c7196245c60098fa9290ac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used from the vtk pipeline for updating kernelsize.  <a href="#a0499c83e6c7196245c60098fa9290ac0">More...</a><br /></td></tr>
 <tr class="separator:a0499c83e6c7196245c60098fa9290ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85a2e3e92e40ad14e2aa9dee71e2c354"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85a2e3e92e40ad14e2aa9dee71e2c354"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a85a2e3e92e40ad14e2aa9dee71e2c354">ExecuteAxis</a> (int axis, vtkImageData *inData, int inExt[6], vtkImageData *outData, int outExt[6], int *pcycle, int target, int *pcount, int total, vtkInformation *inInfo)</td></tr>
-<tr class="memdesc:a85a2e3e92e40ad14e2aa9dee71e2c354"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convolutes over a single axis with boundary conditions. <br /></td></tr>
+<tr class="memitem:a85a2e3e92e40ad14e2aa9dee71e2c354"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a85a2e3e92e40ad14e2aa9dee71e2c354">ExecuteAxis</a> (int axis, vtkImageData *inData, int inExt[6], vtkImageData *outData, int outExt[6], int *pcycle, int target, int *pcount, int total, vtkInformation *inInfo)</td></tr>
+<tr class="memdesc:a85a2e3e92e40ad14e2aa9dee71e2c354"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convolutes over a single axis with boundary conditions.  <a href="#a85a2e3e92e40ad14e2aa9dee71e2c354">More...</a><br /></td></tr>
 <tr class="separator:a85a2e3e92e40ad14e2aa9dee71e2c354"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a909c3413f9965961becf1facfaf9700b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a909c3413f9965961becf1facfaf9700b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a909c3413f9965961becf1facfaf9700b">ThreadedRequestData</a> (vtkInformation *request, vtkInformationVector **inputVector, vtkInformationVector *outputVector, vtkImageData ***inData, vtkImageData **outData, int outExt[6], int id)</td></tr>
-<tr class="memdesc:a909c3413f9965961becf1facfaf9700b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Requestfunction of the gaussian filter called by the vtk-pipeline. This function calls GaussianFilterExecute who does the filteroperation and returns the output. <br /></td></tr>
+<tr class="memitem:a909c3413f9965961becf1facfaf9700b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a909c3413f9965961becf1facfaf9700b">ThreadedRequestData</a> (vtkInformation *request, vtkInformationVector **inputVector, vtkInformationVector *outputVector, vtkImageData ***inData, vtkImageData **outData, int outExt[6], int id)</td></tr>
+<tr class="memdesc:a909c3413f9965961becf1facfaf9700b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Requestfunction of the gaussian filter called by the vtk-pipeline. This function calls GaussianFilterExecute who does the filteroperation and returns the output.  <a href="#a909c3413f9965961becf1facfaf9700b">More...</a><br /></td></tr>
 <tr class="separator:a909c3413f9965961becf1facfaf9700b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0504d9a975390292e2c302115144383"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0504d9a975390292e2c302115144383"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#af0504d9a975390292e2c302115144383">ItlComputeSigma</a> (int _KernelSize)</td></tr>
-<tr class="memdesc:af0504d9a975390292e2c302115144383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the sigma value (standart deviation) of the gaussian filter out of the kernelsize and returns it. <br /></td></tr>
+<tr class="memitem:af0504d9a975390292e2c302115144383"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#af0504d9a975390292e2c302115144383">ItlComputeSigma</a> (int _KernelSize)</td></tr>
+<tr class="memdesc:af0504d9a975390292e2c302115144383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the sigma value (standart deviation) of the gaussian filter out of the kernelsize and returns it.  <a href="#af0504d9a975390292e2c302115144383">More...</a><br /></td></tr>
 <tr class="separator:af0504d9a975390292e2c302115144383"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:af37cdb469049259020591255d6c441be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af37cdb469049259020591255d6c441be"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#af37cdb469049259020591255d6c441be">KernelSize</a></td></tr>
-<tr class="memdesc:af37cdb469049259020591255d6c441be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the gaussian filter kernel (all axis have the same size) <br /></td></tr>
+<tr class="memitem:af37cdb469049259020591255d6c441be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#af37cdb469049259020591255d6c441be">KernelSize</a></td></tr>
+<tr class="memdesc:af37cdb469049259020591255d6c441be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the gaussian filter kernel (all axis have the same size)  <a href="#af37cdb469049259020591255d6c441be">More...</a><br /></td></tr>
 <tr class="separator:af37cdb469049259020591255d6c441be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a744c74dcf11994b5eeca3479a4be4b5c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a744c74dcf11994b5eeca3479a4be4b5c"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a744c74dcf11994b5eeca3479a4be4b5c">Sigma</a></td></tr>
-<tr class="memdesc:a744c74dcf11994b5eeca3479a4be4b5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Sigma (standart deviation) of the gauss kernel. <br /></td></tr>
+<tr class="memitem:a744c74dcf11994b5eeca3479a4be4b5c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a744c74dcf11994b5eeca3479a4be4b5c">Sigma</a></td></tr>
+<tr class="memdesc:a744c74dcf11994b5eeca3479a4be4b5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Sigma (standart deviation) of the gauss kernel.  <a href="#a744c74dcf11994b5eeca3479a4be4b5c">More...</a><br /></td></tr>
 <tr class="separator:a744c74dcf11994b5eeca3479a4be4b5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aba54a7ed90ed65237fd2cee7d7cc7242"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#aba54a7ed90ed65237fd2cee7d7cc7242">GaussianFilter</a> (const <a class="el" href="class_gaussian_filter.html">GaussianFilter</a> &amp;)</td></tr>
+<tr class="separator:aba54a7ed90ed65237fd2cee7d7cc7242"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d64c819901e00c2256dde5038397be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gaussian_filter.html#a33d64c819901e00c2256dde5038397be">operator=</a> (const <a class="el" href="class_gaussian_filter.html">GaussianFilter</a> &amp;)</td></tr>
+<tr class="separator:a33d64c819901e00c2256dde5038397be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for filtering 3D data with a gaussian filter. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a940b368adec31820482c203f45469370"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GaussianFilter::GaussianFilter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constuctor of the gaussian filter. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae3d55efb13e1e7f93572626ebaeb7b25"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GaussianFilter::~GaussianFilter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destuctor of the bilateral filter. </p>
+
+</div>
+</div>
+<a class="anchor" id="aba54a7ed90ed65237fd2cee7d7cc7242"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GaussianFilter::GaussianFilter </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_gaussian_filter.html">GaussianFilter</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a94466d4f4fc70eefcd849c24f6aa47d7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GaussianFilter::ComputeKernel </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>kernel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the filter kernel and the weights for the gaussian filter. </p>
+
+</div>
+</div>
+<a class="anchor" id="a85a2e3e92e40ad14e2aa9dee71e2c354"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GaussianFilter::ExecuteAxis </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>axis</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageData *&#160;</td>
+          <td class="paramname"><em>inData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>inExt</em>[6], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageData *&#160;</td>
+          <td class="paramname"><em>outData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>outExt</em>[6], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pcycle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pcount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>total</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkInformation *&#160;</td>
+          <td class="paramname"><em>inInfo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convolutes over a single axis with boundary conditions. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6279fa9d8001f0beba9292fecb20101d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GaussianFilter::GetKernelSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the kernelsize (all axis have the same size) </p>
+
+</div>
+</div>
+<a class="anchor" id="a8535af8788b498e66ccc67348e27b67a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double GaussianFilter::GetSigma </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the sigma value (standart deviation) of the gaussian filter. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0499c83e6c7196245c60098fa9290ac0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GaussianFilter::InternalRequestUpdateExtent </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>inExt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>wholeExtent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function used from the vtk pipeline for updating kernelsize. </p>
+
+</div>
+</div>
+<a class="anchor" id="af0504d9a975390292e2c302115144383"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double GaussianFilter::ItlComputeSigma </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_KernelSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the sigma value (standart deviation) of the gaussian filter out of the kernelsize and returns it. </p>
+
+</div>
+</div>
+<a class="anchor" id="a73fa4c1db655038ce541e04d842c5059"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_gaussian_filter.html">GaussianFilter</a>* GaussianFilter::New </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creats a new Filterobject and returns it. </p>
+
+</div>
+</div>
+<a class="anchor" id="a33d64c819901e00c2256dde5038397be"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GaussianFilter::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_gaussian_filter.html">GaussianFilter</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9af35feb8608d1b82bdd8b8fedce6821"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GaussianFilter::PrintSelf </td>
+          <td>(</td>
+          <td class="paramtype">ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkIndent&#160;</td>
+          <td class="paramname"><em>indent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write relevant parameter of this class in the out-console. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae16d7604d6bf109dcfd90f60d1e0529d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GaussianFilter::RequestUpdateExtent </td>
+          <td>(</td>
+          <td class="paramtype">vtkInformation *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkInformationVector **&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkInformationVector *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function used from the vtk pipeline for updating extend. </p>
+
+</div>
+</div>
+<a class="anchor" id="aee6e43d9b3ca1bd3f098e5fa11d96099"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GaussianFilter::SetKernelSize </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_KernelSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the kernelsize to n(all axis have the same size) </p>
+
+</div>
+</div>
+<a class="anchor" id="a59c777c21e22fed359339fc3ee4754f9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GaussianFilter::SetSigma </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the sigma value (standart deviation) of the gaussian filter. </p>
+
+</div>
+</div>
+<a class="anchor" id="a909c3413f9965961becf1facfaf9700b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GaussianFilter::ThreadedRequestData </td>
+          <td>(</td>
+          <td class="paramtype">vtkInformation *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkInformationVector **&#160;</td>
+          <td class="paramname"><em>inputVector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkInformationVector *&#160;</td>
+          <td class="paramname"><em>outputVector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageData ***&#160;</td>
+          <td class="paramname"><em>inData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageData **&#160;</td>
+          <td class="paramname"><em>outData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>outExt</em>[6], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The Requestfunction of the gaussian filter called by the vtk-pipeline. This function calls GaussianFilterExecute who does the filteroperation and returns the output. </p>
+
+</div>
+</div>
+<a class="anchor" id="a32097d658186b164b908eb19813fd121"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GaussianFilter::vtkTypeMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_gaussian_filter.html">GaussianFilter</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkThreadedImageAlgorithm&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="af37cdb469049259020591255d6c441be"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GaussianFilter::KernelSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Size of the gaussian filter kernel (all axis have the same size) </p>
+
+</div>
+</div>
+<a class="anchor" id="a744c74dcf11994b5eeca3479a4be4b5c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double GaussianFilter::Sigma</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The Sigma (standart deviation) of the gauss kernel. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>E:/TU_Andi/Vismed2/medvis2/VolumeRendering/inc/<a class="el" href="_gaussian_filter_8h_source.html">GaussianFilter.h</a></li>
-<li>E:/TU_Andi/Vismed2/medvis2/VolumeRendering/src/GaussianFilter.cpp</li>
+<li>E:/TU_Andi/Vismed2/medvis2/VolumeRendering/src/<a class="el" href="_gaussian_filter_8cpp.html">GaussianFilter.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

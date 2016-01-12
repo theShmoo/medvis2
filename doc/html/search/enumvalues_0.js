@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ft_5fmha',['FT_MHA',['../class_data_reader.html#a06e3ce1b8640ca8de30991ffdd0bf1cfa958cc707eca336fe1065a797fcf64104',1,'DataReader']]],
-  ['ft_5fnum',['FT_NUM',['../class_data_reader.html#a06e3ce1b8640ca8de30991ffdd0bf1cfa16acd1afcf562fbfaf72178aa9fec1c8',1,'DataReader']]]
+  ['binarymasktype',['BinaryMaskType',['../class_volume_ray_cast_mapper.html#a7d06582cc10f005d497d42c93ac0b501ab8880e61fb7ef6e5ea93d55a08a29c74',1,'VolumeRayCastMapper']]]
 ];

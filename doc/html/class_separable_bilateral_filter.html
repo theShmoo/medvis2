@@ -88,6 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="class_separable_bilateral_filter-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SeparableBilateralFilter Class Reference</div>  </div>
@@ -109,87 +110,689 @@ Inheritance diagram for SeparableBilateralFilter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8c7a3dedc929c20ef331c617163e8183"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c7a3dedc929c20ef331c617163e8183"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkTypeMacro</b> (<a class="el" href="class_separable_bilateral_filter.html">SeparableBilateralFilter</a>, vtkThreadedImageAlgorithm)</td></tr>
+<tr class="memitem:a8c7a3dedc929c20ef331c617163e8183"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a8c7a3dedc929c20ef331c617163e8183">vtkTypeMacro</a> (<a class="el" href="class_separable_bilateral_filter.html">SeparableBilateralFilter</a>, vtkThreadedImageAlgorithm)</td></tr>
 <tr class="separator:a8c7a3dedc929c20ef331c617163e8183"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52a89d78990f429d6165f1413784d465"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52a89d78990f429d6165f1413784d465"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a52a89d78990f429d6165f1413784d465">PrintSelf</a> (ostream &amp;os, vtkIndent indent)</td></tr>
-<tr class="memdesc:a52a89d78990f429d6165f1413784d465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write relevant parameter of this class in the out-console. <br /></td></tr>
+<tr class="memitem:a52a89d78990f429d6165f1413784d465"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a52a89d78990f429d6165f1413784d465">PrintSelf</a> (ostream &amp;os, vtkIndent indent)</td></tr>
+<tr class="memdesc:a52a89d78990f429d6165f1413784d465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write relevant parameter of this class in the out-console.  <a href="#a52a89d78990f429d6165f1413784d465">More...</a><br /></td></tr>
 <tr class="separator:a52a89d78990f429d6165f1413784d465"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae652bbe133fe3b208d6d3e3ff91f32ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae652bbe133fe3b208d6d3e3ff91f32ca"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#ae652bbe133fe3b208d6d3e3ff91f32ca">GetKernelSize</a> () const </td></tr>
-<tr class="memdesc:ae652bbe133fe3b208d6d3e3ff91f32ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the filter kernel. <br /></td></tr>
+<tr class="memitem:ae652bbe133fe3b208d6d3e3ff91f32ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#ae652bbe133fe3b208d6d3e3ff91f32ca">GetKernelSize</a> () const </td></tr>
+<tr class="memdesc:ae652bbe133fe3b208d6d3e3ff91f32ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the filter kernel.  <a href="#ae652bbe133fe3b208d6d3e3ff91f32ca">More...</a><br /></td></tr>
 <tr class="separator:ae652bbe133fe3b208d6d3e3ff91f32ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8e956a82581f7eb8b4358b0ee7d458f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8e956a82581f7eb8b4358b0ee7d458f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#ad8e956a82581f7eb8b4358b0ee7d458f">SetKernelSize</a> (int _KernelSize)</td></tr>
-<tr class="memdesc:ad8e956a82581f7eb8b4358b0ee7d458f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the bilateral filter kernel (all axis have the same size) <br /></td></tr>
+<tr class="memitem:ad8e956a82581f7eb8b4358b0ee7d458f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#ad8e956a82581f7eb8b4358b0ee7d458f">SetKernelSize</a> (int _KernelSize)</td></tr>
+<tr class="memdesc:ad8e956a82581f7eb8b4358b0ee7d458f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the bilateral filter kernel (all axis have the same size)  <a href="#ad8e956a82581f7eb8b4358b0ee7d458f">More...</a><br /></td></tr>
 <tr class="separator:ad8e956a82581f7eb8b4358b0ee7d458f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd1cb952b7602aec7bdb4fbb1bfd979d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd1cb952b7602aec7bdb4fbb1bfd979d"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#acd1cb952b7602aec7bdb4fbb1bfd979d">GetSigma</a> () const </td></tr>
-<tr class="memdesc:acd1cb952b7602aec7bdb4fbb1bfd979d"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the sigma value (standart deviation) of the bilateral filter <br /></td></tr>
+<tr class="memitem:acd1cb952b7602aec7bdb4fbb1bfd979d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#acd1cb952b7602aec7bdb4fbb1bfd979d">GetSigma</a> () const </td></tr>
+<tr class="memdesc:acd1cb952b7602aec7bdb4fbb1bfd979d"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the sigma value (standart deviation) of the bilateral filter  <a href="#acd1cb952b7602aec7bdb4fbb1bfd979d">More...</a><br /></td></tr>
 <tr class="separator:acd1cb952b7602aec7bdb4fbb1bfd979d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac31b982a905f068df4f58816cb018c4e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac31b982a905f068df4f58816cb018c4e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#ac31b982a905f068df4f58816cb018c4e">SetSigma</a> (double val)</td></tr>
-<tr class="memdesc:ac31b982a905f068df4f58816cb018c4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sigma value (standart deviation) of the bilateral filter. <br /></td></tr>
+<tr class="memitem:ac31b982a905f068df4f58816cb018c4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#ac31b982a905f068df4f58816cb018c4e">SetSigma</a> (double val)</td></tr>
+<tr class="memdesc:ac31b982a905f068df4f58816cb018c4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sigma value (standart deviation) of the bilateral filter.  <a href="#ac31b982a905f068df4f58816cb018c4e">More...</a><br /></td></tr>
 <tr class="separator:ac31b982a905f068df4f58816cb018c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a30cfbe0605f057a8a0f5dd7d9dee7d1d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30cfbe0605f057a8a0f5dd7d9dee7d1d"></a>
-static <a class="el" href="class_separable_bilateral_filter.html">SeparableBilateralFilter</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>New</b> ()</td></tr>
+<tr class="memitem:a30cfbe0605f057a8a0f5dd7d9dee7d1d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_separable_bilateral_filter.html">SeparableBilateralFilter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a30cfbe0605f057a8a0f5dd7d9dee7d1d">New</a> ()</td></tr>
 <tr class="separator:a30cfbe0605f057a8a0f5dd7d9dee7d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:aabcdc299bca2409a39ce8e3ff0cfd4fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aabcdc299bca2409a39ce8e3ff0cfd4fd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#aabcdc299bca2409a39ce8e3ff0cfd4fd">SeparableBilateralFilter</a> ()</td></tr>
-<tr class="memdesc:aabcdc299bca2409a39ce8e3ff0cfd4fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constuctor of the bilateral filter. <br /></td></tr>
+<tr class="memitem:aabcdc299bca2409a39ce8e3ff0cfd4fd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#aabcdc299bca2409a39ce8e3ff0cfd4fd">SeparableBilateralFilter</a> ()</td></tr>
+<tr class="memdesc:aabcdc299bca2409a39ce8e3ff0cfd4fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constuctor of the bilateral filter.  <a href="#aabcdc299bca2409a39ce8e3ff0cfd4fd">More...</a><br /></td></tr>
 <tr class="separator:aabcdc299bca2409a39ce8e3ff0cfd4fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4baba0f4c3cb296657fbff1e36c738ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4baba0f4c3cb296657fbff1e36c738ec"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a4baba0f4c3cb296657fbff1e36c738ec">~SeparableBilateralFilter</a> ()</td></tr>
-<tr class="memdesc:a4baba0f4c3cb296657fbff1e36c738ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destuctor of the bilateral filter. <br /></td></tr>
+<tr class="memitem:a4baba0f4c3cb296657fbff1e36c738ec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a4baba0f4c3cb296657fbff1e36c738ec">~SeparableBilateralFilter</a> ()</td></tr>
+<tr class="memdesc:a4baba0f4c3cb296657fbff1e36c738ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destuctor of the bilateral filter.  <a href="#a4baba0f4c3cb296657fbff1e36c738ec">More...</a><br /></td></tr>
 <tr class="separator:a4baba0f4c3cb296657fbff1e36c738ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62acd4c13ed0ef897f23373eb123f71f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62acd4c13ed0ef897f23373eb123f71f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a62acd4c13ed0ef897f23373eb123f71f">ComputeKernel</a> (double *kernel, int min, int max)</td></tr>
-<tr class="memdesc:a62acd4c13ed0ef897f23373eb123f71f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the filter kernel with weights using the given kernel size. <br /></td></tr>
+<tr class="memitem:a62acd4c13ed0ef897f23373eb123f71f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a62acd4c13ed0ef897f23373eb123f71f">ComputeKernel</a> (double *kernel, int min, int max)</td></tr>
+<tr class="memdesc:a62acd4c13ed0ef897f23373eb123f71f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the filter kernel with weights using the given kernel size.  <a href="#a62acd4c13ed0ef897f23373eb123f71f">More...</a><br /></td></tr>
 <tr class="separator:a62acd4c13ed0ef897f23373eb123f71f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3656b7577c5ea50abbf458b2844e6f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3656b7577c5ea50abbf458b2844e6f7"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#ad3656b7577c5ea50abbf458b2844e6f7">RequestUpdateExtent</a> (vtkInformation *, vtkInformationVector **, vtkInformationVector *)</td></tr>
-<tr class="memdesc:ad3656b7577c5ea50abbf458b2844e6f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used from the vtk pipeline for updating extend. <br /></td></tr>
+<tr class="memitem:ad3656b7577c5ea50abbf458b2844e6f7"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#ad3656b7577c5ea50abbf458b2844e6f7">RequestUpdateExtent</a> (vtkInformation *, vtkInformationVector **, vtkInformationVector *)</td></tr>
+<tr class="memdesc:ad3656b7577c5ea50abbf458b2844e6f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used from the vtk pipeline for updating extend.  <a href="#ad3656b7577c5ea50abbf458b2844e6f7">More...</a><br /></td></tr>
 <tr class="separator:ad3656b7577c5ea50abbf458b2844e6f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5448a0d76c2c64efe3e407674a18de6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5448a0d76c2c64efe3e407674a18de6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#ae5448a0d76c2c64efe3e407674a18de6">InternalRequestUpdateExtent</a> (int *, int *)</td></tr>
-<tr class="memdesc:ae5448a0d76c2c64efe3e407674a18de6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used from the vtk pipeline for updating kernelsize. <br /></td></tr>
+<tr class="memitem:ae5448a0d76c2c64efe3e407674a18de6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#ae5448a0d76c2c64efe3e407674a18de6">InternalRequestUpdateExtent</a> (int *, int *)</td></tr>
+<tr class="memdesc:ae5448a0d76c2c64efe3e407674a18de6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used from the vtk pipeline for updating kernelsize.  <a href="#ae5448a0d76c2c64efe3e407674a18de6">More...</a><br /></td></tr>
 <tr class="separator:ae5448a0d76c2c64efe3e407674a18de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cc7e593ef0543e3dd2e61870c81d35d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0cc7e593ef0543e3dd2e61870c81d35d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a0cc7e593ef0543e3dd2e61870c81d35d">ExecuteAxis</a> (int axis, vtkImageData *inData, int inExt[6], vtkImageData *outData, int outExt[6], int *pcycle, int target, int *pcount, int total, vtkInformation *inInfo)</td></tr>
-<tr class="memdesc:a0cc7e593ef0543e3dd2e61870c81d35d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convolutes over a single axis with boundary conditions. <br /></td></tr>
+<tr class="memitem:a0cc7e593ef0543e3dd2e61870c81d35d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a0cc7e593ef0543e3dd2e61870c81d35d">ExecuteAxis</a> (int axis, vtkImageData *inData, int inExt[6], vtkImageData *outData, int outExt[6], int *pcycle, int target, int *pcount, int total, vtkInformation *inInfo)</td></tr>
+<tr class="memdesc:a0cc7e593ef0543e3dd2e61870c81d35d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convolutes over a single axis with boundary conditions.  <a href="#a0cc7e593ef0543e3dd2e61870c81d35d">More...</a><br /></td></tr>
 <tr class="separator:a0cc7e593ef0543e3dd2e61870c81d35d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a060982cdf02fe988e73093054afa179c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a060982cdf02fe988e73093054afa179c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a060982cdf02fe988e73093054afa179c">ThreadedRequestData</a> (vtkInformation *request, vtkInformationVector **inputVector, vtkInformationVector *outputVector, vtkImageData ***inData, vtkImageData **outData, int outExt[6], int id)</td></tr>
-<tr class="memdesc:a060982cdf02fe988e73093054afa179c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Requestfunction of the bilateral filter called by the vtk-pipeline. This function calls BilateralFilterExecute who does the filteroperation and returns the output. <br /></td></tr>
+<tr class="memitem:a060982cdf02fe988e73093054afa179c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a060982cdf02fe988e73093054afa179c">ThreadedRequestData</a> (vtkInformation *request, vtkInformationVector **inputVector, vtkInformationVector *outputVector, vtkImageData ***inData, vtkImageData **outData, int outExt[6], int id)</td></tr>
+<tr class="memdesc:a060982cdf02fe988e73093054afa179c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Requestfunction of the bilateral filter called by the vtk-pipeline. This function calls BilateralFilterExecute who does the filteroperation and returns the output.  <a href="#a060982cdf02fe988e73093054afa179c">More...</a><br /></td></tr>
 <tr class="separator:a060982cdf02fe988e73093054afa179c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c1f7203574f04cac6fc09eefce0ef49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c1f7203574f04cac6fc09eefce0ef49"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a4c1f7203574f04cac6fc09eefce0ef49">ItlComputeSigma</a> (int _KernelSize)</td></tr>
-<tr class="memdesc:a4c1f7203574f04cac6fc09eefce0ef49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the sigma value (standart deviation) of the bilateral filter out of the kernelsize and returns it. <br /></td></tr>
+<tr class="memitem:a4c1f7203574f04cac6fc09eefce0ef49"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a4c1f7203574f04cac6fc09eefce0ef49">ItlComputeSigma</a> (int _KernelSize)</td></tr>
+<tr class="memdesc:a4c1f7203574f04cac6fc09eefce0ef49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the sigma value (standart deviation) of the bilateral filter out of the kernelsize and returns it.  <a href="#a4c1f7203574f04cac6fc09eefce0ef49">More...</a><br /></td></tr>
 <tr class="separator:a4c1f7203574f04cac6fc09eefce0ef49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:afc1da05503d333c596df41f40eebc748"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc1da05503d333c596df41f40eebc748"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#afc1da05503d333c596df41f40eebc748">KernelSize</a></td></tr>
-<tr class="memdesc:afc1da05503d333c596df41f40eebc748"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the bilateral filter kernel (all axis have the same size) <br /></td></tr>
+<tr class="memitem:afc1da05503d333c596df41f40eebc748"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#afc1da05503d333c596df41f40eebc748">KernelSize</a></td></tr>
+<tr class="memdesc:afc1da05503d333c596df41f40eebc748"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the bilateral filter kernel (all axis have the same size)  <a href="#afc1da05503d333c596df41f40eebc748">More...</a><br /></td></tr>
 <tr class="separator:afc1da05503d333c596df41f40eebc748"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f0ce9ee071a9978ea1334e77f9e0401"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f0ce9ee071a9978ea1334e77f9e0401"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a2f0ce9ee071a9978ea1334e77f9e0401">Sigma</a></td></tr>
-<tr class="memdesc:a2f0ce9ee071a9978ea1334e77f9e0401"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Sigma (standart deviation) of the gauss kernel. <br /></td></tr>
+<tr class="memitem:a2f0ce9ee071a9978ea1334e77f9e0401"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a2f0ce9ee071a9978ea1334e77f9e0401">Sigma</a></td></tr>
+<tr class="memdesc:a2f0ce9ee071a9978ea1334e77f9e0401"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Sigma (standart deviation) of the gauss kernel.  <a href="#a2f0ce9ee071a9978ea1334e77f9e0401">More...</a><br /></td></tr>
 <tr class="separator:a2f0ce9ee071a9978ea1334e77f9e0401"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a98822b294a7cf20b5b7613b10d477ed7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#a98822b294a7cf20b5b7613b10d477ed7">SeparableBilateralFilter</a> (const <a class="el" href="class_separable_bilateral_filter.html">SeparableBilateralFilter</a> &amp;)</td></tr>
+<tr class="separator:a98822b294a7cf20b5b7613b10d477ed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab29fd051f2a6e14beec772e576c3f7f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_separable_bilateral_filter.html#ab29fd051f2a6e14beec772e576c3f7f8">operator=</a> (const <a class="el" href="class_separable_bilateral_filter.html">SeparableBilateralFilter</a> &amp;)</td></tr>
+<tr class="separator:ab29fd051f2a6e14beec772e576c3f7f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for filtering 3D data with a bilateral filter (speeded up, according to the separable property of this filter type) </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aabcdc299bca2409a39ce8e3ff0cfd4fd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SeparableBilateralFilter::SeparableBilateralFilter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constuctor of the bilateral filter. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4baba0f4c3cb296657fbff1e36c738ec"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SeparableBilateralFilter::~SeparableBilateralFilter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destuctor of the bilateral filter. </p>
+
+</div>
+</div>
+<a class="anchor" id="a98822b294a7cf20b5b7613b10d477ed7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SeparableBilateralFilter::SeparableBilateralFilter </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_separable_bilateral_filter.html">SeparableBilateralFilter</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a62acd4c13ed0ef897f23373eb123f71f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SeparableBilateralFilter::ComputeKernel </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>kernel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates the filter kernel with weights using the given kernel size. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0cc7e593ef0543e3dd2e61870c81d35d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SeparableBilateralFilter::ExecuteAxis </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>axis</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageData *&#160;</td>
+          <td class="paramname"><em>inData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>inExt</em>[6], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageData *&#160;</td>
+          <td class="paramname"><em>outData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>outExt</em>[6], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pcycle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pcount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>total</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkInformation *&#160;</td>
+          <td class="paramname"><em>inInfo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convolutes over a single axis with boundary conditions. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae652bbe133fe3b208d6d3e3ff91f32ca"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SeparableBilateralFilter::GetKernelSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the size of the filter kernel. </p>
+
+</div>
+</div>
+<a class="anchor" id="acd1cb952b7602aec7bdb4fbb1bfd979d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SeparableBilateralFilter::GetSigma </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>returns the sigma value (standart deviation) of the bilateral filter </p>
+
+</div>
+</div>
+<a class="anchor" id="ae5448a0d76c2c64efe3e407674a18de6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SeparableBilateralFilter::InternalRequestUpdateExtent </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>inExt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>wholeExtent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function used from the vtk pipeline for updating kernelsize. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4c1f7203574f04cac6fc09eefce0ef49"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SeparableBilateralFilter::ItlComputeSigma </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_KernelSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the sigma value (standart deviation) of the bilateral filter out of the kernelsize and returns it. </p>
+
+</div>
+</div>
+<a class="anchor" id="a30cfbe0605f057a8a0f5dd7d9dee7d1d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_separable_bilateral_filter.html">SeparableBilateralFilter</a>* SeparableBilateralFilter::New </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab29fd051f2a6e14beec772e576c3f7f8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SeparableBilateralFilter::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_separable_bilateral_filter.html">SeparableBilateralFilter</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a52a89d78990f429d6165f1413784d465"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SeparableBilateralFilter::PrintSelf </td>
+          <td>(</td>
+          <td class="paramtype">ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkIndent&#160;</td>
+          <td class="paramname"><em>indent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write relevant parameter of this class in the out-console. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad3656b7577c5ea50abbf458b2844e6f7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SeparableBilateralFilter::RequestUpdateExtent </td>
+          <td>(</td>
+          <td class="paramtype">vtkInformation *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkInformationVector **&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkInformationVector *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function used from the vtk pipeline for updating extend. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad8e956a82581f7eb8b4358b0ee7d458f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SeparableBilateralFilter::SetKernelSize </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_KernelSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Size of the bilateral filter kernel (all axis have the same size) </p>
+
+</div>
+</div>
+<a class="anchor" id="ac31b982a905f068df4f58816cb018c4e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SeparableBilateralFilter::SetSigma </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the sigma value (standart deviation) of the bilateral filter. </p>
+
+</div>
+</div>
+<a class="anchor" id="a060982cdf02fe988e73093054afa179c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SeparableBilateralFilter::ThreadedRequestData </td>
+          <td>(</td>
+          <td class="paramtype">vtkInformation *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkInformationVector **&#160;</td>
+          <td class="paramname"><em>inputVector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkInformationVector *&#160;</td>
+          <td class="paramname"><em>outputVector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageData ***&#160;</td>
+          <td class="paramname"><em>inData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageData **&#160;</td>
+          <td class="paramname"><em>outData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>outExt</em>[6], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The Requestfunction of the bilateral filter called by the vtk-pipeline. This function calls BilateralFilterExecute who does the filteroperation and returns the output. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8c7a3dedc929c20ef331c617163e8183"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SeparableBilateralFilter::vtkTypeMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_separable_bilateral_filter.html">SeparableBilateralFilter</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkThreadedImageAlgorithm&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="afc1da05503d333c596df41f40eebc748"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SeparableBilateralFilter::KernelSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Size of the bilateral filter kernel (all axis have the same size) </p>
+
+</div>
+</div>
+<a class="anchor" id="a2f0ce9ee071a9978ea1334e77f9e0401"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SeparableBilateralFilter::Sigma</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The Sigma (standart deviation) of the gauss kernel. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>E:/TU_Andi/Vismed2/medvis2/VolumeRendering/inc/<a class="el" href="_separable_bilateral_filter_8h_source.html">SeparableBilateralFilter.h</a></li>
-<li>E:/TU_Andi/Vismed2/medvis2/VolumeRendering/src/SeparableBilateralFilter.cpp</li>
+<li>E:/TU_Andi/Vismed2/medvis2/VolumeRendering/src/<a class="el" href="_separable_bilateral_filter_8cpp.html">SeparableBilateralFilter.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

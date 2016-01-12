@@ -90,6 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="class_volume_ray_cast_mapper-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">VolumeRayCastMapper Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -112,272 +113,2381 @@ Inheritance diagram for VolumeRayCastMapper:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a7d06582cc10f005d497d42c93ac0b501"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d06582cc10f005d497d42c93ac0b501"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>BinaryMaskType</b> = 0, 
-<b>LabelMapMaskType</b>
+<tr class="memitem:a7d06582cc10f005d497d42c93ac0b501"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="class_volume_ray_cast_mapper.html#a7d06582cc10f005d497d42c93ac0b501ab8880e61fb7ef6e5ea93d55a08a29c74">BinaryMaskType</a> = 0, 
+<a class="el" href="class_volume_ray_cast_mapper.html#a7d06582cc10f005d497d42c93ac0b501a3d07fc4f0f248e65869acdcf4f6b36fe">LabelMapMaskType</a>
  }</td></tr>
 <tr class="separator:a7d06582cc10f005d497d42c93ac0b501"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7ac5c9c74dfa7317a1731e298feb65a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ac5c9c74dfa7317a1731e298feb65a5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkTypeMacro</b> (<a class="el" href="class_volume_ray_cast_mapper.html">VolumeRayCastMapper</a>, vtkVolumeMapper)</td></tr>
+<tr class="memitem:a7ac5c9c74dfa7317a1731e298feb65a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a7ac5c9c74dfa7317a1731e298feb65a5">vtkTypeMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html">VolumeRayCastMapper</a>, vtkVolumeMapper)</td></tr>
 <tr class="separator:a7ac5c9c74dfa7317a1731e298feb65a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9ca89111405ee7438696eac9473c89d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9ca89111405ee7438696eac9473c89d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ac9ca89111405ee7438696eac9473c89d">PrintSelf</a> (ostream &amp;os, vtkIndent indent)</td></tr>
-<tr class="memdesc:ac9ca89111405ee7438696eac9473c89d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write relevant parameter of this class in the out-console. <br /></td></tr>
+<tr class="memitem:ac9ca89111405ee7438696eac9473c89d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ac9ca89111405ee7438696eac9473c89d">PrintSelf</a> (ostream &amp;os, vtkIndent indent)</td></tr>
+<tr class="memdesc:ac9ca89111405ee7438696eac9473c89d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write relevant parameter of this class in the out-console.  <a href="#ac9ca89111405ee7438696eac9473c89d">More...</a><br /></td></tr>
 <tr class="separator:ac9ca89111405ee7438696eac9473c89d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4d508881b6c194d84dfb679cc0e29e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4d508881b6c194d84dfb679cc0e29e5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ae4d508881b6c194d84dfb679cc0e29e5">SetInput</a> (int port, vtkImageData *input)</td></tr>
-<tr class="memdesc:ae4d508881b6c194d84dfb679cc0e29e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the input of the vtk pipeline and its port. <br /></td></tr>
+<tr class="memitem:ae4d508881b6c194d84dfb679cc0e29e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ae4d508881b6c194d84dfb679cc0e29e5">SetInput</a> (int port, vtkImageData *input)</td></tr>
+<tr class="memdesc:ae4d508881b6c194d84dfb679cc0e29e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the input of the vtk pipeline and its port.  <a href="#ae4d508881b6c194d84dfb679cc0e29e5">More...</a><br /></td></tr>
 <tr class="separator:ae4d508881b6c194d84dfb679cc0e29e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaebd13198ebdd827b5f826bd87b38dd9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaebd13198ebdd827b5f826bd87b38dd9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#aaebd13198ebdd827b5f826bd87b38dd9">SetInput</a> (int port, vtkDataSet *genericInput)</td></tr>
-<tr class="memdesc:aaebd13198ebdd827b5f826bd87b38dd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the input of the vtk pipeline and its port. <br /></td></tr>
+<tr class="memitem:aaebd13198ebdd827b5f826bd87b38dd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#aaebd13198ebdd827b5f826bd87b38dd9">SetInput</a> (int port, vtkDataSet *genericInput)</td></tr>
+<tr class="memdesc:aaebd13198ebdd827b5f826bd87b38dd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the input of the vtk pipeline and its port.  <a href="#aaebd13198ebdd827b5f826bd87b38dd9">More...</a><br /></td></tr>
 <tr class="separator:aaebd13198ebdd827b5f826bd87b38dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba9c51d86eb4c9bc075f613762ec75ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba9c51d86eb4c9bc075f613762ec75ed"></a>
-vtkImageData *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#aba9c51d86eb4c9bc075f613762ec75ed">GetInput</a> (int port=0)</td></tr>
-<tr class="memdesc:aba9c51d86eb4c9bc075f613762ec75ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the imagedata. <br /></td></tr>
+<tr class="memitem:aba9c51d86eb4c9bc075f613762ec75ed"><td class="memItemLeft" align="right" valign="top">vtkImageData *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#aba9c51d86eb4c9bc075f613762ec75ed">GetInput</a> (int port=0)</td></tr>
+<tr class="memdesc:aba9c51d86eb4c9bc075f613762ec75ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the imagedata.  <a href="#aba9c51d86eb4c9bc075f613762ec75ed">More...</a><br /></td></tr>
 <tr class="separator:aba9c51d86eb4c9bc075f613762ec75ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6aace5924e4c441bcda09805464694f2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6aace5924e4c441bcda09805464694f2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a6aace5924e4c441bcda09805464694f2">setNumberOfAdditionalVolumes</a> (int numAddVolumes)</td></tr>
-<tr class="memdesc:a6aace5924e4c441bcda09805464694f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets number of additional volumes (in our case its allways zero) <br /></td></tr>
+<tr class="memitem:a6aace5924e4c441bcda09805464694f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a6aace5924e4c441bcda09805464694f2">setNumberOfAdditionalVolumes</a> (int numAddVolumes)</td></tr>
+<tr class="memdesc:a6aace5924e4c441bcda09805464694f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets number of additional volumes (in our case its allways zero)  <a href="#a6aace5924e4c441bcda09805464694f2">More...</a><br /></td></tr>
 <tr class="separator:a6aace5924e4c441bcda09805464694f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad27db7f5900e0e49297471d3c5df3aca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad27db7f5900e0e49297471d3c5df3aca"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetClampMacro</b> (AutoAdjustSampleDistances, int, 0, 1)</td></tr>
+<tr class="memitem:ad27db7f5900e0e49297471d3c5df3aca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ad27db7f5900e0e49297471d3c5df3aca">vtkSetClampMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a82aa473d703e026185988e33ac08a3a2">AutoAdjustSampleDistances</a>, int, 0, 1)</td></tr>
 <tr class="separator:ad27db7f5900e0e49297471d3c5df3aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76f1084d43d9a060543813c3bc85cf65"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76f1084d43d9a060543813c3bc85cf65"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (AutoAdjustSampleDistances, int)</td></tr>
+<tr class="memitem:a76f1084d43d9a060543813c3bc85cf65"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a76f1084d43d9a060543813c3bc85cf65">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a82aa473d703e026185988e33ac08a3a2">AutoAdjustSampleDistances</a>, int)</td></tr>
 <tr class="separator:a76f1084d43d9a060543813c3bc85cf65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0c49726066e56d91717b9aa52f8474b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0c49726066e56d91717b9aa52f8474b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkBooleanMacro</b> (AutoAdjustSampleDistances, int)</td></tr>
+<tr class="memitem:ae0c49726066e56d91717b9aa52f8474b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ae0c49726066e56d91717b9aa52f8474b">vtkBooleanMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a82aa473d703e026185988e33ac08a3a2">AutoAdjustSampleDistances</a>, int)</td></tr>
 <tr class="separator:ae0c49726066e56d91717b9aa52f8474b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95f94d02e3f48bac1fa65be5a90d6c74"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95f94d02e3f48bac1fa65be5a90d6c74"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetMacro</b> (SampleDistance, float)</td></tr>
+<tr class="memitem:a95f94d02e3f48bac1fa65be5a90d6c74"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a95f94d02e3f48bac1fa65be5a90d6c74">vtkSetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a3d743590963e04c2636f870259885f1e">SampleDistance</a>, float)</td></tr>
 <tr class="separator:a95f94d02e3f48bac1fa65be5a90d6c74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec9b3ca1ecb86ce949431c1aca0e36f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec9b3ca1ecb86ce949431c1aca0e36f6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (SampleDistance, float)</td></tr>
+<tr class="memitem:aec9b3ca1ecb86ce949431c1aca0e36f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#aec9b3ca1ecb86ce949431c1aca0e36f6">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a3d743590963e04c2636f870259885f1e">SampleDistance</a>, float)</td></tr>
 <tr class="separator:aec9b3ca1ecb86ce949431c1aca0e36f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63d080bb4544fd62eba671601f8e8a81"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63d080bb4544fd62eba671601f8e8a81"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetClampMacro</b> (ImageSampleDistance, float, 0.1f, 100.0f)</td></tr>
+<tr class="memitem:a63d080bb4544fd62eba671601f8e8a81"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a63d080bb4544fd62eba671601f8e8a81">vtkSetClampMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a9d3f487e8883551c0c1d46b205ece563">ImageSampleDistance</a>, float, 0.1f, 100.0f)</td></tr>
 <tr class="separator:a63d080bb4544fd62eba671601f8e8a81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a496b98fd10d5c140b91296ec9657fc44"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a496b98fd10d5c140b91296ec9657fc44"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (ImageSampleDistance, float)</td></tr>
+<tr class="memitem:a496b98fd10d5c140b91296ec9657fc44"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a496b98fd10d5c140b91296ec9657fc44">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a9d3f487e8883551c0c1d46b205ece563">ImageSampleDistance</a>, float)</td></tr>
 <tr class="separator:a496b98fd10d5c140b91296ec9657fc44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affdbcad7b5bc9e5bc91b4c68f90ea36a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affdbcad7b5bc9e5bc91b4c68f90ea36a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetClampMacro</b> (MinimumImageSampleDistance, float, 0.1f, 100.0f)</td></tr>
+<tr class="memitem:affdbcad7b5bc9e5bc91b4c68f90ea36a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#affdbcad7b5bc9e5bc91b4c68f90ea36a">vtkSetClampMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a786ebed1173e2a571479c6e2870cb5fe">MinimumImageSampleDistance</a>, float, 0.1f, 100.0f)</td></tr>
 <tr class="separator:affdbcad7b5bc9e5bc91b4c68f90ea36a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3660af906747b46cd4dceaaffdaeaeb5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3660af906747b46cd4dceaaffdaeaeb5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (MinimumImageSampleDistance, float)</td></tr>
+<tr class="memitem:a3660af906747b46cd4dceaaffdaeaeb5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a3660af906747b46cd4dceaaffdaeaeb5">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a786ebed1173e2a571479c6e2870cb5fe">MinimumImageSampleDistance</a>, float)</td></tr>
 <tr class="separator:a3660af906747b46cd4dceaaffdaeaeb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b5f86efc56fda89bc75c3bf28d40d57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b5f86efc56fda89bc75c3bf28d40d57"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetClampMacro</b> (MaximumImageSampleDistance, float, 0.1f, 100.0f)</td></tr>
+<tr class="memitem:a9b5f86efc56fda89bc75c3bf28d40d57"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a9b5f86efc56fda89bc75c3bf28d40d57">vtkSetClampMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#aae6d720914e03ca63aa69dfe04768059">MaximumImageSampleDistance</a>, float, 0.1f, 100.0f)</td></tr>
 <tr class="separator:a9b5f86efc56fda89bc75c3bf28d40d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b576a7820dadf20fb85fb656971a7cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b576a7820dadf20fb85fb656971a7cb"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (MaximumImageSampleDistance, float)</td></tr>
+<tr class="memitem:a7b576a7820dadf20fb85fb656971a7cb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a7b576a7820dadf20fb85fb656971a7cb">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#aae6d720914e03ca63aa69dfe04768059">MaximumImageSampleDistance</a>, float)</td></tr>
 <tr class="separator:a7b576a7820dadf20fb85fb656971a7cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea055803afb4ba8d539c22006f6fbb33"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aea055803afb4ba8d539c22006f6fbb33"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetMacro</b> (FinalColorWindow, float)</td></tr>
+<tr class="memitem:aea055803afb4ba8d539c22006f6fbb33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#aea055803afb4ba8d539c22006f6fbb33">vtkSetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a60f0387fc8aee8954d320e1111033ad6">FinalColorWindow</a>, float)</td></tr>
 <tr class="separator:aea055803afb4ba8d539c22006f6fbb33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25c47ef75f2cad8e03882b1702d80e21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25c47ef75f2cad8e03882b1702d80e21"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (FinalColorWindow, float)</td></tr>
+<tr class="memitem:a25c47ef75f2cad8e03882b1702d80e21"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a25c47ef75f2cad8e03882b1702d80e21">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a60f0387fc8aee8954d320e1111033ad6">FinalColorWindow</a>, float)</td></tr>
 <tr class="separator:a25c47ef75f2cad8e03882b1702d80e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5035ea673bfaa35a2160c0b1d635d5f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5035ea673bfaa35a2160c0b1d635d5f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetMacro</b> (FinalColorLevel, float)</td></tr>
+<tr class="memitem:ad5035ea673bfaa35a2160c0b1d635d5f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ad5035ea673bfaa35a2160c0b1d635d5f">vtkSetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#ad2659f2e1084562121a7140ae312c2b3">FinalColorLevel</a>, float)</td></tr>
 <tr class="separator:ad5035ea673bfaa35a2160c0b1d635d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af09abcee596c8d35650bda326b64f0a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af09abcee596c8d35650bda326b64f0a2"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (FinalColorLevel, float)</td></tr>
+<tr class="memitem:af09abcee596c8d35650bda326b64f0a2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#af09abcee596c8d35650bda326b64f0a2">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#ad2659f2e1084562121a7140ae312c2b3">FinalColorLevel</a>, float)</td></tr>
 <tr class="separator:af09abcee596c8d35650bda326b64f0a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5db4b2d2b1b6c2fb111bb44e6f863a6f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5db4b2d2b1b6c2fb111bb44e6f863a6f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetMacro</b> (MaxMemoryInBytes, vtkIdType)</td></tr>
+<tr class="memitem:a5db4b2d2b1b6c2fb111bb44e6f863a6f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a5db4b2d2b1b6c2fb111bb44e6f863a6f">vtkSetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#ab462e4ec09a657fd3a8141c74e189441">MaxMemoryInBytes</a>, vtkIdType)</td></tr>
 <tr class="separator:a5db4b2d2b1b6c2fb111bb44e6f863a6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af293c27dce6e40e6a7719624707ba7c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af293c27dce6e40e6a7719624707ba7c9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (MaxMemoryInBytes, vtkIdType)</td></tr>
+<tr class="memitem:af293c27dce6e40e6a7719624707ba7c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#af293c27dce6e40e6a7719624707ba7c9">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#ab462e4ec09a657fd3a8141c74e189441">MaxMemoryInBytes</a>, vtkIdType)</td></tr>
 <tr class="separator:af293c27dce6e40e6a7719624707ba7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d8ee53fa2cd8e38a2cadd8c629fd89d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d8ee53fa2cd8e38a2cadd8c629fd89d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetClampMacro</b> (MaxMemoryFraction, float, 0.1f, 1.0f)</td></tr>
+<tr class="memitem:a5d8ee53fa2cd8e38a2cadd8c629fd89d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a5d8ee53fa2cd8e38a2cadd8c629fd89d">vtkSetClampMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a709590b9cc073e2480e7cba4bebb86bf">MaxMemoryFraction</a>, float, 0.1f, 1.0f)</td></tr>
 <tr class="separator:a5d8ee53fa2cd8e38a2cadd8c629fd89d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf3da2d090f649dbab45def40d137ebd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf3da2d090f649dbab45def40d137ebd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (MaxMemoryFraction, float)</td></tr>
+<tr class="memitem:acf3da2d090f649dbab45def40d137ebd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#acf3da2d090f649dbab45def40d137ebd">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a709590b9cc073e2480e7cba4bebb86bf">MaxMemoryFraction</a>, float)</td></tr>
 <tr class="separator:acf3da2d090f649dbab45def40d137ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d8275f105f8e11f62eaad244cd32504"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d8275f105f8e11f62eaad244cd32504"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetMacro</b> (ReportProgress, bool)</td></tr>
+<tr class="memitem:a8d8275f105f8e11f62eaad244cd32504"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a8d8275f105f8e11f62eaad244cd32504">vtkSetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#aca59c21ff05024d2ec58845910d935da">ReportProgress</a>, bool)</td></tr>
 <tr class="separator:a8d8275f105f8e11f62eaad244cd32504"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a97b6dadc23051a32ef58e46fd90e05"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a97b6dadc23051a32ef58e46fd90e05"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (ReportProgress, bool)</td></tr>
+<tr class="memitem:a1a97b6dadc23051a32ef58e46fd90e05"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a1a97b6dadc23051a32ef58e46fd90e05">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#aca59c21ff05024d2ec58845910d935da">ReportProgress</a>, bool)</td></tr>
 <tr class="separator:a1a97b6dadc23051a32ef58e46fd90e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a817c72e49d58ce35f4902bc15b86b0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a817c72e49d58ce35f4902bc15b86b0"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>IsRenderSupported</b> (vtkRenderWindow *vtkNotUsed(window), vtkVolumeProperty *vtkNotUsed(property))</td></tr>
+<tr class="memitem:a3a817c72e49d58ce35f4902bc15b86b0"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a3a817c72e49d58ce35f4902bc15b86b0">IsRenderSupported</a> (vtkRenderWindow *vtkNotUsed(window), vtkVolumeProperty *vtkNotUsed(property))</td></tr>
 <tr class="separator:a3a817c72e49d58ce35f4902bc15b86b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf2af736883da6d67aef124cd9cb92b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf2af736883da6d67aef124cd9cb92b7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CreateCanonicalView</b> (vtkRenderer *ren, vtkVolume *volume, vtkImageData *image, int blend_mode, double viewDirection[3], double viewUp[3])</td></tr>
+<tr class="memitem:adf2af736883da6d67aef124cd9cb92b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#adf2af736883da6d67aef124cd9cb92b7">CreateCanonicalView</a> (vtkRenderer *ren, vtkVolume *volume, vtkImageData *image, int blend_mode, double viewDirection[3], double viewUp[3])</td></tr>
 <tr class="separator:adf2af736883da6d67aef124cd9cb92b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad50baa75cc5e6990ff32fe677b6c5e9e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad50baa75cc5e6990ff32fe677b6c5e9e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMaskInput</b> (vtkImageData *mask)</td></tr>
+<tr class="memitem:ad50baa75cc5e6990ff32fe677b6c5e9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ad50baa75cc5e6990ff32fe677b6c5e9e">SetMaskInput</a> (vtkImageData *mask)</td></tr>
 <tr class="separator:ad50baa75cc5e6990ff32fe677b6c5e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9896baffe7b917d401f3e97637fa5f51"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9896baffe7b917d401f3e97637fa5f51"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetObjectMacro</b> (MaskInput, vtkImageData)</td></tr>
+<tr class="memitem:a9896baffe7b917d401f3e97637fa5f51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a9896baffe7b917d401f3e97637fa5f51">vtkGetObjectMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a6388d61e9841230239460e944bc62561">MaskInput</a>, vtkImageData)</td></tr>
 <tr class="separator:a9896baffe7b917d401f3e97637fa5f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f7163d916a252a5fd835ff5c26e021a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f7163d916a252a5fd835ff5c26e021a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetMacro</b> (MaskType, int)</td></tr>
+<tr class="memitem:a0f7163d916a252a5fd835ff5c26e021a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a0f7163d916a252a5fd835ff5c26e021a">vtkSetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a1eb5f6fde6bc2e6947671a527546fd2a">MaskType</a>, int)</td></tr>
 <tr class="separator:a0f7163d916a252a5fd835ff5c26e021a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93db2803664e770eb0c8793442f9202b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93db2803664e770eb0c8793442f9202b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (MaskType, int)</td></tr>
+<tr class="memitem:a93db2803664e770eb0c8793442f9202b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a93db2803664e770eb0c8793442f9202b">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a1eb5f6fde6bc2e6947671a527546fd2a">MaskType</a>, int)</td></tr>
 <tr class="separator:a93db2803664e770eb0c8793442f9202b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b5609cb2d6ce10b6a92af702dbbf9e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b5609cb2d6ce10b6a92af702dbbf9e2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMaskTypeToBinary</b> ()</td></tr>
+<tr class="memitem:a0b5609cb2d6ce10b6a92af702dbbf9e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a0b5609cb2d6ce10b6a92af702dbbf9e2">SetMaskTypeToBinary</a> ()</td></tr>
 <tr class="separator:a0b5609cb2d6ce10b6a92af702dbbf9e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc0cdf6b6f95b42e324903ebd23144d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc0cdf6b6f95b42e324903ebd23144d6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMaskTypeToLabelMap</b> ()</td></tr>
+<tr class="memitem:afc0cdf6b6f95b42e324903ebd23144d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#afc0cdf6b6f95b42e324903ebd23144d6">SetMaskTypeToLabelMap</a> ()</td></tr>
 <tr class="separator:afc0cdf6b6f95b42e324903ebd23144d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dc2f9dae7e59dd3a6a98e3d4120d166"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1dc2f9dae7e59dd3a6a98e3d4120d166"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetClampMacro</b> (MaskBlendFactor, float, 0.0f, 1.0f)</td></tr>
+<tr class="memitem:a1dc2f9dae7e59dd3a6a98e3d4120d166"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a1dc2f9dae7e59dd3a6a98e3d4120d166">vtkSetClampMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#ae6baa927f8922e24eabfa1b9f15310c2">MaskBlendFactor</a>, float, 0.0f, 1.0f)</td></tr>
 <tr class="separator:a1dc2f9dae7e59dd3a6a98e3d4120d166"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdb74e652ed0ef99d336c61a35436218"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abdb74e652ed0ef99d336c61a35436218"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (MaskBlendFactor, float)</td></tr>
+<tr class="memitem:abdb74e652ed0ef99d336c61a35436218"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#abdb74e652ed0ef99d336c61a35436218">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#ae6baa927f8922e24eabfa1b9f15310c2">MaskBlendFactor</a>, float)</td></tr>
 <tr class="separator:abdb74e652ed0ef99d336c61a35436218"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93733a57e3f6601a7353759e2db801f2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93733a57e3f6601a7353759e2db801f2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Render</b> (vtkRenderer *, vtkVolume *)</td></tr>
+<tr class="memitem:a93733a57e3f6601a7353759e2db801f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a93733a57e3f6601a7353759e2db801f2">Render</a> (vtkRenderer *, vtkVolume *)</td></tr>
 <tr class="separator:a93733a57e3f6601a7353759e2db801f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ca3339a709260bb07c76c1af3eaaa97"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ca3339a709260bb07c76c1af3eaaa97"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>GPURender</b> (vtkRenderer *, vtkVolume *)</td></tr>
+<tr class="memitem:a4ca3339a709260bb07c76c1af3eaaa97"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a4ca3339a709260bb07c76c1af3eaaa97">GPURender</a> (vtkRenderer *, vtkVolume *)</td></tr>
 <tr class="separator:a4ca3339a709260bb07c76c1af3eaaa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a217d4b72ce5da1e66a00e1277aee8915"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a217d4b72ce5da1e66a00e1277aee8915"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ReleaseGraphicsResources</b> (vtkWindow *)</td></tr>
+<tr class="memitem:a217d4b72ce5da1e66a00e1277aee8915"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a217d4b72ce5da1e66a00e1277aee8915">ReleaseGraphicsResources</a> (vtkWindow *)</td></tr>
 <tr class="separator:a217d4b72ce5da1e66a00e1277aee8915"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8476a767b115cfd3a94c0203fc073e6d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8476a767b115cfd3a94c0203fc073e6d"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>GetReductionRatio</b> (double ratio[3])=0</td></tr>
+<tr class="memitem:a8476a767b115cfd3a94c0203fc073e6d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a8476a767b115cfd3a94c0203fc073e6d">GetReductionRatio</a> (double ratio[3])=0</td></tr>
 <tr class="separator:a8476a767b115cfd3a94c0203fc073e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac74da7431965a7e4915a96c6a9b159e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac74da7431965a7e4915a96c6a9b159e5"></a>
-static <a class="el" href="class_volume_ray_cast_mapper.html">VolumeRayCastMapper</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ac74da7431965a7e4915a96c6a9b159e5">New</a> ()</td></tr>
-<tr class="memdesc:ac74da7431965a7e4915a96c6a9b159e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new raycastmapper and returns it. <br /></td></tr>
+<tr class="memitem:ac74da7431965a7e4915a96c6a9b159e5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_volume_ray_cast_mapper.html">VolumeRayCastMapper</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ac74da7431965a7e4915a96c6a9b159e5">New</a> ()</td></tr>
+<tr class="memdesc:ac74da7431965a7e4915a96c6a9b159e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new raycastmapper and returns it.  <a href="#ac74da7431965a7e4915a96c6a9b159e5">More...</a><br /></td></tr>
 <tr class="separator:ac74da7431965a7e4915a96c6a9b159e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5578d00a368ed6f9954d02830f2b1f18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5578d00a368ed6f9954d02830f2b1f18"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a5578d00a368ed6f9954d02830f2b1f18">NUMBER_OF_ADDITIONAL_VOLUMES</a></td></tr>
-<tr class="memdesc:a5578d00a368ed6f9954d02830f2b1f18"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Value stores the number of additional volumes. In our case its allways zero. <br /></td></tr>
+<tr class="memitem:a5578d00a368ed6f9954d02830f2b1f18"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a5578d00a368ed6f9954d02830f2b1f18">NUMBER_OF_ADDITIONAL_VOLUMES</a></td></tr>
+<tr class="memdesc:a5578d00a368ed6f9954d02830f2b1f18"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Value stores the number of additional volumes. In our case its allways zero.  <a href="#a5578d00a368ed6f9954d02830f2b1f18">More...</a><br /></td></tr>
 <tr class="separator:a5578d00a368ed6f9954d02830f2b1f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ad9e3cb493df5205c809d7a74d897f7a4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9e3cb493df5205c809d7a74d897f7a4"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>ValidateRender</b> (vtkRenderer *, vtkVolume *)</td></tr>
+<tr class="memitem:adf0182bc3ea27fec960ee2d1ff101ada"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#adf0182bc3ea27fec960ee2d1ff101ada">VolumeRayCastMapper</a> ()</td></tr>
+<tr class="separator:adf0182bc3ea27fec960ee2d1ff101ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8a22846b24ffc2b8d1b39e96c5bd7ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ae8a22846b24ffc2b8d1b39e96c5bd7ea">~VolumeRayCastMapper</a> ()</td></tr>
+<tr class="separator:ae8a22846b24ffc2b8d1b39e96c5bd7ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9e3cb493df5205c809d7a74d897f7a4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ad9e3cb493df5205c809d7a74d897f7a4">ValidateRender</a> (vtkRenderer *, vtkVolume *)</td></tr>
 <tr class="separator:ad9e3cb493df5205c809d7a74d897f7a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66c8c3efd571c4b05596663fd729352f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66c8c3efd571c4b05596663fd729352f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CanonicalViewRender</b> (vtkRenderer *, vtkVolume *)</td></tr>
+<tr class="memitem:a66c8c3efd571c4b05596663fd729352f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a66c8c3efd571c4b05596663fd729352f">CanonicalViewRender</a> (vtkRenderer *, vtkVolume *)</td></tr>
 <tr class="separator:a66c8c3efd571c4b05596663fd729352f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7e9aab72a6e2a377b74da37a1dc6075"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7e9aab72a6e2a377b74da37a1dc6075"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>PreRender</b> (vtkRenderer *ren, vtkVolume *vol, double datasetBounds[6], double scalarRange[2], int numberOfScalarComponents, unsigned int numberOfLevels)=0</td></tr>
+<tr class="memitem:af7e9aab72a6e2a377b74da37a1dc6075"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#af7e9aab72a6e2a377b74da37a1dc6075">PreRender</a> (vtkRenderer *ren, vtkVolume *vol, double datasetBounds[6], double scalarRange[2], int numberOfScalarComponents, unsigned int numberOfLevels)=0</td></tr>
 <tr class="separator:af7e9aab72a6e2a377b74da37a1dc6075"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe2cf7009f95bd788fc55467d0a7bd2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe2cf7009f95bd788fc55467d0a7bd2f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>RenderBlock</b> (vtkRenderer *ren, vtkVolume *vol, unsigned int level)=0</td></tr>
+<tr class="memitem:abe2cf7009f95bd788fc55467d0a7bd2f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#abe2cf7009f95bd788fc55467d0a7bd2f">RenderBlock</a> (vtkRenderer *ren, vtkVolume *vol, unsigned int level)=0</td></tr>
 <tr class="separator:abe2cf7009f95bd788fc55467d0a7bd2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a317e9990f9c870f5b41fc22f8dbdd784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a317e9990f9c870f5b41fc22f8dbdd784"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>PostRender</b> (vtkRenderer *ren, int numberOfScalarComponents)=0</td></tr>
+<tr class="memitem:a317e9990f9c870f5b41fc22f8dbdd784"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a317e9990f9c870f5b41fc22f8dbdd784">PostRender</a> (vtkRenderer *ren, int numberOfScalarComponents)=0</td></tr>
 <tr class="separator:a317e9990f9c870f5b41fc22f8dbdd784"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fe0e90f5bd44167ad2113d9503aa27a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fe0e90f5bd44167ad2113d9503aa27a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetCellFlag</b> (int cellFlag)</td></tr>
+<tr class="memitem:a8fe0e90f5bd44167ad2113d9503aa27a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a8fe0e90f5bd44167ad2113d9503aa27a">SetCellFlag</a> (int cellFlag)</td></tr>
 <tr class="separator:a8fe0e90f5bd44167ad2113d9503aa27a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79fe62212420e6084ebbb10dfda1d72f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79fe62212420e6084ebbb10dfda1d72f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkSetClampMacro</b> (AMRMode, int, 0, 1)</td></tr>
+<tr class="memitem:a79fe62212420e6084ebbb10dfda1d72f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a79fe62212420e6084ebbb10dfda1d72f">vtkSetClampMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a42cbae8088d35aa07eb4d78feaec6d0d">AMRMode</a>, int, 0, 1)</td></tr>
 <tr class="separator:a79fe62212420e6084ebbb10dfda1d72f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59131262d6ec839e51ce141381e11dc7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59131262d6ec839e51ce141381e11dc7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetMacro</b> (AMRMode, int)</td></tr>
+<tr class="memitem:a59131262d6ec839e51ce141381e11dc7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a59131262d6ec839e51ce141381e11dc7">vtkGetMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a42cbae8088d35aa07eb4d78feaec6d0d">AMRMode</a>, int)</td></tr>
 <tr class="separator:a59131262d6ec839e51ce141381e11dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a348773b0a4d07708e04da06727c9bec0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a348773b0a4d07708e04da06727c9bec0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkBooleanMacro</b> (AMRMode, int)</td></tr>
+<tr class="memitem:a348773b0a4d07708e04da06727c9bec0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a348773b0a4d07708e04da06727c9bec0">vtkBooleanMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a42cbae8088d35aa07eb4d78feaec6d0d">AMRMode</a>, int)</td></tr>
 <tr class="separator:a348773b0a4d07708e04da06727c9bec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac61d9da5106c71e985bb08cb723ea912"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac61d9da5106c71e985bb08cb723ea912"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ClipCroppingRegionPlanes</b> ()</td></tr>
+<tr class="memitem:ac61d9da5106c71e985bb08cb723ea912"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ac61d9da5106c71e985bb08cb723ea912">ClipCroppingRegionPlanes</a> ()</td></tr>
 <tr class="separator:ac61d9da5106c71e985bb08cb723ea912"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae228aa15ce9c78622540c5bb332f0b0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae228aa15ce9c78622540c5bb332f0b0d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vtkGetObjectMacro</b> (TransformedInput, vtkImageData)</td></tr>
+<tr class="memitem:ae228aa15ce9c78622540c5bb332f0b0d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ae228aa15ce9c78622540c5bb332f0b0d">vtkGetObjectMacro</a> (<a class="el" href="class_volume_ray_cast_mapper.html#a721f4b5e14865e582602cef6417f0306">TransformedInput</a>, vtkImageData)</td></tr>
 <tr class="separator:ae228aa15ce9c78622540c5bb332f0b0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a137bda9041637014b21bb52329e4a5ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a137bda9041637014b21bb52329e4a5ef"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTransformedInput</b> (vtkImageData *)</td></tr>
+<tr class="memitem:a137bda9041637014b21bb52329e4a5ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a137bda9041637014b21bb52329e4a5ef">SetTransformedInput</a> (vtkImageData *)</td></tr>
 <tr class="separator:a137bda9041637014b21bb52329e4a5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a3d743590963e04c2636f870259885f1e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3d743590963e04c2636f870259885f1e"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>SampleDistance</b></td></tr>
+<tr class="memitem:a3d743590963e04c2636f870259885f1e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a3d743590963e04c2636f870259885f1e">SampleDistance</a></td></tr>
 <tr class="separator:a3d743590963e04c2636f870259885f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d3f487e8883551c0c1d46b205ece563"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d3f487e8883551c0c1d46b205ece563"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>ImageSampleDistance</b></td></tr>
+<tr class="memitem:a9d3f487e8883551c0c1d46b205ece563"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a9d3f487e8883551c0c1d46b205ece563">ImageSampleDistance</a></td></tr>
 <tr class="separator:a9d3f487e8883551c0c1d46b205ece563"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a786ebed1173e2a571479c6e2870cb5fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a786ebed1173e2a571479c6e2870cb5fe"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>MinimumImageSampleDistance</b></td></tr>
+<tr class="memitem:a786ebed1173e2a571479c6e2870cb5fe"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a786ebed1173e2a571479c6e2870cb5fe">MinimumImageSampleDistance</a></td></tr>
 <tr class="separator:a786ebed1173e2a571479c6e2870cb5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae6d720914e03ca63aa69dfe04768059"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae6d720914e03ca63aa69dfe04768059"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>MaximumImageSampleDistance</b></td></tr>
+<tr class="memitem:aae6d720914e03ca63aa69dfe04768059"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#aae6d720914e03ca63aa69dfe04768059">MaximumImageSampleDistance</a></td></tr>
 <tr class="separator:aae6d720914e03ca63aa69dfe04768059"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82aa473d703e026185988e33ac08a3a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82aa473d703e026185988e33ac08a3a2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>AutoAdjustSampleDistances</b></td></tr>
+<tr class="memitem:a82aa473d703e026185988e33ac08a3a2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a82aa473d703e026185988e33ac08a3a2">AutoAdjustSampleDistances</a></td></tr>
 <tr class="separator:a82aa473d703e026185988e33ac08a3a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12f29c5351883a554d0f1b8fb5ea8ec6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12f29c5351883a554d0f1b8fb5ea8ec6"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>SmallVolumeRender</b></td></tr>
+<tr class="memitem:a12f29c5351883a554d0f1b8fb5ea8ec6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a12f29c5351883a554d0f1b8fb5ea8ec6">SmallVolumeRender</a></td></tr>
 <tr class="separator:a12f29c5351883a554d0f1b8fb5ea8ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d7c953b4b007b7166caf47816027929"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d7c953b4b007b7166caf47816027929"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>BigTimeToDraw</b></td></tr>
+<tr class="memitem:a8d7c953b4b007b7166caf47816027929"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a8d7c953b4b007b7166caf47816027929">BigTimeToDraw</a></td></tr>
 <tr class="separator:a8d7c953b4b007b7166caf47816027929"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abae39e290858d5d9c86f07e0c17375e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abae39e290858d5d9c86f07e0c17375e3"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>SmallTimeToDraw</b></td></tr>
+<tr class="memitem:abae39e290858d5d9c86f07e0c17375e3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#abae39e290858d5d9c86f07e0c17375e3">SmallTimeToDraw</a></td></tr>
 <tr class="separator:abae39e290858d5d9c86f07e0c17375e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60f0387fc8aee8954d320e1111033ad6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60f0387fc8aee8954d320e1111033ad6"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>FinalColorWindow</b></td></tr>
+<tr class="memitem:a60f0387fc8aee8954d320e1111033ad6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a60f0387fc8aee8954d320e1111033ad6">FinalColorWindow</a></td></tr>
 <tr class="separator:a60f0387fc8aee8954d320e1111033ad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2659f2e1084562121a7140ae312c2b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2659f2e1084562121a7140ae312c2b3"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>FinalColorLevel</b></td></tr>
+<tr class="memitem:ad2659f2e1084562121a7140ae312c2b3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ad2659f2e1084562121a7140ae312c2b3">FinalColorLevel</a></td></tr>
 <tr class="separator:ad2659f2e1084562121a7140ae312c2b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab462e4ec09a657fd3a8141c74e189441"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab462e4ec09a657fd3a8141c74e189441"></a>
-vtkIdType&#160;</td><td class="memItemRight" valign="bottom"><b>MaxMemoryInBytes</b></td></tr>
+<tr class="memitem:ab462e4ec09a657fd3a8141c74e189441"><td class="memItemLeft" align="right" valign="top">vtkIdType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ab462e4ec09a657fd3a8141c74e189441">MaxMemoryInBytes</a></td></tr>
 <tr class="separator:ab462e4ec09a657fd3a8141c74e189441"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a709590b9cc073e2480e7cba4bebb86bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a709590b9cc073e2480e7cba4bebb86bf"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>MaxMemoryFraction</b></td></tr>
+<tr class="memitem:a709590b9cc073e2480e7cba4bebb86bf"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a709590b9cc073e2480e7cba4bebb86bf">MaxMemoryFraction</a></td></tr>
 <tr class="separator:a709590b9cc073e2480e7cba4bebb86bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5d73e51d894c4381719fdf6069b8f22"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5d73e51d894c4381719fdf6069b8f22"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GeneratingCanonicalView</b></td></tr>
+<tr class="memitem:ab5d73e51d894c4381719fdf6069b8f22"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ab5d73e51d894c4381719fdf6069b8f22">GeneratingCanonicalView</a></td></tr>
 <tr class="separator:ab5d73e51d894c4381719fdf6069b8f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02d82683fa69c8b61d374cd63214e3c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02d82683fa69c8b61d374cd63214e3c3"></a>
-vtkImageData *&#160;</td><td class="memItemRight" valign="bottom"><b>CanonicalViewImageData</b></td></tr>
+<tr class="memitem:a02d82683fa69c8b61d374cd63214e3c3"><td class="memItemLeft" align="right" valign="top">vtkImageData *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a02d82683fa69c8b61d374cd63214e3c3">CanonicalViewImageData</a></td></tr>
 <tr class="separator:a02d82683fa69c8b61d374cd63214e3c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42cbae8088d35aa07eb4d78feaec6d0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42cbae8088d35aa07eb4d78feaec6d0d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>AMRMode</b></td></tr>
+<tr class="memitem:a42cbae8088d35aa07eb4d78feaec6d0d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a42cbae8088d35aa07eb4d78feaec6d0d">AMRMode</a></td></tr>
 <tr class="separator:a42cbae8088d35aa07eb4d78feaec6d0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56230b84c5c1ff417c909c7e91e2532a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56230b84c5c1ff417c909c7e91e2532a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>CellFlag</b></td></tr>
+<tr class="memitem:a56230b84c5c1ff417c909c7e91e2532a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a56230b84c5c1ff417c909c7e91e2532a">CellFlag</a></td></tr>
 <tr class="separator:a56230b84c5c1ff417c909c7e91e2532a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a305bbf32e5ecc582e287cc31579c55e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a305bbf32e5ecc582e287cc31579c55e3"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>ClippedCroppingRegionPlanes</b> [6]</td></tr>
+<tr class="memitem:a305bbf32e5ecc582e287cc31579c55e3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a305bbf32e5ecc582e287cc31579c55e3">ClippedCroppingRegionPlanes</a> [6]</td></tr>
 <tr class="separator:a305bbf32e5ecc582e287cc31579c55e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca59c21ff05024d2ec58845910d935da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca59c21ff05024d2ec58845910d935da"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>ReportProgress</b></td></tr>
+<tr class="memitem:aca59c21ff05024d2ec58845910d935da"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#aca59c21ff05024d2ec58845910d935da">ReportProgress</a></td></tr>
 <tr class="separator:aca59c21ff05024d2ec58845910d935da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6388d61e9841230239460e944bc62561"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6388d61e9841230239460e944bc62561"></a>
-vtkImageData *&#160;</td><td class="memItemRight" valign="bottom"><b>MaskInput</b></td></tr>
+<tr class="memitem:a6388d61e9841230239460e944bc62561"><td class="memItemLeft" align="right" valign="top">vtkImageData *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a6388d61e9841230239460e944bc62561">MaskInput</a></td></tr>
 <tr class="separator:a6388d61e9841230239460e944bc62561"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6baa927f8922e24eabfa1b9f15310c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6baa927f8922e24eabfa1b9f15310c2"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>MaskBlendFactor</b></td></tr>
+<tr class="memitem:ae6baa927f8922e24eabfa1b9f15310c2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#ae6baa927f8922e24eabfa1b9f15310c2">MaskBlendFactor</a></td></tr>
 <tr class="separator:ae6baa927f8922e24eabfa1b9f15310c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1eb5f6fde6bc2e6947671a527546fd2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1eb5f6fde6bc2e6947671a527546fd2a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>MaskType</b></td></tr>
+<tr class="memitem:a1eb5f6fde6bc2e6947671a527546fd2a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a1eb5f6fde6bc2e6947671a527546fd2a">MaskType</a></td></tr>
 <tr class="separator:a1eb5f6fde6bc2e6947671a527546fd2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a721f4b5e14865e582602cef6417f0306"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a721f4b5e14865e582602cef6417f0306"></a>
-vtkImageData *&#160;</td><td class="memItemRight" valign="bottom"><b>TransformedInput</b></td></tr>
+<tr class="memitem:a721f4b5e14865e582602cef6417f0306"><td class="memItemLeft" align="right" valign="top">vtkImageData *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a721f4b5e14865e582602cef6417f0306">TransformedInput</a></td></tr>
 <tr class="separator:a721f4b5e14865e582602cef6417f0306"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1568ecce4b87c6f1bdd65136259ba1e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1568ecce4b87c6f1bdd65136259ba1e9"></a>
-vtkImageData *&#160;</td><td class="memItemRight" valign="bottom"><b>LastInput</b></td></tr>
+<tr class="memitem:a1568ecce4b87c6f1bdd65136259ba1e9"><td class="memItemLeft" align="right" valign="top">vtkImageData *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a1568ecce4b87c6f1bdd65136259ba1e9">LastInput</a></td></tr>
 <tr class="separator:a1568ecce4b87c6f1bdd65136259ba1e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a8c8bbe2276a5a730780b7d5f12e6d245"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a8c8bbe2276a5a730780b7d5f12e6d245">VolumeRayCastMapper</a> (const <a class="el" href="class_volume_ray_cast_mapper.html">VolumeRayCastMapper</a> &amp;)</td></tr>
+<tr class="separator:a8c8bbe2276a5a730780b7d5f12e6d245"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fabcf83bf5e8fc7a57429fdcf03ce2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_volume_ray_cast_mapper.html#a6fabcf83bf5e8fc7a57429fdcf03ce2d">operator=</a> (const <a class="el" href="class_volume_ray_cast_mapper.html">VolumeRayCastMapper</a> &amp;)</td></tr>
+<tr class="separator:a6fabcf83bf5e8fc7a57429fdcf03ce2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for raycasting with opengl shaders. Copyright by Ken Martin, Will Schroeder, Bill Lorensen, Carlos Falcón and Karl Krissian. Modified by us so we can use it for our pupose. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a7d06582cc10f005d497d42c93ac0b501"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a7d06582cc10f005d497d42c93ac0b501ab8880e61fb7ef6e5ea93d55a08a29c74"></a>BinaryMaskType&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a7d06582cc10f005d497d42c93ac0b501a3d07fc4f0f248e65869acdcf4f6b36fe"></a>LabelMapMaskType&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="adf0182bc3ea27fec960ee2d1ff101ada"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::VolumeRayCastMapper </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae8a22846b24ffc2b8d1b39e96c5bd7ea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::~VolumeRayCastMapper </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8c8bbe2276a5a730780b7d5f12e6d245"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::VolumeRayCastMapper </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_volume_ray_cast_mapper.html">VolumeRayCastMapper</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a66c8c3efd571c4b05596663fd729352f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::CanonicalViewRender </td>
+          <td>(</td>
+          <td class="paramtype">vtkRenderer *&#160;</td>
+          <td class="paramname"><em>ren</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkVolume *&#160;</td>
+          <td class="paramname"><em>vol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac61d9da5106c71e985bb08cb723ea912"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::ClipCroppingRegionPlanes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adf2af736883da6d67aef124cd9cb92b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::CreateCanonicalView </td>
+          <td>(</td>
+          <td class="paramtype">vtkRenderer *&#160;</td>
+          <td class="paramname"><em>ren</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkVolume *&#160;</td>
+          <td class="paramname"><em>volume</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageData *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>blend_mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>viewDirection</em>[3], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>viewUp</em>[3]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aba9c51d86eb4c9bc075f613762ec75ed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vtkImageData * VolumeRayCastMapper::GetInput </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the imagedata. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8476a767b115cfd3a94c0203fc073e6d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void VolumeRayCastMapper::GetReductionRatio </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>ratio</em>[3]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_volume_ray_cast_mapper_open_g_l.html#a7a3a1af697ca2fad7c45e3aad2298682">VolumeRayCastMapperOpenGL</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4ca3339a709260bb07c76c1af3eaaa97"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void VolumeRayCastMapper::GPURender </td>
+          <td>(</td>
+          <td class="paramtype">vtkRenderer *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkVolume *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_volume_ray_cast_mapper_open_g_l.html#ad4f729dda3b4bbdd961a2a281aafc3ac">VolumeRayCastMapperOpenGL</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3a817c72e49d58ce35f4902bc15b86b0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int VolumeRayCastMapper::IsRenderSupported </td>
+          <td>(</td>
+          <td class="paramtype">vtkRenderWindow *&#160;</td>
+          <td class="paramname"><em>vtkNotUsed</em>window, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkVolumeProperty *&#160;</td>
+          <td class="paramname"><em>vtkNotUsed</em>property&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac74da7431965a7e4915a96c6a9b159e5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_volume_ray_cast_mapper.html">VolumeRayCastMapper</a> * VolumeRayCastMapper::New </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new raycastmapper and returns it. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6fabcf83bf5e8fc7a57429fdcf03ce2d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_volume_ray_cast_mapper.html">VolumeRayCastMapper</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a317e9990f9c870f5b41fc22f8dbdd784"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void VolumeRayCastMapper::PostRender </td>
+          <td>(</td>
+          <td class="paramtype">vtkRenderer *&#160;</td>
+          <td class="paramname"><em>ren</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numberOfScalarComponents</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_volume_ray_cast_mapper_open_g_l.html#a7c9693815e3e1850be79130e6ce51ef0">VolumeRayCastMapperOpenGL</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af7e9aab72a6e2a377b74da37a1dc6075"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void VolumeRayCastMapper::PreRender </td>
+          <td>(</td>
+          <td class="paramtype">vtkRenderer *&#160;</td>
+          <td class="paramname"><em>ren</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkVolume *&#160;</td>
+          <td class="paramname"><em>vol</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>datasetBounds</em>[6], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>scalarRange</em>[2], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numberOfScalarComponents</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>numberOfLevels</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_volume_ray_cast_mapper_open_g_l.html#a92d9fa7933098d10a023c84a028996b3">VolumeRayCastMapperOpenGL</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac9ca89111405ee7438696eac9473c89d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::PrintSelf </td>
+          <td>(</td>
+          <td class="paramtype">ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkIndent&#160;</td>
+          <td class="paramname"><em>indent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write relevant parameter of this class in the out-console. </p>
+
+</div>
+</div>
+<a class="anchor" id="a217d4b72ce5da1e66a00e1277aee8915"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::ReleaseGraphicsResources </td>
+          <td>(</td>
+          <td class="paramtype">vtkWindow *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a93733a57e3f6601a7353759e2db801f2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::Render </td>
+          <td>(</td>
+          <td class="paramtype">vtkRenderer *&#160;</td>
+          <td class="paramname"><em>ren</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkVolume *&#160;</td>
+          <td class="paramname"><em>vol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abe2cf7009f95bd788fc55467d0a7bd2f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void VolumeRayCastMapper::RenderBlock </td>
+          <td>(</td>
+          <td class="paramtype">vtkRenderer *&#160;</td>
+          <td class="paramname"><em>ren</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkVolume *&#160;</td>
+          <td class="paramname"><em>vol</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>level</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_volume_ray_cast_mapper_open_g_l.html#a09b596f6f57adf33a5d0a739be394514">VolumeRayCastMapperOpenGL</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8fe0e90f5bd44167ad2113d9503aa27a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::SetCellFlag </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>cellFlag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae4d508881b6c194d84dfb679cc0e29e5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::SetInput </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageData *&#160;</td>
+          <td class="paramname"><em>input</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the input of the vtk pipeline and its port. </p>
+
+</div>
+</div>
+<a class="anchor" id="aaebd13198ebdd827b5f826bd87b38dd9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::SetInput </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkDataSet *&#160;</td>
+          <td class="paramname"><em>genericInput</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the input of the vtk pipeline and its port. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad50baa75cc5e6990ff32fe677b6c5e9e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::SetMaskInput </td>
+          <td>(</td>
+          <td class="paramtype">vtkImageData *&#160;</td>
+          <td class="paramname"><em>mask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0b5609cb2d6ce10b6a92af702dbbf9e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::SetMaskTypeToBinary </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="afc0cdf6b6f95b42e324903ebd23144d6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::SetMaskTypeToLabelMap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6aace5924e4c441bcda09805464694f2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::setNumberOfAdditionalVolumes </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numAddVolumes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets number of additional volumes (in our case its allways zero) </p>
+
+</div>
+</div>
+<a class="anchor" id="a137bda9041637014b21bb52329e4a5ef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VolumeRayCastMapper::SetTransformedInput </td>
+          <td>(</td>
+          <td class="paramtype">vtkImageData *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad9e3cb493df5205c809d7a74d897f7a4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VolumeRayCastMapper::ValidateRender </td>
+          <td>(</td>
+          <td class="paramtype">vtkRenderer *&#160;</td>
+          <td class="paramname"><em>ren</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkVolume *&#160;</td>
+          <td class="paramname"><em>vol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae0c49726066e56d91717b9aa52f8474b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkBooleanMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a82aa473d703e026185988e33ac08a3a2">AutoAdjustSampleDistances</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a348773b0a4d07708e04da06727c9bec0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkBooleanMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a42cbae8088d35aa07eb4d78feaec6d0d">AMRMode</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a76f1084d43d9a060543813c3bc85cf65"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a82aa473d703e026185988e33ac08a3a2">AutoAdjustSampleDistances</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aec9b3ca1ecb86ce949431c1aca0e36f6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a3d743590963e04c2636f870259885f1e">SampleDistance</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a496b98fd10d5c140b91296ec9657fc44"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a9d3f487e8883551c0c1d46b205ece563">ImageSampleDistance</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3660af906747b46cd4dceaaffdaeaeb5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a786ebed1173e2a571479c6e2870cb5fe">MinimumImageSampleDistance</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7b576a7820dadf20fb85fb656971a7cb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#aae6d720914e03ca63aa69dfe04768059">MaximumImageSampleDistance</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a25c47ef75f2cad8e03882b1702d80e21"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a60f0387fc8aee8954d320e1111033ad6">FinalColorWindow</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af09abcee596c8d35650bda326b64f0a2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#ad2659f2e1084562121a7140ae312c2b3">FinalColorLevel</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af293c27dce6e40e6a7719624707ba7c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#ab462e4ec09a657fd3a8141c74e189441">MaxMemoryInBytes</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkIdType&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="acf3da2d090f649dbab45def40d137ebd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a709590b9cc073e2480e7cba4bebb86bf">MaxMemoryFraction</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1a97b6dadc23051a32ef58e46fd90e05"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#aca59c21ff05024d2ec58845910d935da">ReportProgress</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a93db2803664e770eb0c8793442f9202b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a1eb5f6fde6bc2e6947671a527546fd2a">MaskType</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abdb74e652ed0ef99d336c61a35436218"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#ae6baa927f8922e24eabfa1b9f15310c2">MaskBlendFactor</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a59131262d6ec839e51ce141381e11dc7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a42cbae8088d35aa07eb4d78feaec6d0d">AMRMode</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9896baffe7b917d401f3e97637fa5f51"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetObjectMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a6388d61e9841230239460e944bc62561">MaskInput</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageData&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae228aa15ce9c78622540c5bb332f0b0d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkGetObjectMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a721f4b5e14865e582602cef6417f0306">TransformedInput</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkImageData&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad27db7f5900e0e49297471d3c5df3aca"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetClampMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a82aa473d703e026185988e33ac08a3a2">AutoAdjustSampleDistances</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">1&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a63d080bb4544fd62eba671601f8e8a81"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetClampMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a9d3f487e8883551c0c1d46b205ece563">ImageSampleDistance</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0.&#160;</td>
+          <td class="paramname"><em>1f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">100.&#160;</td>
+          <td class="paramname"><em>0f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="affdbcad7b5bc9e5bc91b4c68f90ea36a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetClampMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a786ebed1173e2a571479c6e2870cb5fe">MinimumImageSampleDistance</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0.&#160;</td>
+          <td class="paramname"><em>1f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">100.&#160;</td>
+          <td class="paramname"><em>0f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9b5f86efc56fda89bc75c3bf28d40d57"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetClampMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#aae6d720914e03ca63aa69dfe04768059">MaximumImageSampleDistance</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0.&#160;</td>
+          <td class="paramname"><em>1f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">100.&#160;</td>
+          <td class="paramname"><em>0f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5d8ee53fa2cd8e38a2cadd8c629fd89d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetClampMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a709590b9cc073e2480e7cba4bebb86bf">MaxMemoryFraction</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0.&#160;</td>
+          <td class="paramname"><em>1f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">1.&#160;</td>
+          <td class="paramname"><em>0f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1dc2f9dae7e59dd3a6a98e3d4120d166"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetClampMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#ae6baa927f8922e24eabfa1b9f15310c2">MaskBlendFactor</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0.&#160;</td>
+          <td class="paramname"><em>0f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">1.&#160;</td>
+          <td class="paramname"><em>0f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a79fe62212420e6084ebbb10dfda1d72f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetClampMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a42cbae8088d35aa07eb4d78feaec6d0d">AMRMode</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">1&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a95f94d02e3f48bac1fa65be5a90d6c74"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a3d743590963e04c2636f870259885f1e">SampleDistance</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aea055803afb4ba8d539c22006f6fbb33"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a60f0387fc8aee8954d320e1111033ad6">FinalColorWindow</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad5035ea673bfaa35a2160c0b1d635d5f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#ad2659f2e1084562121a7140ae312c2b3">FinalColorLevel</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5db4b2d2b1b6c2fb111bb44e6f863a6f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#ab462e4ec09a657fd3a8141c74e189441">MaxMemoryInBytes</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkIdType&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8d8275f105f8e11f62eaad244cd32504"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#aca59c21ff05024d2ec58845910d935da">ReportProgress</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0f7163d916a252a5fd835ff5c26e021a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkSetMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html#a1eb5f6fde6bc2e6947671a527546fd2a">MaskType</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7ac5c9c74dfa7317a1731e298feb65a5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VolumeRayCastMapper::vtkTypeMacro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_volume_ray_cast_mapper.html">VolumeRayCastMapper</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vtkVolumeMapper&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a42cbae8088d35aa07eb4d78feaec6d0d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VolumeRayCastMapper::AMRMode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a82aa473d703e026185988e33ac08a3a2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VolumeRayCastMapper::AutoAdjustSampleDistances</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8d7c953b4b007b7166caf47816027929"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double VolumeRayCastMapper::BigTimeToDraw</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a02d82683fa69c8b61d374cd63214e3c3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vtkImageData* VolumeRayCastMapper::CanonicalViewImageData</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a56230b84c5c1ff417c909c7e91e2532a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VolumeRayCastMapper::CellFlag</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a305bbf32e5ecc582e287cc31579c55e3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double VolumeRayCastMapper::ClippedCroppingRegionPlanes[6]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad2659f2e1084562121a7140ae312c2b3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float VolumeRayCastMapper::FinalColorLevel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a60f0387fc8aee8954d320e1111033ad6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float VolumeRayCastMapper::FinalColorWindow</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab5d73e51d894c4381719fdf6069b8f22"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VolumeRayCastMapper::GeneratingCanonicalView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9d3f487e8883551c0c1d46b205ece563"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float VolumeRayCastMapper::ImageSampleDistance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1568ecce4b87c6f1bdd65136259ba1e9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vtkImageData* VolumeRayCastMapper::LastInput</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae6baa927f8922e24eabfa1b9f15310c2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float VolumeRayCastMapper::MaskBlendFactor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6388d61e9841230239460e944bc62561"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vtkImageData* VolumeRayCastMapper::MaskInput</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1eb5f6fde6bc2e6947671a527546fd2a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VolumeRayCastMapper::MaskType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aae6d720914e03ca63aa69dfe04768059"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float VolumeRayCastMapper::MaximumImageSampleDistance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a709590b9cc073e2480e7cba4bebb86bf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float VolumeRayCastMapper::MaxMemoryFraction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab462e4ec09a657fd3a8141c74e189441"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vtkIdType VolumeRayCastMapper::MaxMemoryInBytes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a786ebed1173e2a571479c6e2870cb5fe"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float VolumeRayCastMapper::MinimumImageSampleDistance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5578d00a368ed6f9954d02830f2b1f18"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VolumeRayCastMapper::NUMBER_OF_ADDITIONAL_VOLUMES</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This Value stores the number of additional volumes. In our case its allways zero. </p>
+
+</div>
+</div>
+<a class="anchor" id="aca59c21ff05024d2ec58845910d935da"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool VolumeRayCastMapper::ReportProgress</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3d743590963e04c2636f870259885f1e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float VolumeRayCastMapper::SampleDistance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abae39e290858d5d9c86f07e0c17375e3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double VolumeRayCastMapper::SmallTimeToDraw</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a12f29c5351883a554d0f1b8fb5ea8ec6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int VolumeRayCastMapper::SmallVolumeRender</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a721f4b5e14865e582602cef6417f0306"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vtkImageData* VolumeRayCastMapper::TransformedInput</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>E:/TU_Andi/Vismed2/medvis2/VolumeRendering/inc/<a class="el" href="_volume_ray_cast_mapper_8h_source.html">VolumeRayCastMapper.h</a></li>
-<li>E:/TU_Andi/Vismed2/medvis2/VolumeRendering/src/VolumeRayCastMapper.cpp</li>
+<li>E:/TU_Andi/Vismed2/medvis2/VolumeRendering/src/<a class="el" href="_volume_ray_cast_mapper_8cpp.html">VolumeRayCastMapper.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
